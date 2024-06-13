@@ -1,5 +1,6 @@
 package com.example.gece_sisapp20
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -32,6 +33,18 @@ class StudentDashboard : AppCompatActivity() {
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
         val policiesimgview = findViewById<ImageView>(R.id.policiesimgview)
         val policiestext = findViewById<TextView>(R.id.policiestext)
+        policiesicon.setOnClickListener {
+            val intent = Intent(this, StudentDashboardPolicies::class.java)
+            startActivity(intent)
+        }
+        policiesimgview.setOnClickListener {
+            val intent = Intent(this, StudentDashboardPolicies::class.java)
+            startActivity(intent)
+        }
+        policiestext.setOnClickListener {
+            val intent = Intent(this, StudentDashboardPolicies::class.java)
+            startActivity(intent)
+        }
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         val coursesimgview = findViewById<ImageView>(R.id.coursesimgview)

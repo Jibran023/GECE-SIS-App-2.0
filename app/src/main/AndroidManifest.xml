@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GECESISApp20"
         tools:targetApi="31">
         <activity
+            android:name=".StudentDashboardPolicies"
+            android:exported="false" />
+        <activity
             android:name=".StudentDashboard"
             android:exported="false" />
         <activity
