@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFA500"/> <!-- Change color as desired -->
+    <corners android:radius="2dp"/> <!-- Adjust corner radius if needed -->
+    <size android:width="4dp" android:height="20dp"/> <!-- Adjust width and height to match scrollbarSize -->
+    <gradient android:startColor="#FFA500" android:endColor="#FFA500"/> <!-- Adjust gradient colors if needed -->
+</shape>

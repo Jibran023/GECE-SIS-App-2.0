@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">GECE-SIS App 2.0</string>
+    <string name="profile_button_description">Profile</string>
+    <string name="back_button_description">Back</string>
+    <string name="long_policy_text">
+    Your policy text goes here. It can be a long paragraph of 500 words or more. You can copy and paste your policy content here.
+    </string>
+    <string name="policy_title">Policy</string>
+    <string name="subheading1">Subheading 1</string>
+    <string name="subheading2">Subheading 2</string>
+    <string name="title_activity_attendance_courselist">Your Title</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="email">Email:</string>
+    <string name="please_login_with_your_information">Please Login with your information</string>
+    <string name="welcome">Welcome!</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="courses">Courses</string>
+    <string name="policy">Policy</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="account">Account</string>
+    <string name="back">Back</string>
+    <string name="attendance">Attendance</string>
+    <string name="announcement">Announcement</string>
+    <string name="complain_feedback">Complain and feedback</string>
+    <string name="grades">Grades</string>
+    <string name="attendance_image_desc">Attendance icon</string>
+    <string name="announcement_image_desc">Announcement icon</string>
+    <string name="complain_image_desc">Complain and Feedback icon</string>
+    <string name="grades_image_desc">Grades icon</string>
+    <string name="courses_image_desc">Courses icon</string>
+    <string name="policies_image_desc">Policies icon</string>
+    <string name="account_image_desc">Account icon</string>
+    <string name="back_image_desc">Back icon</string>
 </resources>

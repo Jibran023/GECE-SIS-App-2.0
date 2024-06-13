@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="45"
+        android:endColor="#FFC371"
+        android:startColor="#FF5F6D"
+        android:type="linear" />
+</shape>
+
+
+<!--Centrally glowing effect-->
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--<gradient-->
+<!--    android:type="radial"-->
+<!--    android:gradientRadius="500"-->
+<!--    android:centerColor="#FFC371"-->
+<!--    android:endColor="#FF5F6D"/>-->
+<!--</shape>-->
