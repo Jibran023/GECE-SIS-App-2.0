@@ -5,4 +5,10 @@
     <color name="primary_orange">#FEA999</color>
     <color name="grey">#5C5E5F</color>
     <color name="lighter_orange">#FF8570</color>
+    <color name="FF7D29">#FF7D29</color>
+    <color name="lightest_orange">#FFCEC5</color>
+    <color name="orangeshade2">#ffb5a9</color>
+    <color name="orangeshade3">#ff9d8c</color>
+    <color name="orangeshade4">#ff8570</color>
+
 </resources>

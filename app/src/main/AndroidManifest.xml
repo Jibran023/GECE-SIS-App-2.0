@@ -13,6 +13,30 @@
         android:theme="@style/Theme.GECESISApp20"
         tools:targetApi="31">
         <activity
+            android:name=".policyAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintTrack"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintReview"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintScreenSuggestions"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintScreenAnonComplain"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintScreenFileComplaint"
+            android:exported="false" />
+        <activity
+            android:name=".ComplaintScreenFirst"
+            android:exported="false" />
+        <activity
+            android:name=".student_attendance_comboboxes"
+            android:exported="false" />
+        <activity
             android:name=".StudentDashboardPolicies"
             android:exported="false" />
         <activity

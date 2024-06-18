@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,36 +20,31 @@ class StudentDashboard : AppCompatActivity() {
         val studentprofilepic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
-        val attendanceimgview = findViewById<ImageView>(R.id.attendance_imageview)
-        val attendancetext = findViewById<TextView>(R.id.attendance_text)
-
-        val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
-        val announcementimgview = findViewById<ImageView>(R.id.announcementimgview)
-        val announcementtext = findViewById<TextView>(R.id.announcementtext)
-
-        val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
-        val gradesimgview = findViewById<ImageView>(R.id.gradesimageview)
-        val gradestext = findViewById<TextView>(R.id.gradestext)
+        attendanceicon.setOnClickListener {
+            val intent = Intent(this, student_attendance_comboboxes::class.java)
+            startActivity(intent)
+        }
 
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
-        val policiesimgview = findViewById<ImageView>(R.id.policiesimgview)
-        val policiestext = findViewById<TextView>(R.id.policiestext)
         policiesicon.setOnClickListener {
             val intent = Intent(this, StudentDashboardPolicies::class.java)
             startActivity(intent)
         }
-        policiesimgview.setOnClickListener {
-            val intent = Intent(this, StudentDashboardPolicies::class.java)
-            startActivity(intent)
-        }
-        policiestext.setOnClickListener {
-            val intent = Intent(this, StudentDashboardPolicies::class.java)
+
+        val complain_and_feedback = findViewById<LinearLayout>(R.id.complaintfeedbackicon)
+        complain_and_feedback.setOnClickListener {
+            var intent = Intent(this, ComplaintScreenFirst::class.java)
             startActivity(intent)
         }
 
+        val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
+
+        val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
+
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
-        val coursesimgview = findViewById<ImageView>(R.id.coursesimgview)
-        val coursestext = findViewById<TextView>(R.id.coursestext)
+
+
+
 
     }
 }

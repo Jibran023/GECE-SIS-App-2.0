@@ -3,10 +3,15 @@ package com.example.gece_sisapp20
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.ListView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.doublescreen.Policy
+import com.example.doublescreen.PolicyAdapter
+import com.example.doublescreen.PolicyRecord
 
 class StudentDashboardPolicies : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +19,20 @@ class StudentDashboardPolicies : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_student_dashboard_policies)
 
-        val policies_backbtn = findViewById<ImageButton>(R.id.policiesback_button)
+        val listView = findViewById<ListView>(R.id.listView)
+
+        // Sample data
+        val policyRecords = listOf(
+            PolicyRecord(Policy("Policy 1 Title")),
+            PolicyRecord(Policy("Policy 2 Title")),
+            PolicyRecord(Policy("Policy 3 Title"))
+        )
+
+
+        val adapter = PolicyAdapter(this, policyRecords)
+        listView.adapter = adapter
+
+        val policies_backbtn = findViewById<ImageView>(R.id.policiesback_button)
         policies_backbtn.setOnClickListener {
             val intent = Intent(this, StudentDashboard::class.java)
             startActivity(intent)

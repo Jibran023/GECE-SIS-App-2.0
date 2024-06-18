@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/back" />
+
+    <!-- Heading Text -->
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@id/back_button"
+        android:layout_marginStart="20dp"
+        android:text="Complaint Feedback"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/infobox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heading"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/orangeborder"
+        android:padding="16dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/tap_1_svgrepo_com"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Tap at the options below to provide feedback"
+            android:textColor="@color/grey"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infobox"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="16dp"
+        android:id="@+id/tap_info_container">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/lightest_orange"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="I am satisfied with how my complaint was handled"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="5"/> <!-- Limit lines to prevent overflow -->
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/lightest_orange"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="I am not satisfied with how my complaint was handled."
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="5"/> <!-- Limit lines to prevent overflow -->
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card3"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="25dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/lightest_orange"
+            android:layout_marginBottom="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="I would like to chellenge my complaint."
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="5"/> <!-- Limit lines to prevent overflow -->
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Repeat the CardView as needed -->
+
+    </LinearLayout>
+
+</RelativeLayout>
