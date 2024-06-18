@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.ListView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.doublescreen.Policy
-import com.example.doublescreen.PolicyAdapter
-import com.example.doublescreen.PolicyRecord
+
 
 class StudentDashboardPolicies : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

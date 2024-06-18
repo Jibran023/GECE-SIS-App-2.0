@@ -1,0 +1,261 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CoursesScreenFirst">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/std_dashboard_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_view"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="-80dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="30dp"
+        android:clipToPadding="false" />
+
+    <TextView
+        android:id="@+id/courseHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/courses"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+
+    <ImageView
+        android:id="@+id/Courses_backbtn"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        app:srcCompat="@drawable/arrow_back_ios_24"
+        android:contentDescription="@string/back_image_desc"/>
+</RelativeLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:id="@+id/main"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    android:background="@color/white"-->
+    <!--    tools:context=".Options">-->
+
+
+    <!--    <View-->
+    <!--        android:id="@+id/top_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:background="@drawable/std_dashboard_view" />-->
+
+    <!--    <GridLayout-->
+    <!--        android:id="@+id/grid_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_below="@id/top_view"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginLeft="24dp"-->
+    <!--        android:layout_marginTop="-100dp"-->
+    <!--        android:layout_marginRight="24dp"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:columnCount="1"-->
+    <!--        android:rowCount="4">-->
+
+    <!--        &lt;!&ndash; Attendance Card &ndash;&gt;-->
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_rowWeight="0"-->
+    <!--            android:layout_columnWeight="1"-->
+    <!--            android:layout_margin="12dp"-->
+    <!--            app:cardCornerRadius="15dp"-->
+    <!--            app:cardElevation="12dp">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/attendance_icon"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/attendance_text"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:text="@string/attendance"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="18sp" />-->
+    <!--            </LinearLayout>-->
+    <!--        </androidx.cardview.widget.CardView>-->
+
+    <!--        &lt;!&ndash; Announcement Card &ndash;&gt;-->
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_rowWeight="0"-->
+    <!--            android:layout_columnWeight="1"-->
+    <!--            android:layout_margin="12dp"-->
+    <!--            app:cardCornerRadius="15dp"-->
+    <!--            app:cardElevation="12dp">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/announcement_icon"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/announcement_text"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:text="@string/announcement"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="18sp" />-->
+    <!--            </LinearLayout>-->
+    <!--        </androidx.cardview.widget.CardView>-->
+
+    <!--        &lt;!&ndash; Complain and Feedback Card &ndash;&gt;-->
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_rowWeight="0"-->
+    <!--            android:layout_columnWeight="1"-->
+    <!--            android:layout_margin="12dp"-->
+    <!--            app:cardCornerRadius="15dp"-->
+    <!--            app:cardElevation="12dp">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/complain_icon"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/complain_text"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:text="@string/complain_feedback"-->
+    <!--                    android:textAlignment="center"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="18sp" />-->
+    <!--            </LinearLayout>-->
+    <!--        </androidx.cardview.widget.CardView>-->
+
+    <!--        &lt;!&ndash; Grades Card &ndash;&gt;-->
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_rowWeight="0"-->
+    <!--            android:layout_columnWeight="1"-->
+    <!--            android:layout_margin="12dp"-->
+    <!--            app:cardCornerRadius="15dp"-->
+    <!--            app:cardElevation="12dp">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/grades_icon"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/grades_text"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:text="@string/grades"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="18sp" />-->
+    <!--            </LinearLayout>-->
+    <!--        </androidx.cardview.widget.CardView>-->
+
+    <!--        &lt;!&ndash; Courses Card &ndash;&gt;-->
+    <!--        <androidx.cardview.widget.CardView-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_rowWeight="0"-->
+    <!--            android:layout_columnWeight="1"-->
+    <!--            android:layout_margin="12dp"-->
+    <!--            app:cardCornerRadius="15dp"-->
+    <!--            app:cardElevation="12dp">-->
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/courses_icon"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/courses_text"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center_horizontal"-->
+    <!--                    android:text="@string/courses"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="18sp" />-->
+    <!--            </LinearLayout>-->
+    <!--        </androidx.cardview.widget.CardView>-->
+
+    <!--    </GridLayout>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView4"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/courses"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:textSize="36sp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="30dp" />-->
+
+    <!--    &lt;!&ndash; Account Image &ndash;&gt;-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="45dp"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        app:srcCompat="@drawable/baseline_account_circle_24"-->
+    <!--        android:contentDescription="@string/account_image_desc"/>-->
+
+    <!--    &lt;!&ndash; Back Arrow Image &ndash;&gt;-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView2"-->
+    <!--        android:layout_width="50dp"-->
+    <!--        android:layout_height="45dp"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        app:srcCompat="@drawable/arrow_back_ios_24"-->
+    <!--        android:contentDescription="@string/back_image_desc"/>-->
+
+    <!--</RelativeLayout>-->

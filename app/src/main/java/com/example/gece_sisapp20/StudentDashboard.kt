@@ -40,8 +40,16 @@ class StudentDashboard : AppCompatActivity() {
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
 
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
+        gradesicon.setOnClickListener {
+            val intent = Intent(this, GradesScreenFirst::class.java)
+            startActivity(intent)
+        }
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
+        coursesicon.setOnClickListener {
+            var intent = Intent(this, CoursesScreenFirst::class.java)
+            startActivity(intent)
+        }
 
 
 

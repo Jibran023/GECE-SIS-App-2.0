@@ -1,4 +1,4 @@
-package com.example.doublescreen
+package com.example.gece_sisapp20
 
 import android.content.Context
 import android.view.LayoutInflater
