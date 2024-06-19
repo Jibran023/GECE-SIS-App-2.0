@@ -13,6 +13,12 @@ class GradesScreenFirst : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_grades_screen_first)
 
+        val nextbtn = findViewById<Button>(R.id.gradesscrnfirst_nextbtn)
+        nextbtn.setOnClickListener {
+            val intent = Intent(this, GradesScreenSecond::class.java)
+            startActivity(intent)
+        }
+
         val backbtn = findViewById<Button>(R.id.Grades_backbutton)
         backbtn.setOnClickListener {
             val intent = Intent(this, StudentDashboard::class.java)

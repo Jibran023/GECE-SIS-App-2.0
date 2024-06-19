@@ -162,7 +162,7 @@
         android:layout_marginRight="24dp"/>
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/gradesscrnfirst_nextbtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="@string/Nextbutton"
