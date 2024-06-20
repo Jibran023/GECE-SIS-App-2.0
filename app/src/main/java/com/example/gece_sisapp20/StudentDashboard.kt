@@ -47,7 +47,7 @@ class StudentDashboard : AppCompatActivity() {
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         coursesicon.setOnClickListener {
-            var intent = Intent(this, CoursesScreenFirst::class.java)
+            var intent = Intent(this, courses_comboboxes::class.java)
             startActivity(intent)
         }
 

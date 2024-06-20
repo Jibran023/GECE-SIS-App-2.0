@@ -19,7 +19,7 @@ class CoursesScreenFirst : AppCompatActivity() {
 
         var backbtn = findViewById<ImageView>(R.id.Courses_backbtn)
         backbtn.setOnClickListener{
-            var intent = Intent(this, StudentDashboard::class.java)
+            var intent = Intent(this, courses_comboboxes::class.java)
             startActivity(intent)
         }
 

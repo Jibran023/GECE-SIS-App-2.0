@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GECESISApp20"
         tools:targetApi="31">
         <activity
+            android:name=".courses_comboboxes"
+            android:exported="false" />
+        <activity
             android:name=".CourseAdapter"
             android:exported="false" />
         <activity
