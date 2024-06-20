@@ -16,8 +16,17 @@ class ComplaintScreenSuggestions : AppCompatActivity() {
 
         val suggestions_backbtn = findViewById<ImageView>(R.id.Suggestions_backbutton)
         suggestions_backbtn.setOnClickListener {
-            val intent = Intent(this, ComplaintScreenFirst::class.java)
+            val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 }

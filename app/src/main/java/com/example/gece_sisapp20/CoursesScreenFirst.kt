@@ -19,7 +19,9 @@ class CoursesScreenFirst : AppCompatActivity() {
 
         var backbtn = findViewById<ImageView>(R.id.Courses_backbtn)
         backbtn.setOnClickListener{
-            var intent = Intent(this, courses_comboboxes::class.java)
+            var intent = Intent(this, courses_comboboxes::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
@@ -37,5 +39,12 @@ class CoursesScreenFirst : AppCompatActivity() {
 
         val adapter = CardAdapter(this, cardItems)
         recyclerView.adapter = adapter
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, courses_comboboxes::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 }

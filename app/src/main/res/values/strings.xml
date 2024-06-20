@@ -9,8 +9,8 @@
     <string name="subheading1">Subheading 1</string>
     <string name="subheading2">Subheading 2</string>
     <!--    <string name="title_activity_attendance_courselist">Your Title</string>-->
-    <string name="enter_password">Enter Password</string>
-    <string name="enter_email">Enter your email</string>
+    <string name="enter_password">Enter your Password</string>
+    <string name="Enter_username">Enter your Username</string>
     <string name="email">Email:</string>
     <string name="please_login_with_your_information">Please Login with your information</string>
     <string name="welcome">Welcome!</string>
@@ -42,6 +42,7 @@
     <string name="year_label">Year</string>
     <string name="semester_label">Semester</string>
     <string name="course_label">Course</string>
+    <string name="username">Username:</string>
     <!-- Arrays for Spinners -->
     <string-array name="year_array">
         <item>1st Year</item>

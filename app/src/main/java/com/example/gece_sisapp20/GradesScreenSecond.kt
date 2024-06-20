@@ -19,7 +19,9 @@ class GradesScreenSecond : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.gradesscrnsecond_backbtn)
         backbtn.setOnClickListener{
-            val intent = Intent(this, GradesScreenFirst::class.java)
+            val intent = Intent(this, GradesScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
@@ -38,5 +40,13 @@ class GradesScreenSecond : AppCompatActivity() {
         val adapter = CourseAdapter(this, courses)
         recyclerView.adapter = adapter
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, GradesScreenFirst::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 }

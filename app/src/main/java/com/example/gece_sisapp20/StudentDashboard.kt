@@ -21,19 +21,25 @@ class StudentDashboard : AppCompatActivity() {
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
-            val intent = Intent(this, student_attendance_comboboxes::class.java)
+            val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
         policiesicon.setOnClickListener {
-            val intent = Intent(this, StudentDashboardPolicies::class.java)
+            val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
         val complain_and_feedback = findViewById<LinearLayout>(R.id.complaintfeedbackicon)
         complain_and_feedback.setOnClickListener {
-            var intent = Intent(this, ComplaintScreenFirst::class.java)
+            var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
@@ -41,13 +47,17 @@ class StudentDashboard : AppCompatActivity() {
 
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
         gradesicon.setOnClickListener {
-            val intent = Intent(this, GradesScreenFirst::class.java)
+            val intent = Intent(this, GradesScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         coursesicon.setOnClickListener {
-            var intent = Intent(this, courses_comboboxes::class.java)
+            var intent = Intent(this, courses_comboboxes::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 

@@ -15,14 +15,25 @@ class GradesScreenFirst : AppCompatActivity() {
 
         val nextbtn = findViewById<Button>(R.id.gradesscrnfirst_nextbtn)
         nextbtn.setOnClickListener {
-            val intent = Intent(this, GradesScreenSecond::class.java)
+            val intent = Intent(this, GradesScreenSecond::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
 
         val backbtn = findViewById<Button>(R.id.Grades_backbutton)
         backbtn.setOnClickListener {
-            val intent = Intent(this, StudentDashboard::class.java)
+            val intent = Intent(this, StudentDashboard::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, StudentDashboard::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 }

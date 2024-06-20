@@ -16,8 +16,18 @@ class ComplaintScreenFileComplaint : AppCompatActivity() {
 
         var complaintform_backbtn = findViewById<ImageView>(R.id.complaintform_backbutton)
         complaintform_backbtn.setOnClickListener {
-            var intent = Intent(this, ComplaintScreenFirst::class.java)
+            var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 }

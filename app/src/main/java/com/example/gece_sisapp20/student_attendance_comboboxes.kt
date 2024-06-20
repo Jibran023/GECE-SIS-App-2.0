@@ -17,9 +17,12 @@ class student_attendance_comboboxes : AppCompatActivity() {
 
         val back_btn = findViewById<ImageView>(R.id.attendance_combo_boxes_firstpage_backbtn)
         back_btn.setOnClickListener{
-            val intent = Intent(this, StudentDashboard::class.java)
+            val intent = Intent(this, StudentDashboard::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
+
 
         // Find Spinners
         val yearSpinner = findViewById<Spinner>(R.id.year_spinner)
@@ -53,4 +56,13 @@ class student_attendance_comboboxes : AppCompatActivity() {
         courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         courseSpinner.adapter = courseAdapter
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, StudentDashboard::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+    }
+
 }

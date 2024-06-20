@@ -42,11 +42,12 @@ class LoginScreen : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
             // Checking the credentials
             if (valid_credentials.containsKey(username) && valid_credentials[username] == password)
             {
-                val intent = Intent(this, StudentDashboard::class.java)
+                val intent = Intent(this, StudentDashboard::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
                 startActivity(intent)
             }
             else

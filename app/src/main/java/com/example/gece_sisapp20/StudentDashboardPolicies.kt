@@ -32,8 +32,11 @@ class StudentDashboardPolicies : AppCompatActivity() {
 
         val policies_backbtn = findViewById<ImageView>(R.id.policiesback_button)
         policies_backbtn.setOnClickListener {
-            val intent = Intent(this, StudentDashboard::class.java)
+            val intent = Intent(this, StudentDashboard::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
         }
     }
+
 }

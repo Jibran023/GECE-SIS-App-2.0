@@ -70,19 +70,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/email"
+                android:text="@string/username"
                 android:textSize="15sp"
                 android:textColor="@color/grey"
                 android:alpha="1"/>
+
             <EditText
                 android:id="@+id/username_input"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"
-                android:hint="@string/enter_email"
+                android:background="@drawable/customlineedit"
+                android:hint="@string/Enter_username"
+                android:inputType="textWebEmailAddress"
                 android:paddingStart="10dp"
-                android:paddingEnd="0dp"
-                android:background="@drawable/customlineedit"/>
+                android:paddingEnd="0dp" />
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>
