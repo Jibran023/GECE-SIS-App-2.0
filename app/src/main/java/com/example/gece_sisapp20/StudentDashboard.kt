@@ -17,7 +17,6 @@ class StudentDashboard : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_student_dashboard)
 
-        val studentprofilepic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
@@ -44,6 +43,12 @@ class StudentDashboard : AppCompatActivity() {
         }
 
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
+        announcementicon.setOnClickListener {
+            val intent = Intent(this, Student_Announcement::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
         gradesicon.setOnClickListener {
@@ -61,8 +66,19 @@ class StudentDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-
+        val profile_pic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
+        profile_pic.setOnClickListener {
+            var intent = Intent(this, ProfilePicture::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
     }
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        val intent = Intent(this, StudentDashboard::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        }
+//        startActivity(intent)
+//    }
 }

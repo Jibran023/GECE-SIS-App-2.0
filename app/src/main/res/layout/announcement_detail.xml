@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Orange Bar -->
+    <RelativeLayout
+        android:id="@+id/orange_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightest_orange"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back_button_description"
+            android:src="@drawable/back" />
+
+        <!-- Announcement Title -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/back_button"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Announcement Title"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Profile Section -->
+    <LinearLayout
+        android:id="@+id/profile_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/orange_bar"
+        android:layout_marginTop="16dp"
+        android:padding="16dp">
+
+        <!-- Profile Icon -->
+        <ImageView
+            android:id="@+id/profile_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_person_24"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/profile_icon"/>
+
+        <!-- Name and Date -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Person's Name -->
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <!-- Date -->
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Announcement Message -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_section"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dear Students..."
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:paddingBottom="16dp"/>
+    </ScrollView>
+</RelativeLayout>

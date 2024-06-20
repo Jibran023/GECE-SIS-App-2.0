@@ -43,6 +43,8 @@
     <string name="semester_label">Semester</string>
     <string name="course_label">Course</string>
     <string name="username">Username:</string>
+    <string name="add_button_description">Add new announcement</string>
+    <string name="profile_icon">profile_icon</string>
     <!-- Arrays for Spinners -->
     <string-array name="year_array">
         <item>1st Year</item>
