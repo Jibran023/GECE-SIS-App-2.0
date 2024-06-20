@@ -6,15 +6,15 @@
     android:padding="16dp">
 
     <!-- Back Button -->
-    <ImageButton
+    <ImageView
         android:id="@+id/Suggestions_backbutton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="10dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/back_button_description"
-        android:src="@drawable/back" />
+        android:contentDescription="@string/back_image_desc"
+        app:srcCompat="@drawable/arrow_back_ios_24_black" />
 
     <!-- Heading Text -->
     <TextView

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ class ComplaintScreenFirst : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_complaint_screen_first)
 
-        var complaintfirstpagebackbtn = findViewById<ImageButton>(R.id.complaintfirstpageback_button)
+        var complaintfirstpagebackbtn = findViewById<ImageView>(R.id.complaintfirstpageback_button)
         complaintfirstpagebackbtn.setOnClickListener {
             var intent = Intent(this, StudentDashboard::class.java)
             startActivity(intent)
