@@ -3,6 +3,7 @@ package com.example.gece_sisapp20
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
@@ -22,6 +23,15 @@ class student_attendance_comboboxes : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        val next_btn = findViewById<Button>(R.id.nextbutton)
+        next_btn.setOnClickListener{
+            val intent = Intent(this, attendance_page2::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
+
 
 
         // Find Spinners

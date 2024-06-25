@@ -19,9 +19,13 @@ class LoginScreen : AppCompatActivity() {
         val username_input = findViewById<EditText>(R.id.username_input)
         val password_input = findViewById<EditText>(R.id.password_input)
 
-        val valid_credentials = mapOf(
+        val valid_credentials_students = mapOf(
             "js08312" to "mazerunner",
             "smh00001" to "gecesisapp"
+        )
+        val valid_credentials_faculty = mapOf(
+            "mm04321" to "movania",
+            "ms05432" to "msamad"
         )
 
 
@@ -35,21 +39,31 @@ class LoginScreen : AppCompatActivity() {
                 username_input.error = "Username cannot be empty"
                 return@setOnClickListener
             }
-
             if (password.isEmpty())
             {
                 password_input.error = "Password cannot be empty"
                 return@setOnClickListener
             }
 
-            // Checking the credentials
-            if (valid_credentials.containsKey(username) && valid_credentials[username] == password)
+
+
+            // Checking the credentials for students
+            if (valid_credentials_students.containsKey(username) && valid_credentials_students[username] == password)
             {
                 val intent = Intent(this, StudentDashboard::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)
             }
+            // Checking the credentials for faculty
+            if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password)
+            {
+                val intent = Intent(this, FacultyDashboard::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+
             else
             {
                 Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show()

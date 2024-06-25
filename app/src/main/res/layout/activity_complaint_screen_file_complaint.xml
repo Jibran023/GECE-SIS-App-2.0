@@ -10,11 +10,11 @@
         android:id="@+id/complaintform_backbutton"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginTop="5dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="6dp"
-        app:srcCompat="@drawable/arrow_back_ios_24_black"
-        android:contentDescription="@string/back_image_desc"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/back_image_desc"
+        app:srcCompat="@drawable/arrow_back_ios_24_black" />
 
     <!-- Heading Text -->
     <TextView
@@ -28,66 +28,131 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- ID EditText -->
-    <EditText
-        android:id="@+id/editTextId"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_above="@id/buttons_container"
         android:layout_below="@id/heading"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/orange_border"
-        android:hint="Enter ID"
-        android:padding="12dp"
-        android:textSize="18sp"
-        />
+        android:fillViewport="true"
+        android:layout_marginTop="16dp">
 
-    <!-- Date EditText -->
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextId"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/orange_border"
-        android:hint="Enter Date"
-        android:padding="12dp"
-        android:textSize="18sp"
-        />
-    <EditText
-        android:id="@+id/editTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextId"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/orange_border"
-        android:hint="Title"
-        android:padding="12dp"
-        android:textSize="18sp"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <!-- Complaint EditText -->
-    <EditText
-        android:id="@+id/editTextComplaint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextDate"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/orange_border"
-        android:hint="Enter your complaint"
-        android:gravity="top"
-        android:padding="12dp"
-        android:textSize="18sp"
-        android:minLines="10"
-        android:scrollbars="vertical"
-        android:inputType="textMultiLine" />
+            <!-- Name EditText -->
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter Name"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Email EditText -->
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter Email"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Mobile EditText -->
+            <EditText
+                android:id="@+id/editTextMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter Mobile Number"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Department EditText -->
+            <EditText
+                android:id="@+id/editTextDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter Department"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- ID EditText -->
+            <EditText
+                android:id="@+id/editTextId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter ID"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Date EditText -->
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter Date"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Title EditText -->
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Title"
+                android:padding="12dp"
+                android:textSize="18sp"
+                />
+
+            <!-- Complaint EditText -->
+            <EditText
+                android:id="@+id/editTextComplaint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/orange_border"
+                android:hint="Enter your complaint"
+                android:gravity="top"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:minLines="10"
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+    </ScrollView>
+
     <!-- Buttons Container -->
     <LinearLayout
+        android:id="@+id/buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="end"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        >
 
         <!-- Submit Button -->
         <Button
@@ -99,10 +164,8 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:layout_marginEnd="16dp"
-
             android:background="@drawable/customlineedit"
-            app:backgroundTint="@color/primary_orange"
-            />
+            app:backgroundTint="@color/primary_orange" />
 
         <!-- Delete Button -->
         <Button
@@ -114,8 +177,8 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:background="@drawable/customlineedit"
-            app:backgroundTint="@color/primary_orange"/>
-
+            app:backgroundTint="@color/primary_orange" />
+        <!-- Have to change the customlineedit to customlineedit2 -->
     </LinearLayout>
 
 </RelativeLayout>

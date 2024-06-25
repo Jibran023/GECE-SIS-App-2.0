@@ -101,7 +101,7 @@
             android:spinnerMode="dropdown" />
 
         <Button
-            android:id="@+id/loginbutton"
+            android:id="@+id/nextbutton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="24dp"
