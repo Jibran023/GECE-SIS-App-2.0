@@ -15,12 +15,12 @@ class FacultyDashboard : AppCompatActivity() {
         setContentView(R.layout.activity_faculty_dashboard)
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
-//        attendanceicon.setOnClickListener {
-//            val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        attendanceicon.setOnClickListener {
+            val intent = Intent(this, faculty_attendance_combobox::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
 //        policiesicon.setOnClickListener {
