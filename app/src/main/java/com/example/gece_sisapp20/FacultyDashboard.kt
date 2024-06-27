@@ -16,19 +16,19 @@ class FacultyDashboard : AppCompatActivity() {
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
-            val intent = Intent(this, faculty_attendance_combobox::class.java).apply {
+            val intent = Intent(this, faculty_markattendance1::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
 
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
-//        policiesicon.setOnClickListener {
-//            val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        policiesicon.setOnClickListener {
+            val intent = Intent(this, FacultyDashboardPolicies::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val complain_and_feedback = findViewById<LinearLayout>(R.id.complaintfeedbackicon)
 //        complain_and_feedback.setOnClickListener {
@@ -63,11 +63,11 @@ class FacultyDashboard : AppCompatActivity() {
 //        }
 
         val profile_pic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
-//        profile_pic.setOnClickListener {
-//            var intent = Intent(this, ProfilePicture::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        profile_pic.setOnClickListener {
+            var intent = Intent(this, Profile_Faculty::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
     }
 }
