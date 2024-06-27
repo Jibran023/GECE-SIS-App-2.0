@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Student Name -->
+    <TextView
+        android:id="@+id/student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="11dp"
+        android:text="Student Name" />
+
+    <!-- Present Checkbox -->
+    <CheckBox
+        android:id="@+id/check_present"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/student_name"
+        android:layout_marginStart="15dp"
+        android:text="Present" />
+
+    <!-- Absent Checkbox -->
+    <CheckBox
+        android:id="@+id/check_absent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/check_present"
+        android:layout_marginStart="15dp"
+        android:text="Absent" />
+
+    <!-- Late Checkbox -->
+    <CheckBox
+        android:id="@+id/check_late"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/check_absent"
+        android:layout_marginStart="15dp"
+        android:text="Late" />
+
+</RelativeLayout>

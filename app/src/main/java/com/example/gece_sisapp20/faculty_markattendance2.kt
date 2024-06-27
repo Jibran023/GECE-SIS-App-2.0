@@ -37,13 +37,22 @@ class faculty_markattendance2 : AppCompatActivity() {
         // Initialize RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = AttendanceCourseAdapter(courses)
+        recyclerView.adapter = AttendanceCourseAdapter(courses) { course -> onCourseClick(course) }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, faculty_markattendance1::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+    }
+
+
+    private fun onCourseClick(course: AttendanceCourse) {
+        val intent = Intent(this, faculty_markattendance3::class.java).apply {
+            putExtra("course_name", course.name)
+            putExtra("course_section", course.section)
         }
         startActivity(intent)
     }

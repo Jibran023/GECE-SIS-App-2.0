@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".faculty_markattendance3">
+
+    <!-- Date Picker -->
+
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/back_image_desc"
+        app:srcCompat="@drawable/arrow_back_ios_24_black" />
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="326dp"
+        android:layout_height="309dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+    <!-- RecyclerView for student list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_picker"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="20dp" />
+
+</RelativeLayout>
