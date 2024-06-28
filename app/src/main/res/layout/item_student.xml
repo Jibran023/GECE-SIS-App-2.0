@@ -7,11 +7,11 @@
     <!-- Student Name -->
     <TextView
         android:id="@+id/student_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginTop="11dp"
-        android:text="Student Name" />
+        android:layout_width="173dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:text="Student Name"
+        android:textSize="16dp" />
 
     <!-- Present Checkbox -->
     <CheckBox
@@ -19,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/student_name"
-        android:layout_marginStart="15dp"
-        android:text="Present" />
+        android:layout_marginStart="40dp"/>
+    <!--        android:text="present" />-->
 
     <!-- Absent Checkbox -->
     <CheckBox
@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/check_present"
-        android:layout_marginStart="15dp"
-        android:text="Absent" />
+        android:layout_marginStart="16dp"/>
+    <!--        android:text="absent" />-->
 
     <!-- Late Checkbox -->
     <CheckBox
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/check_absent"
-        android:layout_marginStart="15dp"
-        android:text="Late" />
+        android:layout_marginStart="16dp"/>
+    <!--        android:text="late" />-->
 
 </RelativeLayout>

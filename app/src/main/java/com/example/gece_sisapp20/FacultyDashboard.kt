@@ -47,12 +47,12 @@ class FacultyDashboard : AppCompatActivity() {
 //        }
 
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
-//        gradesicon.setOnClickListener {
-//            val intent = Intent(this, GradesScreenFirst::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        gradesicon.setOnClickListener {
+            val intent = Intent(this, Faculty_markGrades::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
 //        coursesicon.setOnClickListener {
