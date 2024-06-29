@@ -6,15 +6,15 @@
     android:padding="16dp">
 
     <!-- Back Button -->
-    <ImageView
-        android:id="@+id/track_back_button"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="6dp"
-        app:srcCompat="@drawable/arrow_back_ios_24_black"
-        android:contentDescription="@string/back_image_desc"/>
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/back" />
 
     <!-- Heading Text -->
     <TextView
@@ -23,18 +23,56 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:layout_toEndOf="@id/track_back_button"
-        android:layout_marginStart="16dp"
         android:text="Track Your Complaint"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <!-- Search Bar -->
     <LinearLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/heading"
         android:layout_marginTop="16dp"
+        android:background="@drawable/customlineedit"
+        android:padding="4dp">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:hint="Search Complaint..."
+
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="#546E7A"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Search"
+            android:padding="12dp"
+            android:src="@drawable/ic_search"/>
+    </LinearLayout>
+
+    <!-- Explanation Text -->
+    <LinearLayout
+        android:id="@+id/explanation_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:layout_marginTop="16dp"
         android:background="@drawable/orangeborder"
+        android:contentDescription="TODO"
         android:padding="16dp">
 
         <ImageView
@@ -46,18 +84,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click on a complaint to view more information"
+            android:text="Tap on a complaint to view more information"
             android:textColor="@color/grey"
             android:textSize="16sp" />
 
     </LinearLayout>
 
-    <!-- LinearLayout containing CardViews -->
+    <!-- List of Complaints -->
+    <LinearLayout
+        android:id="@+id/complaints_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/explanation_text"
+        android:orientation="vertical">
 
+        <!-- Replace with your CardViews or list items -->
 
-    <!-- List Item 4: Make Inquiry -->
-
-
-
+    </LinearLayout>
 
 </RelativeLayout>

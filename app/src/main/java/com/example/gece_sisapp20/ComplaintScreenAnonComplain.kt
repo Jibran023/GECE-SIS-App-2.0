@@ -14,7 +14,7 @@ class ComplaintScreenAnonComplain : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_complaint_screen_anon_complain)
 
-        var anoncomplain_backbtn = findViewById<ImageView>(R.id.Anoncomplainback_button)
+        var anoncomplain_backbtn = findViewById<ImageButton>(R.id.Anoncomplainback_button)
         anoncomplain_backbtn.setOnClickListener {
             var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

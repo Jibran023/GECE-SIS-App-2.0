@@ -2,6 +2,7 @@ package com.example.gece_sisapp20
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -14,7 +15,7 @@ class ComplaintTrack : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_complaint_track)
 
-        val track_backbtn = findViewById<ImageView>(R.id.track_back_button)
+        val track_backbtn = findViewById<ImageButton>(R.id.back_button)
         track_backbtn.setOnClickListener {
             val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
