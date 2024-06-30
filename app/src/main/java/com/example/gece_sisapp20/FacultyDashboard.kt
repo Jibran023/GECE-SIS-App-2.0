@@ -31,12 +31,12 @@ class FacultyDashboard : AppCompatActivity() {
         }
 
         val complain_and_feedback = findViewById<LinearLayout>(R.id.complaintfeedbackicon)
-//        complain_and_feedback.setOnClickListener {
-//            var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        complain_and_feedback.setOnClickListener {
+            var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
 //        announcementicon.setOnClickListener {
