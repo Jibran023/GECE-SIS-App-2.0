@@ -53,11 +53,11 @@ class Faculty_markGrades2 : AppCompatActivity() {
     }
 
     private fun onCourseClick(course: AttendanceCourse) {
-//        val intent = Intent(this, faculty_markattendance3::class.java).apply {
-//            putExtra("course_name", course.name)
-//            putExtra("course_section", course.section)
-//        }
-//        startActivity(intent)
+        val intent = Intent(this, Faculty_markGrades3::class.java).apply {
+            putExtra("course_name", course.name)
+            putExtra("course_section", course.section)
+        }
+        startActivity(intent)
     }
 
 }
