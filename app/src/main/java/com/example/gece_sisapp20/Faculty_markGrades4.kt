@@ -24,10 +24,13 @@ class Faculty_markGrades4 : AppCompatActivity() {
         val gradeEditText: EditText = findViewById(R.id.grade)
         val gpaEditText: EditText = findViewById(R.id.gpa)
 
+        // Retrieving student data from Intent (Passed from previous screen)
+        val studentName = intent.getStringExtra("student_name")
+        val studentPercentage = intent.getStringExtra("student_percentage")
 
 
         // Dummy student data
-        studentNameTextView.text = "John Doe"
+        studentNameTextView.text = studentName
         internalMarksEditText.setText("85")
         externalMarksEditText.setText("90")
         totalMarksEditText.setText("175")

@@ -39,12 +39,12 @@ class FacultyDashboard : AppCompatActivity() {
         }
 
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
-//        announcementicon.setOnClickListener {
-//            val intent = Intent(this, Student_Announcement::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        announcementicon.setOnClickListener {
+            val intent = Intent(this, Faculty_Announcement::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
         gradesicon.setOnClickListener {
@@ -55,12 +55,12 @@ class FacultyDashboard : AppCompatActivity() {
         }
 
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
-//        coursesicon.setOnClickListener {
-//            var intent = Intent(this, courses_comboboxes::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
+        coursesicon.setOnClickListener {
+            var intent = Intent(this, courses_comboboxes::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
         val profile_pic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
         profile_pic.setOnClickListener {

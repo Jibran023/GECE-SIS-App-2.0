@@ -1,5 +1,6 @@
 package com.example.gece_sisapp20
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,4 +28,13 @@ class attendance_page2 : AppCompatActivity() {
         attendanceRecyclerView.layoutManager = LinearLayoutManager(this)
         attendanceRecyclerView.adapter = AttendanceAdapter(attendanceList)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+    }
+
 }
