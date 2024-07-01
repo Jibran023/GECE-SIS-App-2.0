@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-
-class StudentGradeAdapter(private val students: List<StudentGrade>) :
+//                                                                                      We added StudentGrade as the data type here
+class StudentGradeAdapter(private val students: List<StudentGrade>, private val onItemClick: (StudentGrade) -> Unit) :
     RecyclerView.Adapter<StudentGradeAdapter.StudentGradeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentGradeViewHolder {
@@ -22,6 +22,7 @@ class StudentGradeAdapter(private val students: List<StudentGrade>) :
         val student = students[position]
         holder.studentName.text = student.name
         holder.studentPercentage.text = student.percentage
+        holder.itemView.setOnClickListener { onItemClick(student) } // Then we added val student as it is of that data type
     }
 
     override fun getItemCount(): Int = students.size

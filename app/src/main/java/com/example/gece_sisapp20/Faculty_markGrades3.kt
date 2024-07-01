@@ -37,7 +37,7 @@ class Faculty_markGrades3 : AppCompatActivity() {
         // Setup RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = StudentGradeAdapter(students)
+        recyclerView.adapter = StudentGradeAdapter(students) { student -> onCourseClick(student) }
     }
 
     override fun onBackPressed() {
@@ -47,4 +47,13 @@ class Faculty_markGrades3 : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    private fun onCourseClick(student: StudentGrade) {
+        val intent = Intent(this, Faculty_markGrades4::class.java).apply {
+            putExtra("student_name", student.name)
+            putExtra("student_percentage", student.percentage)
+        }
+        startActivity(intent)
+    }
+
 }
