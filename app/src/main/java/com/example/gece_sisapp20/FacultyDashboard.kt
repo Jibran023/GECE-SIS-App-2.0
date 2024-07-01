@@ -40,7 +40,7 @@ class FacultyDashboard : AppCompatActivity() {
 
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
         announcementicon.setOnClickListener {
-            val intent = Intent(this, Faculty_Announcement::class.java).apply {
+            val intent = Intent(this, Faculty_Announcement2::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)

@@ -1,176 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_layout"
-    android:background="@color/white">
+    android:padding="16dp">
 
-    <!-- Orange Bar -->
-    <RelativeLayout
-        android:id="@+id/orange_bar"
-        android:layout_width="match_parent"
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/lightest_orange"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
-        <!-- Back Button -->
-        <ImageButton
-            android:id="@+id/backbtn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/back_button_description"
-            android:src="@drawable/back" />
-
-        <!-- Create Announcement Title -->
-        <TextView
-            android:id="@+id/title"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/back_button"
-            android:layout_marginStart="16dp"
-            android:text="Create Announcement"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <!-- Scrollable Content -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@id/orange_bar"
-        android:layout_above="@id/buttons_container"
-        android:layout_marginTop="16dp"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- Department Label -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Your Course"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="4dp"
-                android:labelFor="@id/multi_auto_complete_txt_department"/>
-
-            <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <MultiAutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_department"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Math"
-                    android:inputType="none"
-                    tools:ignore="LabelFor"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Section Label -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Your Section"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"
-                android:labelFor="@id/multi_auto_complete_txt_section"/>
-
-            <!-- Section Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <MultiAutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_section"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Class A"
-                    android:inputType="none"
-                    tools:ignore="LabelFor"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Announcement Title EditText -->
-            <EditText
-                android:id="@+id/editTextTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/orangeborder"
-                android:hint="Announcement Title"
-                android:padding="12dp"
-                android:textSize="18sp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"/>
-
-            <!-- Announcement EditText -->
-            <EditText
-                android:id="@+id/editTextAnnouncement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/orangeborder"
-                android:hint="Write your announcement here..."
-                android:gravity="top"
-                android:padding="12dp"
-                android:textSize="18sp"
-                android:minLines="10"
-                android:scrollbars="vertical"
-                android:inputType="textMultiLine|textCapSentences" />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- Buttons Container -->
-    <LinearLayout
-        android:id="@+id/buttons_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:gravity="end"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/add"
+        android:contentDescription="@string/add_button_description"/>
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/back" />
+
+    <!-- Heading Text -->
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:padding="16dp">
+        android:layout_toEndOf="@id/back_button"
+        android:layout_marginStart="50dp"
+        android:text="Announcements"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <!-- Submit Button -->
-        <Button
-            android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textSize="18sp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/customlineedit"
-            app:backgroundTint="@color/lighter_orange" />
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/heading"
+        android:layout_marginTop="16dp"
+        android:paddingRight="16dp" />
 
-        <!-- Delete Button -->
-        <Button
-            android:id="@+id/delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:textSize="18sp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:background="@drawable/customlineedit"
-            app:backgroundTint="@color/lighter_orange" />
-    </LinearLayout>
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.gece_sisapp20
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,8 +14,16 @@ class attendance_page2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance_page2)
 
-        val attendanceRecyclerView = findViewById<RecyclerView>(R.id.attendance_recycler_view)
+        val backbtn = findViewById<ImageButton>(R.id.back_button)
+        backbtn.setOnClickListener {
+            val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
 
+
+        val attendanceRecyclerView = findViewById<RecyclerView>(R.id.attendance_recycler_view)
         // Sample data
         val attendanceList = listOf(
             AttendanceRecord("2024-06-01", "Present"),
