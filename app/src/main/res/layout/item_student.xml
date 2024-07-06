@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,35 +8,44 @@
         android:id="@+id/student_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:text="Student Name"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
-    <!-- Present Checkbox -->
-    <CheckBox
-        android:id="@+id/check_present"
+    <!-- Container for Checkboxes -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/student_name"
-        android:layout_marginStart="20dp"/>
-    <!--        android:text="present" />-->
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
 
-    <!-- Absent Checkbox -->
-    <CheckBox
-        android:id="@+id/check_absent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/check_present"
-        android:layout_marginStart="16dp"/>
-    <!--        android:text="absent" />-->
+        <!-- Present Checkbox -->
+        <CheckBox
+            android:id="@+id/check_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+             />
 
-    <!-- Late Checkbox -->
-    <CheckBox
-        android:id="@+id/check_late"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/check_absent"
-        android:layout_marginStart="16dp"/>
-    <!--        android:text="late" />-->
+        <!-- Absent Checkbox -->
+        <CheckBox
+            android:id="@+id/check_absent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
+            />
+
+        <!-- Late Checkbox -->
+        <CheckBox
+            android:id="@+id/check_late"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
