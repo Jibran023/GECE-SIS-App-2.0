@@ -14,24 +14,24 @@ class faculty_markattendance2 : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
-            val intent = Intent(this, faculty_markattendance1::class.java).apply {
+            val intent = Intent(this, FacultyDashboard::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
 
-        // Dummy data
+        // Dummy data. Uses AttendanceCourse from item_CourseAdapter.kt where each course has Name, Section, List of class dates
         val courses = listOf(
-            AttendanceCourse("Mathematics", "101"),
-            AttendanceCourse("Physics", "102"),
-            AttendanceCourse("Chemistry", "103"),
-            AttendanceCourse("Biology", "104"),
-            AttendanceCourse("History", "201"),
-            AttendanceCourse("Geography", "202"),
-            AttendanceCourse("English", "301"),
-            AttendanceCourse("Art", "302"),
-            AttendanceCourse("Computer Science", "401"),
-            AttendanceCourse("Economics", "402")
+            AttendanceCourse("Mathematics", listOf("Section A", "Section B"), listOf("2024-01-07", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("Physics", listOf("Section C", "Section D"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Chemistry", listOf("Section A", "Section C"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("Biology", listOf("Section A", "Section D"), listOf("2024-07-01", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("History", listOf("Section B", "Section C"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Geography", listOf("Section B", "Section D"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("English", listOf("Section A", "Section C"), listOf("2024-07-01", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("Art", listOf("Section A", "Section D"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Computer Science", listOf("Section D", "Section B"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("Economics", listOf("Section D", "Section C"), listOf("2024-07-01", "2024-07-08", "2024-07-06"))
         )
 
         // Initialize RecyclerView
@@ -42,7 +42,7 @@ class faculty_markattendance2 : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, faculty_markattendance1::class.java).apply {
+        val intent = Intent(this, FacultyDashboard::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
@@ -50,9 +50,10 @@ class faculty_markattendance2 : AppCompatActivity() {
 
 
     private fun onCourseClick(course: AttendanceCourse) {
-        val intent = Intent(this, faculty_markattendance3::class.java).apply {
+        val intent = Intent(this, faculty_markattendance1::class.java).apply {
             putExtra("course_name", course.name)
-            putExtra("course_section", course.section)
+            putStringArrayListExtra("sections", ArrayList(course.sections))
+            putStringArrayListExtra("class_dates", ArrayList(course.classDates)) // Passing the Name, Section, Dates to next screen
         }
         startActivity(intent)
     }

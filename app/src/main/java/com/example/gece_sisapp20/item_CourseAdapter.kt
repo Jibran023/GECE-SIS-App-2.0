@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 // Updated data class to hold a single section
-data class AttendanceCourse(val name: String, val section: String)
+data class AttendanceCourse(val name: String, val sections: List<String>, val classDates: List<String>)
 
 // Adapter class to bind data to RecyclerView                              We added this to enable on click listener for the courses
 class AttendanceCourseAdapter(private val courses: List<AttendanceCourse>, private val onItemClick: (AttendanceCourse) -> Unit) :
@@ -25,7 +25,7 @@ class AttendanceCourseAdapter(private val courses: List<AttendanceCourse>, priva
     override fun onBindViewHolder(holder: AttendanceCourseViewHolder, position: Int) {
         val course = courses[position]
         holder.courseName.text = course.name
-        holder.sectionName.text = "Section: ${course.section}"
+        holder.sectionName.text = "Sections: ${course.sections.joinToString(", ")}"
         holder.itemView.setOnClickListener { onItemClick(course) } // This will show the clicked course
     }
 
@@ -33,6 +33,6 @@ class AttendanceCourseAdapter(private val courses: List<AttendanceCourse>, priva
 
     class AttendanceCourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val courseName: TextView = itemView.findViewById(R.id.course_name)
-        val sectionName: TextView = itemView.findViewById(R.id.section_name)
+        val sectionName: TextView = itemView.findViewById(R.id.sections)
     }
 }

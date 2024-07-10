@@ -16,7 +16,7 @@ class FacultyDashboard : AppCompatActivity() {
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
-            val intent = Intent(this, faculty_markattendance1::class.java).apply {
+            val intent = Intent(this, faculty_markattendance2::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)

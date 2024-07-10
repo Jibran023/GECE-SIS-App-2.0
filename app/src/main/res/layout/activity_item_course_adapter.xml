@@ -22,14 +22,14 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"/>
 
-        <TextView
-            android:id="@+id/section_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Section: A"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/darker_gray"/>
+<!--        <TextView-->
+<!--            android:id="@+id/sections"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Section: A"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:textColor="@android:color/darker_gray"/>-->
 
 
 

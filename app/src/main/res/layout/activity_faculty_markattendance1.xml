@@ -65,7 +65,7 @@
             android:layout_marginTop="250dp"
             android:layout_marginRight="24dp"
             android:backgroundTint="#FF8570"
-            android:text="@string/Nextbutton"
+            android:text="@string/Savebutton"
             android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>

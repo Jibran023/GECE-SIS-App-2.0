@@ -25,16 +25,16 @@ class Faculty_markGrades2 : AppCompatActivity() {
 
         // Dummy data
         val courses = listOf(
-            AttendanceCourse("Mathematics", "101"),
-            AttendanceCourse("Physics", "102"),
-            AttendanceCourse("Chemistry", "103"),
-            AttendanceCourse("Biology", "104"),
-            AttendanceCourse("History", "201"),
-            AttendanceCourse("Geography", "202"),
-            AttendanceCourse("English", "301"),
-            AttendanceCourse("Art", "302"),
-            AttendanceCourse("Computer Science", "401"),
-            AttendanceCourse("Economics", "402")
+            AttendanceCourse("Mathematics", listOf("Section A", "Section B"), listOf("2024-01-07", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("Physics", listOf("Section A", "Section B"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Chemistry", listOf("Section A", "Section B"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("Biology", listOf("Section A", "Section B"), listOf("2024-07-01", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("History", listOf("Section A", "Section B"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Geography", listOf("Section A", "Section B"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("English", listOf("Section A", "Section B"), listOf("2024-07-01", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("Art", listOf("Section A", "Section B"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
+            AttendanceCourse("Computer Science", listOf("Section A", "Section B"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
+            AttendanceCourse("Economics", listOf("Section A", "Section B"), listOf("2024-07-01", "2024-07-08", "2024-07-06"))
         )
 
         // Initialize RecyclerView
@@ -54,8 +54,8 @@ class Faculty_markGrades2 : AppCompatActivity() {
 
     private fun onCourseClick(course: AttendanceCourse) {
         val intent = Intent(this, Faculty_markGrades3::class.java).apply {
+            putStringArrayListExtra("sections", ArrayList(course.sections))
             putExtra("course_name", course.name)
-            putExtra("course_section", course.section)
         }
         startActivity(intent)
     }

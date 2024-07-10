@@ -77,5 +77,6 @@
     <string name="sgpa_num">3.42</string>
     <string name="sgpa">S-GPA</string>
     <string name="cgpa">C-GPA</string>
-    <string name="Nextbutton">Next</string>
+    <string name="Nextbutton">Save</string>
+    <string name="Savebutton">Next</string>
 </resources>

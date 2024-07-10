@@ -38,7 +38,6 @@
         android:layout_marginStart="80dp"
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
-    <!--        android:gravity="end"-->
 
     <TextView
         android:id="@+id/attendance_absent"
@@ -64,17 +63,36 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="250dp"
         android:paddingStart="20dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="RtlSymmetry" />
 
-
-    <!-- RecyclerView for student list -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <!-- RecyclerView inside NestedScrollView for scrollable items -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_below="@id/attendance_present"
-        android:layout_marginStart="20dp"
+        android:layout_above="@id/savebutton"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/savebutton"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF8570"
+        android:text="@string/Nextbutton"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 </RelativeLayout>

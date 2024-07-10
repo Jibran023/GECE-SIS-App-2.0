@@ -16,25 +16,24 @@ class faculty_markattendance1 : AppCompatActivity() {
         setContentView(R.layout.activity_faculty_markattendance1)
 
         val backtbtn = findViewById<ImageView>(R.id.backbtn)
-//        val nextbtn = findViewById<Button>(R.id.nextbtn)
-
         backtbtn.setOnClickListener {
-            val intent = Intent(this, FacultyDashboard::class.java).apply {
+            val intent = Intent(this, faculty_markattendance2::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
 
+        // Retrieve class dates from previous screen , faculty_markattendance2.kt
+        val classDates = intent.getStringArrayListExtra("class_dates") ?: listOf()
+        val sectionsrecieved = intent.getStringArrayListExtra("sections") ?: listOf()
 
 
         // Initialize the Spinner
         val sectionSpinner: Spinner = findViewById(R.id.section_spinner)
-
         // Dummy sections data
-        val sections = arrayOf("Section A", "Section B", "Section C", "Section D")
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sections)
+//        val sections = arrayOf("Section A", "Section B", "Section C", "Section D")
+//        // Create an ArrayAdapter using the string array and a default spinner layout
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sectionsrecieved)
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -48,7 +47,8 @@ class faculty_markattendance1 : AppCompatActivity() {
             val selectedSection = sectionSpinner.selectedItem.toString()
             // Show selected section as a Toast message
             Toast.makeText(this, "Selected Section: $selectedSection", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, faculty_markattendance2::class.java).apply {
+            val intent = Intent(this, faculty_markattendance3::class.java).apply {
+                putStringArrayListExtra("class_dates", ArrayList(classDates)) // Passing the class dates
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -60,7 +60,7 @@ class faculty_markattendance1 : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, FacultyDashboard::class.java).apply {
+        val intent = Intent(this, faculty_markattendance2::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
