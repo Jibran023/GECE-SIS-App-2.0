@@ -1,34 +1,34 @@
 package com.example.gece_sisapp20
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 
-class ComplaintScreenSuggestions : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+class NewMessage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_complaint_screen_suggestions)
+        setContentView(R.layout.activity_new_message)
 
-        val suggestions_backbtn = findViewById<ImageView>(R.id.suggestions_backbtn)
-        suggestions_backbtn.setOnClickListener {
-            val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+        val backbtn = findViewById<ImageButton>(R.id.back_button)
+        backbtn.setOnClickListener {
+            val intent = Intent(this, Messages::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
+
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, ComplaintScreenFirst::class.java).apply {
+        val intent = Intent(this, Messages::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
     }
+
 }

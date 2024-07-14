@@ -8,11 +8,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 
-class FacultyDashboard : AppCompatActivity() {
+class AdminDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_faculty_dashboard)
+        setContentView(R.layout.activity_admin_dashboard)
 
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
@@ -70,5 +70,12 @@ class FacultyDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val mappingicon = findViewById<LinearLayout>(R.id.mappingicon)
+        mappingicon.setOnClickListener {
+            var intent = Intent(this, AdminMapping::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
     }
 }

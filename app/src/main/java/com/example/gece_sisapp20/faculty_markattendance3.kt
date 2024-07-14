@@ -15,6 +15,7 @@ import android.graphics.Color
 import android.widget.TextView
 
 
+
 class faculty_markattendance3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class faculty_markattendance3 : AppCompatActivity() {
         recyclerView.adapter = StudentAdapter(students)
 
         // DatePicker setup
-        val datePicker: DatePicker = findViewById(R.id.date_picker)
+        val datePicker: CustomDatePicker = findViewById(R.id.date_picker)
         val calendar = Calendar.getInstance()
 
         datePicker.init(
@@ -62,9 +63,6 @@ class faculty_markattendance3 : AppCompatActivity() {
             // Do something with the selected date
         }
 
-        // Highlight class dates
-        highlightClassDates(classDates, datePicker)
-
         // Set DatePicker constraints
         val maxDate = calendar.timeInMillis // Current date
         calendar.add(Calendar.DAY_OF_YEAR, -1) // Subtract 1 day to get the past 24 hours
@@ -72,6 +70,9 @@ class faculty_markattendance3 : AppCompatActivity() {
 
         datePicker.maxDate = maxDate
         datePicker.minDate = minDate
+
+        // Highlight class dates
+        datePicker.setHighlightedDates(classDates)
 
         // Setup RecyclerView scroll listener to show the save button when scrolled to bottom
         val saveButton: Button = findViewById(R.id.savebutton)
@@ -94,24 +95,24 @@ class faculty_markattendance3 : AppCompatActivity() {
 
     }
 
-    private fun highlightClassDates(classDates: List<String>, datePicker: DatePicker) {
-        // Parse the dates and highlight them on the calendar
-        for (date in classDates) {
-            val parts = date.split("-")
-            val day = parts[0].toInt()
-            val month = parts[1].toInt() - 1 // Month is 0-based in Calendar
-            val year = parts[2].toInt()
-
-            val highlightCalendar = Calendar.getInstance()
-            highlightCalendar.set(year, month, day)
-
-            if (highlightCalendar[Calendar.YEAR] == datePicker.year &&
-                highlightCalendar[Calendar.MONTH] == datePicker.month) {
-                val dayView = datePicker.findViewWithTag(day.toString()) as? TextView
-                dayView?.setBackgroundColor(Color.YELLOW)
-            }
-        }
-    }
+//    private fun highlightClassDates(classDates: List<String>, datePicker: DatePicker) {
+//        // Parse the dates and highlight them on the calendar
+//        for (date in classDates) {
+//            val parts = date.split("-")
+//            val day = parts[0].toInt()
+//            val month = parts[1].toInt() - 1 // Month is 0-based in Calendar
+//            val year = parts[2].toInt()
+//
+//            val highlightCalendar = Calendar.getInstance()
+//            highlightCalendar.set(year, month, day)
+//
+//            if (highlightCalendar[Calendar.YEAR] == datePicker.year &&
+//                highlightCalendar[Calendar.MONTH] == datePicker.month) {
+//                val dayView = datePicker.findViewWithTag(day.toString()) as? TextView
+//                dayView?.setBackgroundColor(Color.YELLOW)
+//            }
+//        }
+//    }
 
 
     override fun onBackPressed() {
@@ -121,7 +122,5 @@ class faculty_markattendance3 : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
-
 
 }

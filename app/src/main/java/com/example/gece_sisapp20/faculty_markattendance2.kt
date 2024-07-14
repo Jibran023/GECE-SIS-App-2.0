@@ -22,7 +22,7 @@ class faculty_markattendance2 : AppCompatActivity() {
 
         // Dummy data. Uses AttendanceCourse from item_CourseAdapter.kt where each course has Name, Section, List of class dates
         val courses = listOf(
-            AttendanceCourse("Mathematics", listOf("Section A", "Section B"), listOf("2024-01-07", "2024-07-08", "2024-07-06")),
+            AttendanceCourse("Mathematics", listOf("Section A", "Section B"), listOf("2024-09-07", "2024-07-09", "2024-07-06")),
             AttendanceCourse("Physics", listOf("Section C", "Section D"), listOf("2024-07-02", "2024-07-09", "2024-07-03")),
             AttendanceCourse("Chemistry", listOf("Section A", "Section C"), listOf("2024-07-08", "2024-07-02", "2024-07-04")),
             AttendanceCourse("Biology", listOf("Section A", "Section D"), listOf("2024-07-01", "2024-07-08", "2024-07-06")),

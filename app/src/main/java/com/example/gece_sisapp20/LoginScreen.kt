@@ -27,6 +27,10 @@ class LoginScreen : AppCompatActivity() {
             "mm04321" to "movania",
             "ms05432" to "msamad"
         )
+        val valid_credentials_admin = mapOf(
+            "muzammil" to "smh123",
+            "jibran" to "js08312"
+        )
 
 
         loginbtn.setOnClickListener {
@@ -56,9 +60,17 @@ class LoginScreen : AppCompatActivity() {
                 startActivity(intent)
             }
             // Checking the credentials for faculty
-            if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password)
+            else if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password)
             {
                 val intent = Intent(this, FacultyDashboard::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+            // Checking the credentials for admin
+            else if (valid_credentials_admin.containsKey(username) && valid_credentials_admin[username] == password)
+            {
+                val intent = Intent(this, AdminDashboard::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)

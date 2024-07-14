@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="158dp"
+        android:background="@drawable/std_dashboard_view" />
+
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/arrow_back_ios_24" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mapping"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/cohort_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="24dp"
+        android:text="Cohort"
+        android:textSize="18sp"
+        android:layout_below="@id/titleTextView" />
+
+    <Spinner
+        android:id="@+id/cohort_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/cohort_text" />
+
+    <TextView
+        android:id="@+id/semester_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:text="@string/semester_label"
+        android:textSize="18sp"
+        android:layout_below="@id/cohort_spinner" />
+
+    <Spinner
+        android:id="@+id/semester_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="24dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/semester_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCourses"
+        android:layout_width="358dp"
+        android:layout_height="209dp"
+        android:layout_below="@id/semester_spinner"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="24dp" />
+
+
+    <Button
+        android:id="@+id/nextbutton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="24dp"
+        android:backgroundTint="#FF8570"
+        android:text="@string/Nextbutton"
+        android:textSize="18sp"
+        android:layout_below="@id/recyclerViewCourses" />
+
+</RelativeLayout>

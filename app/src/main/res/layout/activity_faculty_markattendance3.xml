@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/arrow_back_ios_24_black" />
 
     <!-- Date Picker -->
-    <DatePicker
+    <com.example.gece_sisapp20.CustomDatePicker
         android:id="@+id/date_picker"
         android:layout_width="326dp"
         android:layout_height="309dp"
@@ -92,6 +92,18 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="#FF8570"
         android:text="@string/Nextbutton"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/cancelbutton"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF8570"
+        android:text="Cancel"
         android:textSize="18sp"
         android:visibility="gone" />
 
