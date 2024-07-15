@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="24dp">
 
@@ -31,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:padding="16dp">
 
@@ -68,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:padding="16dp">
 
@@ -115,6 +118,7 @@
         android:layout_height="wrap_content"
         android:text="@string/year_label"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"/>
@@ -133,6 +137,7 @@
         android:layout_height="wrap_content"
         android:text="@string/semester_label"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="18dp" />
@@ -151,6 +156,7 @@
         android:text="@string/course_label"
         android:textSize="18sp"
         android:layout_marginTop="18dp"
+        android:textColor="@color/black"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"/>
     <Spinner
@@ -165,7 +171,8 @@
         android:id="@+id/gradesscrnfirst_nextbtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="@string/Nextbutton"
+        android:text="Next"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginTop="30dp"
         android:backgroundTint="#FF8570"
@@ -178,6 +185,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="@string/back"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#8A8A8A"

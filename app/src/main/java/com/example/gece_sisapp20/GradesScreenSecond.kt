@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 data class Course(val courseName: String, val courseId: String,  val internalMarks: String, val externalMarks: String,val grade: String, val gpa: String)
 
 class GradesScreenSecond : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_grades_screen_second)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageView>(R.id.gradesscrnsecond_backbtn)
         backbtn.setOnClickListener{
             val intent = Intent(this, GradesScreenFirst::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -45,6 +48,7 @@ class GradesScreenSecond : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, GradesScreenFirst::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

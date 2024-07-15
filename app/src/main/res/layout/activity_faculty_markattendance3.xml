@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/white"
     tools:context=".faculty_markattendance3">
 
     <!-- Back Button -->
@@ -23,7 +24,9 @@
         android:layout_width="326dp"
         android:layout_height="309dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="60dp"
+        android:calendarTextColor="@color/white"
+        android:background="@color/black"/>
 
     <!-- Header Text for Attendance Status -->
     <TextView

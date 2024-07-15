@@ -47,6 +47,7 @@
             android:layout_marginTop="34dp"
             android:layout_marginRight="24dp"
             android:text="Section"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <Spinner

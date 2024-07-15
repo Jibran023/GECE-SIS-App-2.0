@@ -19,6 +19,7 @@ class AdminMapping : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin_mapping)
 
+
         val backbtn = findViewById<ImageButton>(R.id.backButton)
         backbtn.setOnClickListener {
             var intent = Intent(this, AdminDashboard::class.java).apply {

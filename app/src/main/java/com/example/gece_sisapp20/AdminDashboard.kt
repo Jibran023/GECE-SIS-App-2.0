@@ -17,9 +17,8 @@ class AdminDashboard : AppCompatActivity() {
 
         val userType = intent.getStringExtra("USER_TYPE")
 
-        val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
-
         // added user check
+        val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
@@ -39,6 +38,7 @@ class AdminDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // added user check
         val complain_and_feedback = findViewById<LinearLayout>(R.id.complaintfeedbackicon)
         complain_and_feedback.setOnClickListener {
             var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
@@ -58,6 +58,7 @@ class AdminDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // added user check
         val gradesicon = findViewById<LinearLayout>(R.id.gradesicon)
         gradesicon.setOnClickListener {
             val intent = Intent(this, Faculty_markGrades::class.java).apply {
@@ -67,6 +68,7 @@ class AdminDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // added user check
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         coursesicon.setOnClickListener {
             var intent = Intent(this, courses_comboboxes::class.java).apply {
@@ -86,6 +88,7 @@ class AdminDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // no need to add user check
         val mappingicon = findViewById<LinearLayout>(R.id.mappingicon)
         mappingicon.setOnClickListener {
             var intent = Intent(this, AdminMapping::class.java).apply {

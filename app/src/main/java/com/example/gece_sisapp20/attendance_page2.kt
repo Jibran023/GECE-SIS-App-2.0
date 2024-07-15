@@ -10,13 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class attendance_page2 : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendance_page2)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageButton>(R.id.back_button)
         backbtn.setOnClickListener {
             val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -41,6 +44,7 @@ class attendance_page2 : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

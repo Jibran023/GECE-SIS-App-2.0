@@ -12,10 +12,12 @@ import android.widget.TextView
 
 
 class Faculty_markGrades4 : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_faculty_mark_grades4)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val studentNameTextView: TextView = findViewById(R.id.student_name)
         val internalMarksEditText: EditText = findViewById(R.id.internal_marks)
@@ -42,6 +44,7 @@ class Faculty_markGrades4 : AppCompatActivity() {
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
             val intent = Intent(this, Faculty_markGrades3::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -76,6 +79,7 @@ class Faculty_markGrades4 : AppCompatActivity() {
     {
         super.onBackPressed()
         val intent = Intent(this, Faculty_markGrades3::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

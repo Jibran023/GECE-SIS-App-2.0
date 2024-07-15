@@ -20,7 +20,7 @@
         android:id="@+id/studentdashboardprofilepicture"
         android:layout_width="50dp"
         android:layout_height="45dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="33dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/baseline_account_circle_24"
@@ -51,6 +51,7 @@
                 android:id="@+id/attendance_icon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -70,7 +71,7 @@
                     android:text="@string/attendance"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -86,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:id="@+id/announcementicon">
                 <ImageView
@@ -98,7 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Announcements"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/announcementtext"
@@ -119,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:id="@+id/complaintfeedbackicon">
                 <ImageView
@@ -136,7 +140,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/complain_feedback"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
             </LinearLayout>
@@ -154,6 +158,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:id="@+id/gradesicon">
@@ -167,7 +172,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grades"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/gradestext"
@@ -188,6 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:id="@+id/policies_icon">
                 <ImageView
@@ -200,7 +207,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Policies"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/policiestext"
@@ -221,6 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:id="@+id/coursesicon">
                 <ImageView
@@ -233,7 +242,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Courses"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/coursestext"

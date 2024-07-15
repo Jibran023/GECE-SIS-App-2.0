@@ -3,19 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="30dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:src="@drawable/add"
-        android:contentDescription="@string/add_button_description"/>
+        android:tint="@color/black"
+        android:contentDescription="@string/add_button_description"
+        />
 
     <!-- Back Button -->
     <ImageButton

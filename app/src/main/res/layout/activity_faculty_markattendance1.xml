@@ -47,6 +47,7 @@
             android:layout_marginTop="34dp"
             android:layout_marginRight="24dp"
             android:text="Section"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <Spinner
@@ -65,7 +66,8 @@
             android:layout_marginTop="250dp"
             android:layout_marginRight="24dp"
             android:backgroundTint="#FF8570"
-            android:text="@string/Savebutton"
+            android:text="Next"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>

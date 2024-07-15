@@ -20,7 +20,7 @@
         android:id="@+id/studentdashboardprofilepicture"
         android:layout_width="50dp"
         android:layout_height="45dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/baseline_account_circle_24"
@@ -45,7 +45,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:id="@+id/attendance_icon"
@@ -59,7 +60,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:contentDescription="@string/attendance_image_desc"
                     android:src="@drawable/attendancek" />
 
                 <TextView
@@ -67,10 +67,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/attendance"
-                    android:textColor="@color/black"
+                    android:text="Attendance"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -80,7 +81,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,10 +100,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Announcements"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/announcementtext"
+                    android:textColor="@color/black"
                     />
             </LinearLayout>
 
@@ -113,7 +116,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,10 +139,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/complain_feedback"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -149,7 +153,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -167,10 +172,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grades"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/gradestext"
+                    android:textColor="@color/black"
                     />
             </LinearLayout>
 
@@ -182,7 +188,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -200,10 +207,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Policies"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/policiestext"
+                    android:textColor="@color/black"
                     />
             </LinearLayout>
 
@@ -215,7 +223,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="12dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+            app:cardElevation="12dp"
+            app:cardBackgroundColor="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -233,10 +242,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Courses"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:id="@+id/coursestext"
+                    android:textColor="@color/black"
                     />
             </LinearLayout>
 

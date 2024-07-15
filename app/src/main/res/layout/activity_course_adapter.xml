@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/course_name"
@@ -38,6 +38,7 @@
                 android:text="Course ID:"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_columnWeight="1"
                 android:textSize="16sp" />
             <TextView
@@ -54,6 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/internal_marks"
@@ -69,6 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/external_marks"
@@ -83,6 +86,7 @@
                 android:text="Total Marks:"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_columnWeight="1"
                 android:textSize="16sp" />
             <TextView
@@ -98,6 +102,7 @@
                 android:text="Grade:"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_columnWeight="1"
                 android:textSize="16sp" />
             <TextView
@@ -112,6 +117,7 @@
             <TextView
                 android:text="GPA:"
                 android:layout_width="0dp"
+                android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
                 android:textSize="16sp" />
