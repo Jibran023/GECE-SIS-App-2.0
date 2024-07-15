@@ -9,14 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class Faculty_Announcement : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_faculty_announcement)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageButton>(R.id.backbtn)
         backbtn.setOnClickListener {
             val intent = Intent(this, Faculty_Announcement2::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -30,6 +33,7 @@ class Faculty_Announcement : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, Faculty_Announcement2::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

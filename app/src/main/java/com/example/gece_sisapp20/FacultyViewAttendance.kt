@@ -10,14 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class FacultyViewAttendance : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_faculty_view_attendance)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val back_btn = findViewById<ImageButton>(R.id.backButton)
         back_btn.setOnClickListener {
             val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -42,7 +45,8 @@ class FacultyViewAttendance : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, FacultyDashboard::class.java).apply {
+        val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

@@ -49,37 +49,85 @@ class LoginScreen : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
+            var userType: String? = null
 
             // Checking the credentials for students
-            if (valid_credentials_students.containsKey(username) && valid_credentials_students[username] == password)
-            {
-                val intent = Intent(this, StudentDashboard::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                startActivity(intent)
+            if (valid_credentials_students.containsKey(username) && valid_credentials_students[username] == password) {
+                userType = "student"
             }
             // Checking the credentials for faculty
-            else if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password)
-            {
-                val intent = Intent(this, FacultyDashboard::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                startActivity(intent)
+            else if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password) {
+                userType = "faculty"
             }
             // Checking the credentials for admin
-            else if (valid_credentials_admin.containsKey(username) && valid_credentials_admin[username] == password)
-            {
-                val intent = Intent(this, AdminDashboard::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                startActivity(intent)
+            else if (valid_credentials_admin.containsKey(username) && valid_credentials_admin[username] == password) {
+                userType = "admin"
             }
 
-            else
-            {
-                Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show()
+
+            // Navigate to the respective dashboard based on the user type
+            when (userType) {
+                "student" -> {
+                    Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, StudentDashboard::class.java).apply {
+                        putExtra("USER_TYPE", userType)
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                }
+                "faculty" -> {
+                    Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, FacultyDashboard::class.java).apply {
+                        putExtra("USER_TYPE", userType)
+//                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                }
+                "admin" -> {
+                    Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, AdminDashboard::class.java).apply {
+                        putExtra("USER_TYPE", userType)
+//                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                }
+                else -> {
+                    Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show()
+                }
             }
+
+//            putExtra("USER_TYPE", userType)
+
+
+//            // Checking the credentials for students
+//            if (valid_credentials_students.containsKey(username) && valid_credentials_students[username] == password)
+//            {
+//                val intent = Intent(this, StudentDashboard::class.java).apply {
+//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                }
+//                startActivity(intent)
+//            }
+//            // Checking the credentials for faculty
+//            else if (valid_credentials_faculty.containsKey(username) && valid_credentials_faculty[username] == password)
+//            {
+//                val intent = Intent(this, FacultyDashboard::class.java).apply {
+//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                }
+//                startActivity(intent)
+//            }
+//            // Checking the credentials for admin
+//            else if (valid_credentials_admin.containsKey(username) && valid_credentials_admin[username] == password)
+//            {
+//                val intent = Intent(this, AdminDashboard::class.java).apply {
+//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                }
+//                startActivity(intent)
+//            }
+//
+//            else
+//            {
+//                Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show()
+//            }
 
 
         }

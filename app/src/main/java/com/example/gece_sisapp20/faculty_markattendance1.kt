@@ -11,13 +11,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class faculty_markattendance1 : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_faculty_markattendance1)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backtbtn = findViewById<ImageView>(R.id.backbtn)
         backtbtn.setOnClickListener {
             val intent = Intent(this, faculty_markattendance2::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -49,6 +52,7 @@ class faculty_markattendance1 : AppCompatActivity() {
             Toast.makeText(this, "Selected Section: $selectedSection", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, faculty_markattendance3::class.java).apply {
                 putStringArrayListExtra("class_dates", ArrayList(classDates)) // Passing the class dates
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -61,6 +65,7 @@ class faculty_markattendance1 : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, faculty_markattendance2::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

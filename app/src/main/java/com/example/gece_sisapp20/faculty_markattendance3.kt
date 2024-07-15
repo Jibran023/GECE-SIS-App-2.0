@@ -17,14 +17,17 @@ import android.widget.TextView
 
 
 class faculty_markattendance3 : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_faculty_markattendance3)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
             val intent = Intent(this, faculty_markattendance2::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -95,29 +98,11 @@ class faculty_markattendance3 : AppCompatActivity() {
 
     }
 
-//    private fun highlightClassDates(classDates: List<String>, datePicker: DatePicker) {
-//        // Parse the dates and highlight them on the calendar
-//        for (date in classDates) {
-//            val parts = date.split("-")
-//            val day = parts[0].toInt()
-//            val month = parts[1].toInt() - 1 // Month is 0-based in Calendar
-//            val year = parts[2].toInt()
-//
-//            val highlightCalendar = Calendar.getInstance()
-//            highlightCalendar.set(year, month, day)
-//
-//            if (highlightCalendar[Calendar.YEAR] == datePicker.year &&
-//                highlightCalendar[Calendar.MONTH] == datePicker.month) {
-//                val dayView = datePicker.findViewWithTag(day.toString()) as? TextView
-//                dayView?.setBackgroundColor(Color.YELLOW)
-//            }
-//        }
-//    }
-
 
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, faculty_markattendance2::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

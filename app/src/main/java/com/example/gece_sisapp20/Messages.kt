@@ -13,14 +13,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class Messages : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_messages)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageButton>(R.id.backbtn)
         backbtn.setOnClickListener {
             val intent = Intent(this, Profile_Faculty::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -29,6 +32,7 @@ class Messages : AppCompatActivity() {
         val new_msg = findViewById<ImageView>(R.id.newmsg)
         new_msg.setOnClickListener {
             val intent = Intent(this, NewMessage::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -55,6 +59,7 @@ class Messages : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, Profile_Faculty::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

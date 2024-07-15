@@ -3,18 +3,23 @@ package com.example.gece_sisapp20
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class faculty_markattendance2 : AppCompatActivity() {
+    private var userType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_faculty_markattendance2)
+        userType = intent.getStringExtra("USER_TYPE")
 
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
-            val intent = Intent(this, FacultyDashboard::class.java).apply {
+            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+                putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -42,7 +47,8 @@ class faculty_markattendance2 : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, FacultyDashboard::class.java).apply {
+        val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+            putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
@@ -51,6 +57,7 @@ class faculty_markattendance2 : AppCompatActivity() {
 
     private fun onCourseClick(course: AttendanceCourse) {
         val intent = Intent(this, faculty_markattendance1::class.java).apply {
+            putExtra("USER_TYPE", userType)
             putExtra("course_name", course.name)
             putStringArrayListExtra("sections", ArrayList(course.sections))
             putStringArrayListExtra("class_dates", ArrayList(course.classDates)) // Passing the Name, Section, Dates to next screen
