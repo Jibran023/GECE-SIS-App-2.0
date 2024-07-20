@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".Faculty_markGrades4">
+    tools:context="Faculty_Admin.Grading.Faculty_markGrades4">
 
     <ImageView
         android:id="@+id/backbtn"

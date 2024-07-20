@@ -4,14 +4,22 @@
     android:padding="16dp">
 
     <!-- Student Name -->
-    <TextView
-        android:id="@+id/student_name"
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:text="Student Name"
-        android:textSize="16sp" />
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Student Name"
+            android:textSize="16sp" />
+
+    </HorizontalScrollView>
 
     <!-- Container for Checkboxes -->
     <LinearLayout
@@ -26,26 +34,26 @@
             android:id="@+id/check_present"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-             />
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="10dp" />
 
         <!-- Absent Checkbox -->
         <CheckBox
             android:id="@+id/check_absent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="10dp"
-            />
+            android:layout_marginEnd="10dp" />
 
         <!-- Late Checkbox -->
         <CheckBox
             android:id="@+id/check_late"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="10dp"
-            />
+            android:layout_marginEnd="10dp" />
     </LinearLayout>
 
 </RelativeLayout>

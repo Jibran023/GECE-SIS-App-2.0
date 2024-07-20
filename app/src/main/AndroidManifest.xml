@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!--  Internet permission  -->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,76 +18,76 @@
             android:name=".SectionAdapter"
             android:exported="false" />
         <activity
-            android:name=".AdminDashboard"
+            android:name="Faculty_Admin.Dashboards.AdminDashboard"
             android:exported="false" />
         <activity
             android:name=".StudentAdapter2"
             android:exported="false" />
         <activity
-            android:name=".AdminMapping2"
+            android:name="Faculty_Admin.Admin_Mapping.AdminMapping2"
             android:exported="false" />
         <activity
-            android:name=".AdminMapping3"
+            android:name="Faculty_Admin.Admin_Mapping.AdminMapping3"
             android:exported="false" />
         <activity
-            android:name=".AdminMapping"
+            android:name="Faculty_Admin.Admin_Mapping.AdminMapping"
             android:exported="false" />
         <activity
-            android:name=".MessageAdapter"
+            android:name="Faculty_Admin.ProfileView.MessageAdapter"
             android:exported="false" />
         <activity
-            android:name=".NewMessage"
+            android:name="Faculty_Admin.ProfileView.NewMessage"
             android:exported="false" />
         <activity
-            android:name=".Messages"
+            android:name="Faculty_Admin.ProfileView.Messages"
             android:exported="false" />
         <activity
-            android:name=".DateAdapter"
+            android:name="Faculty_Admin.Attendance.DateAdapter"
             android:exported="false" />
         <activity
-            android:name=".FacultyViewAttendance"
+            android:name="Faculty_Admin.Attendance.FacultyViewAttendance"
             android:exported="false" />
         <activity
-            android:name=".FacultyChooseAttendance"
+            android:name="Faculty_Admin.Attendance.FacultyChooseAttendance"
             android:exported="false" />
         <activity
-            android:name=".Faculty_Announcement2"
+            android:name="Faculty_Admin.Announcement.Faculty_Announcement2"
             android:exported="false" />
         <activity
-            android:name=".Faculty_Announcement"
+            android:name="Faculty_Admin.Announcement.Faculty_Announcement"
             android:exported="false" />
         <activity
-            android:name=".Faculty_markGrades4"
+            android:name="Faculty_Admin.Grading.Faculty_markGrades4"
             android:exported="false" />
         <activity
-            android:name=".StudentGradeAdapter"
+            android:name="Faculty_Admin.Grading.StudentGradeAdapter"
             android:exported="false" />
         <activity
-            android:name=".Faculty_markGrades3"
+            android:name="Faculty_Admin.Grading.Faculty_markGrades3"
             android:exported="false" />
         <activity
-            android:name=".Faculty_markGrades2"
+            android:name="Faculty_Admin.Grading.Faculty_markGrades2"
             android:exported="false" />
         <activity
-            android:name=".Faculty_markGrades"
+            android:name="Faculty_Admin.Grading.Faculty_markGrades"
             android:exported="false" />
         <activity
-            android:name=".faculty_markattendance3"
+            android:name="Faculty_Admin.Attendance.faculty_markattendance3"
             android:exported="false" />
         <activity
-            android:name=".StudentAdapter"
+            android:name="Faculty_Admin.Attendance.StudentAdapter"
             android:exported="false" />
         <activity
-            android:name=".Profile_Faculty"
+            android:name="Faculty_Admin.ProfileView.Profile_Faculty"
             android:exported="false" />
         <activity
-            android:name=".FacultyDashboardPolicies"
+            android:name="Faculty_Admin.Policies.FacultyDashboardPolicies"
             android:exported="false" />
         <activity
-            android:name=".faculty_markattendance2"
+            android:name="Faculty_Admin.Attendance.faculty_markattendance2"
             android:exported="false" />
         <activity
-            android:name=".faculty_markattendance1"
+            android:name="Faculty_Admin.Attendance.faculty_markattendance1"
             android:exported="false" />
         <activity
             android:name=".item_CourseAdapter"
@@ -100,70 +102,70 @@
             android:name=".faculty_attendance_combobox"
             android:exported="false" />
         <activity
-            android:name=".attendance_page2"
+            android:name="Student.Attendance.attendance_page2"
             android:exported="false" />
         <activity
             android:name=".courses_combo_view"
             android:exported="false" />
         <activity
-            android:name=".AttendanceAdapter"
+            android:name="Student.Attendance.AttendanceAdapter"
             android:exported="false" />
         <activity
-            android:name=".FacultyDashboard"
+            android:name="Faculty_Admin.Dashboards.FacultyDashboard"
             android:exported="false" />
         <activity
-            android:name=".Student_Announcement"
+            android:name="Student.Announcement.Student_Announcement"
             android:exported="false" />
         <activity
-            android:name=".ProfilePicture"
+            android:name="Student.ProfileView.ProfilePicture"
             android:exported="false" />
         <activity
-            android:name=".courses_comboboxes"
+            android:name="Student_Admin_Faculty.ViewCourses.courses_comboboxes"
             android:exported="false" />
         <activity
-            android:name=".CourseAdapter"
+            android:name="Student.Grades.CourseAdapter"
             android:exported="false" />
         <activity
-            android:name=".GradesScreenSecond"
+            android:name="Student.Grades.GradesScreenSecond"
             android:exported="false" />
         <activity
-            android:name=".CardAdapter"
+            android:name="Student_Admin_Faculty.ViewCourses.CardAdapter"
             android:exported="false" />
         <activity
-            android:name=".CoursesScreenFirst"
+            android:name="Student_Admin_Faculty.ViewCourses.CoursesScreenFirst"
             android:exported="false" />
         <activity
-            android:name=".GradesScreenFirst"
+            android:name="Student.Grades.GradesScreenFirst"
             android:exported="false" />
         <activity
             android:name=".policyAdapter"
             android:exported="false" />
         <activity
-            android:name=".ComplaintTrack"
+            android:name="Student_Admin_Faculty.Complaint_Feedback.ComplaintTrack"
             android:exported="false" />
         <activity
             android:name=".ComplaintReview"
             android:exported="false" />
         <activity
-            android:name=".ComplaintScreenSuggestions"
+            android:name="Student_Admin_Faculty.Complaint_Feedback.ComplaintScreenSuggestions"
             android:exported="false" />
         <activity
-            android:name=".ComplaintScreenAnonComplain"
+            android:name="Student_Admin_Faculty.Complaint_Feedback.ComplaintScreenAnonComplain"
             android:exported="false" />
         <activity
-            android:name=".ComplaintScreenFileComplaint"
+            android:name="Student_Admin_Faculty.Complaint_Feedback.ComplaintScreenFileComplaint"
             android:exported="false" />
         <activity
-            android:name=".ComplaintScreenFirst"
+            android:name="Student_Admin_Faculty.Complaint_Feedback.ComplaintScreenFirst"
             android:exported="false" />
         <activity
-            android:name=".student_attendance_comboboxes"
+            android:name="Student.Attendance.student_attendance_comboboxes"
             android:exported="false" />
         <activity
-            android:name=".StudentDashboardPolicies"
+            android:name="Student.Policies.StudentDashboardPolicies"
             android:exported="false" />
         <activity
-            android:name=".StudentDashboard"
+            android:name="Student.Dashboard.StudentDashboard"
             android:exported="false" />
         <activity
             android:name=".LoginScreen"

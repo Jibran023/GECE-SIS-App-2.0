@@ -1,5 +1,6 @@
 package com.example.gece_sisapp20
 
+import Faculty_Admin.Admin_Mapping.AdminMapping3
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View

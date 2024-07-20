@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".faculty_markattendance1">
+    tools:context="Faculty_Admin.Attendance.faculty_markattendance1">
 
     <View
         android:id="@+id/top_view"

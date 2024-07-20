@@ -161,6 +161,7 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:layout_marginEnd="16dp"
+            android:textColor="@color/white"
             android:layout_marginBottom="25dp"
             android:background="@drawable/customlineedit"
             app:backgroundTint="@color/lighter_orange" />
@@ -171,6 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="0dp"
     android:background="@color/white"
-    tools:context=".faculty_markattendance2">
+    tools:context="Faculty_Admin.Attendance.faculty_markattendance2">
 
     <!-- Top view, background styling -->
     <View

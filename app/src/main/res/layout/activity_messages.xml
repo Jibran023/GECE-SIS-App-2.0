@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="0dp"
     android:background="@color/white"
-    tools:context=".Messages">
+    tools:context="Faculty_Admin.ProfileView.Messages">
 
     <!-- Top bar with title and icons -->
     <RelativeLayout

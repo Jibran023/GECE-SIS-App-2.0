@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FacultyDashboard"
+    tools:context="Faculty_Admin.Dashboards.FacultyDashboard"
     android:background="@color/white"
 
     >
@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <ImageView
@@ -89,6 +90,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:background="@color/white"
                 android:id="@+id/announcementicon">
                 <ImageView
                     android:layout_width="50dp"
@@ -124,6 +126,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:background="@color/white"
                 android:id="@+id/complaintfeedbackicon">
                 <ImageView
                     android:id="@+id/complaintfeedbackicon_imageview"
@@ -161,6 +164,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:background="@color/white"
                 android:id="@+id/gradesicon">
                 <ImageView
                     android:layout_width="50dp"
@@ -195,6 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:gravity="center"
                 android:id="@+id/policies_icon">
                 <ImageView
@@ -231,6 +236,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:background="@color/white"
                 android:id="@+id/coursesicon">
                 <ImageView
                     android:layout_width="50dp"

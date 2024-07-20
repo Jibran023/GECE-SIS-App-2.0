@@ -1,5 +1,8 @@
 package com.example.gece_sisapp20
 
+import Faculty_Admin.Dashboards.AdminDashboard
+import Faculty_Admin.Dashboards.FacultyDashboard
+import Student.Dashboard.StudentDashboard
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button

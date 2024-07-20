@@ -45,4 +45,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // GSON
+    implementation("com.google.code.gson:gson:2.8.9")
+    // API Requests
+    implementation("com.android.volley:volley:1.2.1")
 }

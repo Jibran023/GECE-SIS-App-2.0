@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".faculty_markattendance3">
+    tools:context="Faculty_Admin.Attendance.faculty_markattendance3">
 
     <!-- Back Button -->
     <ImageView
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/arrow_back_ios_24_black" />
 
     <!-- Date Picker -->
-    <com.example.gece_sisapp20.CustomDatePicker
+    <Faculty_Admin.Attendance.CustomDatePicker
         android:id="@+id/date_picker"
         android:layout_width="326dp"
         android:layout_height="309dp"
@@ -38,7 +38,7 @@
         android:textColor="@android:color/black"
         android:layout_below="@id/date_picker"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="70dp"
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
 
@@ -46,14 +46,14 @@
         android:id="@+id/attendance_absent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Absent"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
         android:layout_below="@id/date_picker"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="160dp"
         android:paddingStart="20dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:text="Absent"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/attendance_late"
@@ -64,7 +64,7 @@
         android:textColor="@android:color/black"
         android:layout_below="@id/date_picker"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="230dp"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         tools:ignore="RtlSymmetry" />
@@ -92,22 +92,12 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#FF8570"
         android:text="@string/Nextbutton"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:visibility="gone" />
 
-    <Button
-        android:id="@+id/cancelbutton"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FF8570"
-        android:text="Cancel"
-        android:textSize="18sp"
-        android:visibility="gone" />
 
 </RelativeLayout>
