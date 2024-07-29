@@ -5,11 +5,16 @@ import Faculty_Admin.Dashboards.FacultyDashboard
 import Student.Dashboard.StudentDashboard
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 
 
 class LoginScreen : AppCompatActivity() {
@@ -17,6 +22,21 @@ class LoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_loginscreen)
+
+        val login_API = "https://regres.in/api/users"
+
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        val request = StringRequest(Request.Method.GET, login_API, { result ->
+            Log.d("Volley Example", result.toString())
+            }, {err ->
+            Log.d("Volley Example", err.toString())
+        })
+
+        reqQueue.add(request)
+
+
+
+
 
         val loginbtn = findViewById<Button>(R.id.loginbutton)
         val username_input = findViewById<EditText>(R.id.username_input)

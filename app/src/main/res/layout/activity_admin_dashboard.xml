@@ -26,6 +26,7 @@
         app:srcCompat="@drawable/baseline_account_circle_24"
         android:contentDescription="@string/account_image_desc"/>
     <GridLayout
+        android:id="@+id/grid_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="2"
@@ -300,5 +301,7 @@
         android:textSize="36sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
+
+    
 
 </RelativeLayout>

@@ -19,7 +19,7 @@ class faculty_markattendance2 : AppCompatActivity() {
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+            val intent = Intent(this, faculty_markattendance1::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
@@ -46,22 +46,21 @@ class faculty_markattendance2 : AppCompatActivity() {
         recyclerView.adapter = AttendanceCourseAdapter(courses) { course -> onCourseClick(course) }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+    private fun onCourseClick(course: AttendanceCourse) {
+        val intent = Intent(this, Faculty_markattendance4::class.java).apply {
             putExtra("USER_TYPE", userType)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            putExtra("course_name", course.name)
+//            putStringArrayListExtra("sections", ArrayList(course.sections))
+            putStringArrayListExtra("class_dates", ArrayList(course.classDates)) // Passing the Name, Section, Dates to next screen
         }
         startActivity(intent)
     }
 
-
-    private fun onCourseClick(course: AttendanceCourse) {
+    override fun onBackPressed() {
+        super.onBackPressed()
         val intent = Intent(this, faculty_markattendance1::class.java).apply {
             putExtra("USER_TYPE", userType)
-            putExtra("course_name", course.name)
-            putStringArrayListExtra("sections", ArrayList(course.sections))
-            putStringArrayListExtra("class_dates", ArrayList(course.classDates)) // Passing the Name, Section, Dates to next screen
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
     }

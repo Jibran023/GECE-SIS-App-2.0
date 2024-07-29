@@ -23,7 +23,7 @@ class faculty_markattendance3 : AppCompatActivity() {
 
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
-            val intent = Intent(this, faculty_markattendance2::class.java).apply {
+            val intent = Intent(this, Faculty_markattendance4::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
@@ -37,7 +37,7 @@ class faculty_markattendance3 : AppCompatActivity() {
         // Dummy student data
         val students = listOf(
             Student("Alice", "present"),
-            Student("Bob", "absent"),
+            Student("Bob the Builder", "absent"),
             Student("Charlie Chaplin", "late"),
             Student("Diana", "present"),
             Student("Eve", "absent"),
@@ -95,10 +95,9 @@ class faculty_markattendance3 : AppCompatActivity() {
 
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, faculty_markattendance2::class.java).apply {
+        val intent = Intent(this, Faculty_markattendance4::class.java).apply {
             putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
