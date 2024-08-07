@@ -25,7 +25,7 @@ class FacultyChooseAttendance : AppCompatActivity() {
         val view_attendance = findViewById<Button>(R.id.button_view_attendance)
         view_attendance.setOnClickListener {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, FacultyViewAttendance::class.java).apply {
+            val intent = Intent(this, FacultyViewAttendance0::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }

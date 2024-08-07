@@ -51,6 +51,7 @@
             android:orientation="vertical"
             android:padding="28dp">
             <TextView
+                android:id="@+id/welcometxtview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
@@ -67,10 +68,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"/>
             <TextView
+                android:id="@+id/testingpurposes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/username"
+                android:text="Email"
                 android:textSize="15sp"
                 android:textColor="@color/grey"
                 android:alpha="1"/>
@@ -81,7 +83,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customlineedit"
-                android:hint="@string/Enter_username"
+                android:hint="Enter your Email"
                 android:inputType="textWebEmailAddress"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
@@ -91,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>
             <TextView
+                android:id="@+id/testingpurpose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -109,6 +112,15 @@
                 android:paddingEnd="0dp"
                 android:background="@drawable/customlineedit"
                 android:textColor="@color/black"/>
+
+            <CheckBox
+                android:id="@+id/show_password_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Show Password"
+                android:textColor="@color/grey"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginbutton"
                 android:layout_width="match_parent"

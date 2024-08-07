@@ -1,10 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="0dp" tools:context=".ViewAttendanceDatesActivity">
-    <View android:id="@+id/top_view" android:layout_width="match_parent" android:layout_height="200dp" android:background="@drawable/std_dashboard_view"/>
-    <!--  Top bar with title and back button  -->
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true">
-        <ImageButton android:id="@+id/backButton" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignParentStart="true" android:layout_marginStart="20dp" android:layout_marginTop="20dp" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/back_button_description" android:src="@drawable/arrow_back_ios_24"/>
-        <TextView android:id="@+id/heading" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Attendance Dates" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/white" android:layout_centerHorizontal="true" android:layout_marginTop="40dp"/>
-    </RelativeLayout>
-    <!--  RecyclerView for date list  -->
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView" android:layout_width="395dp" android:layout_height="528dp" android:layout_marginStart="32dp" android:layout_marginEnd="32dp" android:layout_marginTop="119dp" android:padding="8dp"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white">
+    <!--  Toolbar with Back Button and Title  -->
+    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="80dp" android:background="@color/white" android:elevation="4dp" android:theme="@style/ThemeOverlay.AppCompat.ActionBar" android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <ImageButton android:id="@+id/backButton" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignParentStart="true" android:layout_marginStart="20dp" android:layout_marginTop="20dp" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/back_button_description" android:src="@drawable/arrow_back_ios_24_black"/>
+        <TextView android:id="@+id/titleTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:text="Complaint details" android:textSize="20sp" android:textStyle="bold" android:textColor="@android:color/black" android:layout_gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
+    <!--  ScrollView for Content  -->
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@id/toolbar" android:padding="16dp" android:layout_marginTop="30dp" android:background="@color/white">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:background="@drawable/rounded_background">
+            <!--  Complaint Title  -->
+            <TextView android:id="@+id/complaintTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Complaint Title" android:textSize="24sp" android:textStyle="bold" android:layout_marginBottom="8dp" android:textColor="@color/white"/>
+            <!--  Complaint Description  -->
+            <TextView android:id="@+id/complaintDescription" android:layout_width="336dp" android:layout_height="wrap_content" android:layout_marginBottom="16dp" android:text="The actual complaint by the student. jfiuhfiuedhd jjhfudhfiueiuediugisudfgiudhciudshfieuf hfhiuhfiweub" android:textColor="@color/white" android:textSize="16sp"/>
+            <!--  Complaint Status  -->
+            <TextView android:id="@+id/complaintStatusLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Complaint Status" android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="4dp" android:textColor="@color/white"/>
+            <TextView android:id="@+id/complaintStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Solved" android:textSize="16sp" android:layout_marginBottom="16dp" android:textColor="@color/white"/>
+            <!--  Feedback Button  -->
+            <Button android:id="@+id/provideFeedbackButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Provide Feedback" android:layout_marginTop="20dp" android:backgroundTint="#FF8570" android:textColor="@color/white" android:textSize="18sp"/>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

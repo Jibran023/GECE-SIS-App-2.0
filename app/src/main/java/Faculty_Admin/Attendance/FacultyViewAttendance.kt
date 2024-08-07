@@ -20,7 +20,7 @@ class FacultyViewAttendance : AppCompatActivity() {
 
         val back_btn = findViewById<ImageButton>(R.id.backButton)
         back_btn.setOnClickListener {
-            val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+            val intent = Intent(this, FacultyViewAttendance0::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
@@ -46,7 +46,7 @@ class FacultyViewAttendance : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
+        val intent = Intent(this, FacultyViewAttendance0::class.java).apply {
             putExtra("USER_TYPE", userType)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

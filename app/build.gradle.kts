@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
 }
 
 android {
@@ -49,4 +50,5 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     // API Requests
     implementation("com.android.volley:volley:1.2.1")
+    implementation("org.bouncycastle:bcprov-jdk15to18:1.69") // for AES encryption/decryption
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/std_dashboard_view"/>
+
+    <TextView android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Attendance"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        app:srcCompat="@drawable/arrow_back_ios_24"
+        android:contentDescription="@string/back_image_desc"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical"
+        android:padding="34dp">
+
+        <!--  Heading  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="34dp"
+            android:textColor="@color/black"
+            android:layout_marginRight="24dp"
+            android:text="Cohort"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/cohort_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:spinnerMode="dropdown"/>
+        <!--             android:background="@drawable/border" -->
+        <!--  Spinner for Semester  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="24dp"
+            android:textColor="@color/black"
+            android:text="@string/semester_label"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/semester_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="24dp"
+            android:textColor="@color/black"
+            android:text="Section"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/section_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:spinnerMode="dropdown"/>
+
+        <Button
+            android:id="@+id/nextbtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="24dp"
+            android:backgroundTint="#FF8570"
+            android:text="@string/Nextbutton"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</RelativeLayout>

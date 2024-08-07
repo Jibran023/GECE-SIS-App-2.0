@@ -1,0 +1,18 @@
+
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli::mysqli(): (HY000/1045): Access denied for user 'results_user'@'localhost' (using password: YES) in C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Admindp.php on line <i>11</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0031</td><td bgcolor='#eeeeec' align='right'>130056</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\cohorts.php' bgcolor='#eeeeec'>..\cohorts.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0042</td><td bgcolor='#eeeeec' align='right'>180376</td><td bgcolor='#eeeeec'>querieshandler->GetCohorts(  )</td><td title='C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\cohorts.php' bgcolor='#eeeeec'>..\cohorts.php<b>:</b>4</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0049</td><td bgcolor='#eeeeec' align='right'>200296</td><td bgcolor='#eeeeec'>db->__construct(  )</td><td title='C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Adminquerieshandler.php' bgcolor='#eeeeec'>..\Adminquerieshandler.php<b>:</b>73</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0049</td><td bgcolor='#eeeeec' align='right'>201448</td><td bgcolor='#eeeeec'><a href='http://www.php.net/mysqli.mysqli' target='_new'>mysqli</a>
+(  )</td><td title='C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Admindp.php' bgcolor='#eeeeec'>..\Admindp.php<b>:</b>11</td></tr>
+</table></font>
+Failed to connect to MySQL - Access denied for user 'results_user'@'localhost' (using password: YES)PHP Warning:  mysqli::mysqli(): (HY000/1045): Access denied for user 'results_user'@'localhost' (using password: YES) in C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Admindp.php on line 11
+PHP Stack trace:
+PHP   1. {main}() C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\cohorts.php:0
+PHP   2. querieshandler->GetCohorts() C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\cohorts.php:4
+PHP   3. db->__construct() C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Adminquerieshandler.php:73
+PHP   4. mysqli->mysqli() C:\Jibran\Projects\GECESISApp20\GECE-SIS-App-2.0\APIs\Admindp.php:11

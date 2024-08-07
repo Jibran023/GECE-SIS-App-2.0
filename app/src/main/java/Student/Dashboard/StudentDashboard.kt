@@ -14,6 +14,7 @@ import Student.Policies.StudentDashboardPolicies
 import Student.Announcement.Student_Announcement
 import Student_Admin_Faculty.ViewCourses.courses_comboboxes
 import Student.Attendance.student_attendance_comboboxes
+import android.util.Log
 
 
 class StudentDashboard : AppCompatActivity() {
@@ -22,12 +23,16 @@ class StudentDashboard : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_student_dashboard)
         val userType = intent.getStringExtra("USER_TYPE")
+        val studentID = intent.getStringExtra("STUDENT_ID")
+
+        Log.d("Jibran", "this is the student id at dashboard: $studentID")
 
         // added user and color check (DONE)
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
             val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -38,6 +43,7 @@ class StudentDashboard : AppCompatActivity() {
         policiesicon.setOnClickListener {
             val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -48,6 +54,7 @@ class StudentDashboard : AppCompatActivity() {
         complain_and_feedback.setOnClickListener {
             var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -58,6 +65,7 @@ class StudentDashboard : AppCompatActivity() {
         announcementicon.setOnClickListener {
             val intent = Intent(this, Student_Announcement::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -68,6 +76,7 @@ class StudentDashboard : AppCompatActivity() {
         gradesicon.setOnClickListener {
             val intent = Intent(this, GradesScreenFirst::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -78,6 +87,7 @@ class StudentDashboard : AppCompatActivity() {
         coursesicon.setOnClickListener {
             var intent = Intent(this, courses_comboboxes::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -88,6 +98,7 @@ class StudentDashboard : AppCompatActivity() {
         profile_pic.setOnClickListener {
             var intent = Intent(this, ProfilePicture::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("STUDENT_ID", studentID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
