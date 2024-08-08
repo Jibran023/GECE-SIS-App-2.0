@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="Student_Admin_Faculty.ViewCourses.courses_comboboxes">
+    tools:context="Student_Admin_Faculty.ViewCourses.AdminChooseFacultyStudent">
+
 
 
     <View
@@ -15,6 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/std_dashboard_view" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/arrow_back_ios_24" />
 
     <TextView
         android:id="@+id/textView4"
@@ -37,34 +49,13 @@
 
         <!-- Heading -->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="24dp"
-            android:text="Academic Session"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/year_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="24dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:layout_marginRight="24dp"
-            android:spinnerMode="dropdown" />
-
-        <!-- Spinner for Semester -->
-
         <Button
-            android:id="@+id/nextbutton"
+            android:id="@+id/facultybutton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Next"
+            android:text="Faculty Courses"
             android:textSize="18sp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="120dp"
             android:backgroundTint="#FF8570"
             app:cornerRadius="20dp"
             android:textColor="@color/white"
@@ -72,15 +63,15 @@
             android:layout_marginRight="24dp"/>
 
         <Button
-            android:id="@+id/courses_comboboxes_backbutton"
+            android:id="@+id/Studentbutton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="@string/back"
+            android:text="Student Courses"
             android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:backgroundTint="#8A8A8A"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#FF8570"
             app:cornerRadius="20dp"
+            android:textColor="@color/white"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"/>
 

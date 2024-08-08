@@ -36,11 +36,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email"
-            android:text="contact@username.com"
+            android:layout_marginTop="10dp"
+            android:text="Email: "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_gravity="start"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rollno"
+            android:textStyle="bold"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_gravity="start"
-            android:layout_marginBottom="16dp" />
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@+id/seatno"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_gravity="start"
+            />
+
     </LinearLayout>
 
     <!-- Menu Items -->

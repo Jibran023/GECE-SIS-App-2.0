@@ -15,6 +15,7 @@ import Faculty_Admin.Grading.Faculty_markGrades
 import Faculty_Admin.ProfileView.Profile_Faculty
 import com.example.gece_sisapp20.R
 import Student_Admin_Faculty.ViewCourses.courses_comboboxes
+import android.util.Log
 
 
 class FacultyDashboard : AppCompatActivity() {
@@ -24,6 +25,9 @@ class FacultyDashboard : AppCompatActivity() {
         setContentView(R.layout.activity_faculty_dashboard)
 
         val userType = intent.getStringExtra("USER_TYPE")
+        val userID = intent.getStringExtra("USER_ID")
+
+        Log.d("FacultyDasboard_Data", "User Type is: $userType | User ID is: $userID")
 
         // added user and colors checked
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
@@ -31,6 +35,7 @@ class FacultyDashboard : AppCompatActivity() {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, FacultyChooseAttendance::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -41,6 +46,7 @@ class FacultyDashboard : AppCompatActivity() {
         policiesicon.setOnClickListener {
             val intent = Intent(this, FacultyDashboardPolicies::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -51,6 +57,7 @@ class FacultyDashboard : AppCompatActivity() {
         complain_and_feedback.setOnClickListener {
             var intent = Intent(this, ComplaintScreenFirst::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -61,6 +68,7 @@ class FacultyDashboard : AppCompatActivity() {
         announcementicon.setOnClickListener {
             val intent = Intent(this, Faculty_Announcement2::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -71,6 +79,7 @@ class FacultyDashboard : AppCompatActivity() {
         gradesicon.setOnClickListener {
             val intent = Intent(this, Faculty_markGrades::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -81,6 +90,7 @@ class FacultyDashboard : AppCompatActivity() {
         coursesicon.setOnClickListener {
             var intent = Intent(this, courses_comboboxes::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -91,6 +101,7 @@ class FacultyDashboard : AppCompatActivity() {
         profile_pic.setOnClickListener {
             var intent = Intent(this, Profile_Faculty::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)

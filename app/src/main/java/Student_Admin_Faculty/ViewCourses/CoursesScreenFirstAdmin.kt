@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gece_sisapp20.R
 
 
-data class CardItem(val text: String)
+//data class CardItem(val text: String)
 
-class CoursesScreenFirst : AppCompatActivity() {
+class CoursesScreenFirstAdmin : AppCompatActivity() {
     private var userType: String? = null
     private lateinit var userID: String
     private var coursesList: ArrayList<String>? = null
+    private var whotosearch: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,9 @@ class CoursesScreenFirst : AppCompatActivity() {
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
         coursesList = intent.getStringArrayListExtra("COURSES_LIST")
+        whotosearch = intent.getStringExtra("WHO_TO_SEARCH")
+
+        Log.d("Courses Received", "Courses list received: $coursesList")
 
         if (coursesList != null) {
             Log.d("CoursesList", "Courses List: $coursesList")
@@ -34,9 +38,10 @@ class CoursesScreenFirst : AppCompatActivity() {
 
         var backbtn = findViewById<ImageView>(R.id.Courses_backbtn)
         backbtn.setOnClickListener{
-            var intent = Intent(this, courses_comboboxes::class.java).apply {
+            var intent = Intent(this, Courses_comboboxesAdmin::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
+                putExtra("WHO_TO_SEARCH", whotosearch)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -65,6 +70,7 @@ class CoursesScreenFirst : AppCompatActivity() {
         val intent = Intent(this, courses_comboboxes::class.java).apply {
             putExtra("USER_TYPE", userType)
             putExtra("USER_ID", userID)
+            putExtra("WHO_TO_SEARCH", whotosearch)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

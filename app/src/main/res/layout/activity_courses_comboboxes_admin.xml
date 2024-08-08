@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="Student_Admin_Faculty.ViewCourses.courses_comboboxes">
+    tools:context="Student_Admin_Faculty.ViewCourses.Courses_comboboxesAdmin">
 
 
     <View
@@ -55,6 +55,27 @@
             android:background="@android:drawable/btn_dropdown"
             android:layout_marginRight="24dp"
             android:spinnerMode="dropdown" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="24dp"
+            android:text="Faculty or Student"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/faculty_students_autocomplete"
+            android:layout_width="290dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:hint="Search Faculty/Student"
+            android:completionThreshold="1" />
 
         <!-- Spinner for Semester -->
 

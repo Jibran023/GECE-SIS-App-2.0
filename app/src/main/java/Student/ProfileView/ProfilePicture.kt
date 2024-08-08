@@ -23,6 +23,7 @@ import com.example.gece_sisapp20.R
 
 class ProfilePicture : AppCompatActivity() {
     private var userType: String? = null
+    private lateinit var userID: String
 
     private lateinit var emailTextView: TextView
     private lateinit var rollnoTextView: TextView
@@ -31,7 +32,7 @@ class ProfilePicture : AppCompatActivity() {
     private lateinit var seatnoTextView: TextView
     private lateinit var nameTextView: TextView
 
-    private var studentID: Int = 1
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +40,7 @@ class ProfilePicture : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_profile_picture)
         userType = intent.getStringExtra("USER_TYPE")
-        val studentIDstring = intent.getStringExtra("STUDENT_ID")
-        studentID = studentIDstring?.toIntOrNull() ?: 1
+        userID = intent.getStringExtra("USER_ID").toString() // Takes studentID from the previous screen
 
         val dashboard_icon = findViewById<LinearLayout>(R.id.dashboard_icon)
         val logout_icon = findViewById<LinearLayout>(R.id.logout_id)
@@ -55,13 +55,13 @@ class ProfilePicture : AppCompatActivity() {
         fetchstudentsdata()
 
 //        email.text = "Email: $emailTextView
-        Log.d("StudentDetails", "StudentID on Profile page is: $studentID")
+        Log.d("StudentDetails", "StudentID on Profile page is: $userID")
 
         dashboard_icon.setOnClickListener {
             if (userType == "faculty") {
                 val intent = Intent(this, FacultyDashboard::class.java).apply {
                     putExtra("USER_TYPE", userType)
-                    putExtra("STUDENT_ID", studentID)
+                    putExtra("USER_ID", userID)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
                 }
@@ -69,7 +69,7 @@ class ProfilePicture : AppCompatActivity() {
             } else if (userType == "admin") {
                 val intent = Intent(this, AdminDashboard::class.java).apply {
                     putExtra("USER_TYPE", userType)
-                    putExtra("STUDENT_ID", studentID)
+                    putExtra("USER_ID", userID)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)
@@ -77,7 +77,7 @@ class ProfilePicture : AppCompatActivity() {
             else if (userType == "student") {
                 val intent = Intent(this, StudentDashboard::class.java).apply {
                     putExtra("USER_TYPE", userType)
-                    putExtra("STUDENT_ID", studentID)
+                    putExtra("USER_ID", userID)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)
@@ -98,7 +98,7 @@ class ProfilePicture : AppCompatActivity() {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, FacultyDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
-                putExtra("STUDENT_ID", studentID)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -106,7 +106,7 @@ class ProfilePicture : AppCompatActivity() {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AdminDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
-                putExtra("STUDENT_ID", studentID)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -115,7 +115,7 @@ class ProfilePicture : AppCompatActivity() {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StudentDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
-                putExtra("STUDENT_ID", studentID)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -125,7 +125,8 @@ class ProfilePicture : AppCompatActivity() {
 
     private fun fetchstudentsdata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/studentsprofileinfo.php?id=$studentID"
+        val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
+        val apigetcohorts = "http://192.168.18.55/geceapi/Student/ProfileView/studentsprofileinfo.php?id=$studentIDint"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
