@@ -41,12 +41,25 @@ class StudentDashboard : AppCompatActivity() {
         // added user and color check (DONE)
         val policiesicon = findViewById<LinearLayout>(R.id.policies_icon)
         policiesicon.setOnClickListener {
-            val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
-                putExtra("USER_TYPE", userType)
-                putExtra("USER_ID", userID)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            if (userType == "student")
+            {
+                val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
             }
-            startActivity(intent)
+            else if (userType == "other")
+            {
+                val intent = Intent(this, StudentDashboardPolicies::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+
         }
 
         // user check and color check

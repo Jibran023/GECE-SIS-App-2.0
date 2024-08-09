@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
     private lateinit var selectedSessionDescription: String
     private lateinit var selectedpeople: String
     private var coursesList: ArrayList<String> = arrayListOf() // Variable to store fetched courses
+    private lateinit var studentorfaculty: TextView
 
     private var isSessionSelected = false
     private var isPersonSelected = false
@@ -42,6 +44,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
         whotosearch = intent.getStringExtra("WHO_TO_SEARCH")
+
 
         var backbtn = findViewById<Button>(R.id.courses_comboboxes_backbutton)
         backbtn.setOnClickListener {

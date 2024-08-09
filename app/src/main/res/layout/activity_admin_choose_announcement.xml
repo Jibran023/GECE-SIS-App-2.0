@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="Faculty_Admin.Announcement.AdminChooseAnnouncement">
+
+
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/std_dashboard_view" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_description"
+        android:src="@drawable/arrow_back_ios_24" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Announcement"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:orientation="vertical"
+        android:layout_marginTop="140dp"
+        android:padding="34dp">
+
+
+        <!-- Heading -->
+
+        <Button
+            android:id="@+id/facultybutton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Faculty Announcement"
+            android:textSize="18sp"
+            android:layout_marginTop="120dp"
+            android:backgroundTint="#FF8570"
+            app:cornerRadius="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
+
+        <Button
+            android:id="@+id/Studentbutton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Student Announcement"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#FF8570"
+            app:cornerRadius="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

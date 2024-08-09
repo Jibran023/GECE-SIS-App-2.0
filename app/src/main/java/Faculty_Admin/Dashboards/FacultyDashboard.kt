@@ -63,7 +63,7 @@ class FacultyDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // added user and colors checked
+        // Students can view the Announcements
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
         announcementicon.setOnClickListener {
             val intent = Intent(this, Faculty_Announcement2::class.java).apply {

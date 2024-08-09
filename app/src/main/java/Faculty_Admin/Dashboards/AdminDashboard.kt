@@ -1,6 +1,7 @@
 package Faculty_Admin.Dashboards
 
 import Faculty_Admin.Admin_Mapping.AdminMapping
+import Faculty_Admin.Announcement.Admin_AnnouncementStart
 import Faculty_Admin.Announcement.Faculty_Announcement2
 import android.content.Intent
 import android.os.Bundle
@@ -68,7 +69,7 @@ class AdminDashboard : AppCompatActivity() {
         // added user check (DONE)
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
         announcementicon.setOnClickListener {
-            val intent = Intent(this, Faculty_Announcement2::class.java).apply {
+            val intent = Intent(this, Admin_AnnouncementStart::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

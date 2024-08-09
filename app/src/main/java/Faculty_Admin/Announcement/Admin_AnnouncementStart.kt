@@ -9,24 +9,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import Faculty_Admin.Dashboards.FacultyDashboard
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
 import com.example.gece_sisapp20.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-class Faculty_Announcement2 : AppCompatActivity() {
+class Admin_AnnouncementStart : AppCompatActivity() {
     private var userType: String? = null
     private lateinit var userID : String
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var announcementAdapter: AnnouncementAdapter
-    private val announcementList = mutableListOf<Announcement>()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,20 +46,13 @@ class Faculty_Announcement2 : AppCompatActivity() {
 
         val add_button = findViewById<FloatingActionButton>(R.id.add_button)
         add_button.setOnClickListener {
-            val intent = Intent(this, Faculty_Announcement::class.java).apply {
+            val intent = Intent(this, AdminChooseAnnouncement::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
-
-        recyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        announcementAdapter = AnnouncementAdapter(announcementList)
-        recyclerView.adapter = announcementAdapter
-
-        fetchfacultyannouncements()
 
     }
 
@@ -94,41 +76,6 @@ class Faculty_Announcement2 : AppCompatActivity() {
             startActivity(intent)
         }
         finish()
-    }
-
-    private fun fetchfacultyannouncements(){
-        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val useridint = userID.toIntOrNull()?: 1
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/fetchfacultyannouncements.php?id=$useridint"
-        val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET,
-            apigetcohorts,
-            null,
-            { response ->
-                Log.d("FACANNOUNCE", "Fetched JSON Data: $response")
-                try {
-
-                    for (i in 0 until response.length()) {
-                        val jsonObject = response.getJSONObject(i)
-                        val announcement = Announcement(
-                            title = jsonObject.getString("Title"),
-                            content = jsonObject.getString("Content"),
-                            announcementBy = jsonObject.getString("Name"),
-                            postedDate = jsonObject.getString("PostedDateTime")
-                        )
-                        announcementList.add(announcement)
-                    }
-                    announcementAdapter.notifyDataSetChanged()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-
-                }
-            },
-            { error ->
-                Log.e("FACANNOUNCE", "Error fetching the data: ${error.message}")
-            }
-        )
-        reqQueue.add(jsonArrayRequest)
     }
 
 }

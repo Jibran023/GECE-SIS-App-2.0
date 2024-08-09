@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.example.gece_sisapp20.LoginScreen
+import com.example.gece_sisapp20.OtherDashboard
 import com.example.gece_sisapp20.R
 
 
@@ -82,6 +83,14 @@ class ProfilePicture : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+            else if (userType == "other"){
+                val intent = Intent(this, OtherDashboard::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
         }
 
         logout_icon.setOnClickListener {
@@ -120,49 +129,100 @@ class ProfilePicture : AppCompatActivity() {
             }
             startActivity(intent)
         }
+        else if (userType == "other"){
+            val intent = Intent(this, OtherDashboard::class.java).apply {
+                putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
         finish()
     }
 
     private fun fetchstudentsdata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
-        val apigetcohorts = "http://192.168.18.55/geceapi/Student/ProfileView/studentsprofileinfo.php?id=$studentIDint"
+        if (userType == "student"){
+            val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
+            val apigetcohorts = "http://192.168.18.55/geceapi/Student/ProfileView/studentsprofileinfo.php?id=$studentIDint"
 
-        val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET,
-            apigetcohorts,
-            null,
-            { response ->
-                Log.e("StudentsFullData", "$response")
-                try {
-                    if (response.length() > 0) {
-                        val jsonObject = response.getJSONObject(0)
-                        val email = jsonObject.getString("Email")
-                        val rollno = jsonObject.getString("RollNumber")
-                        val year = jsonObject.getString("YearAdmission")
-                        val cohort = jsonObject.getString("cohort")
-                        val seatno = jsonObject.getString("SeatNumber")
-                        val name = jsonObject.getString("Name")
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apigetcohorts,
+                null,
+                { response ->
+                    Log.e("StudentsFullData", "$response")
+                    try {
+                        if (response.length() > 0) {
+                            val jsonObject = response.getJSONObject(0)
+                            val email = jsonObject.getString("Email")
+                            val rollno = jsonObject.getString("RollNumber")
+                            val year = jsonObject.getString("YearAdmission")
+                            val cohort = jsonObject.getString("cohort")
+                            val seatno = jsonObject.getString("SeatNumber")
+                            val name = jsonObject.getString("Name")
 
-                        // Set the TextViews with the fetched data
-                        emailTextView.text = "Email: $email"
-                        rollnoTextView.text = "Roll Number: $rollno"
-                        yearaddTextView.text = "Year of Admission: $year"
-                        cohortTextView.text = "Cohort: $cohort"
-                        seatnoTextView.text = "Seat Number: $seatno"
-                        nameTextView.text = "$name"
-                    } else {
-                        Log.d("StudentsDataProfile", "No data found")
+                            // Set the TextViews with the fetched data
+                            emailTextView.text = "Email: $email"
+                            rollnoTextView.text = "Roll Number: $rollno"
+                            yearaddTextView.text = "Year of Admission: $year"
+                            cohortTextView.text = "Cohort: $cohort"
+                            seatnoTextView.text = "Seat Number: $seatno"
+                            nameTextView.text = "$name"
+                        } else {
+                            Log.d("StudentsDataProfile", "No data found")
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                },
+                { error ->
+                    Log.e("StudentsDataProfile", "Error fetching the data: ${error.message}")
                 }
-            },
-            { error ->
-                Log.e("StudentsDataProfile", "Error fetching the data: ${error.message}")
-            }
-        )
+            )
 
-        reqQueue.add(jsonArrayRequest)
+            reqQueue.add(jsonArrayRequest)
+        }
+
+        else if (userType == "other"){
+            val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
+            val apigetcohorts = "http://192.168.18.55/geceapi/otherusersinfo.php?id=$studentIDint"
+
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apigetcohorts,
+                null,
+                { response ->
+                    Log.e("StudentsFullData", "$response")
+                    try {
+                        if (response.length() > 0) {
+                            val jsonObject = response.getJSONObject(0)
+                            val email = jsonObject.getString("Email")
+                            val rollno = jsonObject.getString("Role")
+                            val year = jsonObject.getString("department")
+                            val name = jsonObject.getString("Name")
+
+                            // Set the TextViews with the fetched data
+                            emailTextView.text = "Email: $email"
+                            rollnoTextView.text = "Role: $rollno"
+                            yearaddTextView.text = "Department: $year"
+                            cohortTextView.text = ""
+                            seatnoTextView.text = ""
+                            nameTextView.text = "$name"
+                        } else {
+                            Log.d("StudentsDataProfile", "No data found")
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                },
+                { error ->
+                    Log.e("StudentsDataProfile", "Error fetching the data: ${error.message}")
+                }
+            )
+
+            reqQueue.add(jsonArrayRequest)
+        }
+
     }
 }

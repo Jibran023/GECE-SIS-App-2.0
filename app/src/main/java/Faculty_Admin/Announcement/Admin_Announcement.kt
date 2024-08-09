@@ -21,7 +21,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class Faculty_Announcement : AppCompatActivity() {
+class Admin_Announcement : AppCompatActivity() {
     private var userType: String? = null
     private lateinit var userID : String
     private lateinit var selectedSessionDescription: String // Selected Session
@@ -34,16 +34,17 @@ class Faculty_Announcement : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     val formattedDateTime = currentDateTime.format(formatter)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_faculty_announcement)
+        setContentView(R.layout.activity_admin_announcement)
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
 
         val backbtn = findViewById<ImageButton>(R.id.backbtn)
         backbtn.setOnClickListener {
-            val intent = Intent(this, Faculty_Announcement2::class.java).apply {
+            val intent = Intent(this, AdminChooseAnnouncement::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -92,7 +93,7 @@ class Faculty_Announcement : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, Faculty_Announcement2::class.java).apply {
+        val intent = Intent(this, AdminChooseAnnouncement::class.java).apply {
             putExtra("USER_TYPE", userType)
             putExtra("USER_ID", userID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -100,7 +101,7 @@ class Faculty_Announcement : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) {
+    private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) { // CHANGE THIS SO IT RETRIEVES COHORTS
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchsessions.php"
 
@@ -132,6 +133,7 @@ class Faculty_Announcement : AppCompatActivity() {
     } // Returns all sessions from academicsessions table
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun submitAnnouncement(title: String, content: String) { // Method to handle announcement submission
         // Implement the logic for submitting the announcement here
         Log.d("FacultyAnnounce", "Title: $title | Content: $content | Session: $selectedSessionDescription | Posted Time: $formattedDateTime")
@@ -144,27 +146,27 @@ class Faculty_Announcement : AppCompatActivity() {
             Request.Method.GET,
             apigetcohorts,
             null,
-                { response ->
-                    Log.d("COURSESADMIN", "Fetched JSON Data: $response")
-                    try {
-                        val allstudents = mutableListOf<String>()
-                        for (i in 0 until response.length()) {
-                            val jsonObject = response.getJSONObject(i)
-                            val STUDENT = jsonObject.get("Name")
-                            allstudents.add(STUDENT.toString())
-                        }
-                        callback(allstudents)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        callback(emptyList()) // In case of error, return an empty list
+            { response ->
+                Log.d("COURSESADMIN", "Fetched JSON Data: $response")
+                try {
+                    val allstudents = mutableListOf<String>()
+                    for (i in 0 until response.length()) {
+                        val jsonObject = response.getJSONObject(i)
+                        val STUDENT = jsonObject.get("Name")
+                        allstudents.add(STUDENT.toString())
                     }
-                },
-                { error ->
-                    Log.e("COURSESADMIN", "Error fetching the data: ${error.message}")
+                    callback(allstudents)
+                } catch (e: Exception) {
+                    e.printStackTrace()
                     callback(emptyList()) // In case of error, return an empty list
                 }
-            )
-            reqQueue.add(jsonArrayRequest)
-        }
-
+            },
+            { error ->
+                Log.e("COURSESADMIN", "Error fetching the data: ${error.message}")
+                callback(emptyList()) // In case of error, return an empty list
+            }
+        )
+        reqQueue.add(jsonArrayRequest)
     }
+
+}

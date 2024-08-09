@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/backbtn"
             android:layout_marginStart="16dp"
-            android:text="Create Announcement"
+            android:text="Create Announcement: Students"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Your Semester"
+                android:text="Select Your Cohort"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"
@@ -78,7 +78,7 @@
                     android:id="@+id/semesterdept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="e.g Fall 2021"
+                    android:hint="e.g 2026"
                     android:textColor="@color/black"
                     android:layout_marginBottom="10dp"
                     android:inputType="none"
@@ -87,61 +87,9 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Department Label -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Your Course"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="4dp"
-                android:labelFor="@id/multi_auto_complete_txt_department"/>
 
-            <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
-                <AutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_department"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Math"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Section Label -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select Your Section"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"
-                android:labelFor="@id/multi_auto_complete_txt_section"/>
-
-            <!-- Section Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <AutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_section"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Section A"
-                    android:textColor="@color/black"
-                    android:inputType="none"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Announcement Title EditText -->
             <EditText

@@ -13,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ListView
 import android.widget.Toast
+import com.example.gece_sisapp20.OtherDashboard
 import com.example.gece_sisapp20.R
 
 
@@ -59,6 +60,15 @@ class StudentDashboardPolicies : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+            else if (userType == "other"){
+                val intent = Intent(this, OtherDashboard::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+//                    putExtra("USER_ID", userID)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+
         }
     }
 
@@ -83,6 +93,14 @@ class StudentDashboardPolicies : AppCompatActivity() {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StudentDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
+        else if (userType == "other"){
+            val intent = Intent(this, OtherDashboard::class.java).apply {
+                putExtra("USER_TYPE", userType)
+//                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)

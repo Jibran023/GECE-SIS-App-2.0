@@ -375,6 +375,14 @@ class LoginScreen : AppCompatActivity() {
                 }
             }
 
+            // Check the credentials for other users
+            validCredentialsother[username]?.let {// Change the password to encryptedpassword at then end
+                if (it.password == password) {
+                    userType = "other"
+                    userID = it.id
+                }
+            }
+
             // Navigate to the respective dashboard based on the user type
             when (userType) {
                 "student" -> {
@@ -398,6 +406,15 @@ class LoginScreen : AppCompatActivity() {
                 "admin" -> {
                     Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, AdminDashboard::class.java).apply {
+                        putExtra("USER_TYPE", userType)
+                        putExtra("USER_ID", userID)
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                }
+                "other" -> {
+                    Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, OtherDashboard::class.java).apply {
                         putExtra("USER_TYPE", userType)
                         putExtra("USER_ID", userID)
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -458,8 +475,6 @@ class LoginScreen : AppCompatActivity() {
                             "Registrar" -> validCredentialsAdmin[email] = credentials
                             else -> validCredentialsother[email] = credentials
                         }
-
-//                        userID = id
 
                         Log.d("UsersData", "Email: $email Password: $password  Department: $department")
                     }
