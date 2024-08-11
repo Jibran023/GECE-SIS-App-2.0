@@ -2,10 +2,9 @@
 
 header('Content-Type: application/json');
 
-// Database connection parameters
-$host = '127.0.0.1';  // Host name
+$host = '127.0.0.1:3307';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = '';       // MySQL password (default is empty for XAMPP)
+$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
 
 // Create connection
@@ -36,8 +35,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $FacultyName, $semesterDescription);
 $stmt->execute();
 $result = $stmt->get_result();
-// $result = $conn->query($sql);
-// echo $result;
+
 
 // Fetch data
 $data = array();

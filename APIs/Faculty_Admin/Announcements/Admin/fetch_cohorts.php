@@ -1,7 +1,7 @@
 <?php
 $host = '127.0.0.1:3307';  // Host name
-$username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
+$username = 'root';   // MySQL username
+$password = 'mazerunner';       // MySQL password
 $database = 'gecesisapp';  // Your database name
 
 // Create connection
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to select all columns from the users table
-$sql = "SELECT * FROM studentsinformation";
+$sql = "Select DISTINCT cohort From studentsinformation";
 $result = $conn->query($sql);
 
 // Create an array to hold the results
@@ -29,12 +29,7 @@ if ($result->num_rows > 0) {
     $data = array("message" => "No results");
 }
 
-// Set the content type to JSON
-header('Content-Type: application/json');
-
-// Output the data as JSON
 echo json_encode($data);
 
-// Close connection
 $conn->close();
 ?>

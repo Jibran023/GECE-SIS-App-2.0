@@ -52,7 +52,7 @@
         <Button
             android:id="@+id/facultybutton"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:text="Faculty Announcement"
             android:textSize="18sp"
             android:layout_marginTop="120dp"
@@ -65,8 +65,21 @@
         <Button
             android:id="@+id/Studentbutton"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:text="Student Announcement"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#FF8570"
+            app:cornerRadius="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
+
+        <Button
+            android:id="@+id/usersbutton"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Users Announcement"
             android:textSize="18sp"
             android:layout_marginTop="30dp"
             android:backgroundTint="#FF8570"

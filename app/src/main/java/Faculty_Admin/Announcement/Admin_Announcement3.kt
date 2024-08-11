@@ -2,12 +2,10 @@ package Faculty_Admin.Announcement
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import java.net.URLEncoder
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,21 +14,21 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.gece_sisapp20.R
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.net.URLEncoder
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
-class Admin_Announcement2 : AppCompatActivity() {
+class Admin_Announcement3 : AppCompatActivity() {
     private var userType: String? = null
     private lateinit var userID : String
     private lateinit var selectedFacultyMembers: List<String> // Selected Faculty Members
@@ -44,13 +42,14 @@ class Admin_Announcement2 : AppCompatActivity() {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     @RequiresApi(Build.VERSION_CODES.O)
     val formattedDateTime = currentDateTime.format(formatter)
-
     @SuppressLint("MissingInflatedId")
     @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_admin_announcement2)
+        setContentView(R.layout.activity_admin_announcement3)
+
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
 
@@ -69,7 +68,6 @@ class Admin_Announcement2 : AppCompatActivity() {
         announcementTitle = findViewById(R.id.announcementtitle)
         announcementContent = findViewById(R.id.announcementcontent)
 
-
         val deletebtn = findViewById<Button>(R.id.deletebtn)
         deletebtn.setOnClickListener {
             // Clear the announcement title and content
@@ -78,9 +76,8 @@ class Admin_Announcement2 : AppCompatActivity() {
         }
 
         val semesterDeptTextView = findViewById<MultiAutoCompleteTextView>(R.id.semesterdept)
-        val studentDeptTextView = findViewById<MultiAutoCompleteTextView>(R.id.studentsdept)
 
-        fetchfacultymembers { facultymembers ->
+        fetchusers { facultymembers ->
             if (facultymembers.isNotEmpty()) {
                 // Add the "All" option
                 val modifiedFacultyMembers = listOf("All") + facultymembers
@@ -135,9 +132,9 @@ class Admin_Announcement2 : AppCompatActivity() {
 
                 // Show a toast message
                 val message = if (isAllSelected) {
-                    "Announcement will be sent to all faculty members."
+                    "Announcement will be sent to all users."
                 } else {
-                    "Announcement will be sent to the selected faculty members."
+                    "Announcement will be sent to the selected users."
                 }
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
@@ -160,10 +157,10 @@ class Admin_Announcement2 : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // CHANGE THIS SO IT RETRIEVES COHORTS
-    private fun fetchfacultymembers(callback: (List<String>) -> Unit) {
+    private fun fetchusers(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetchfacultymembers.php"
+        val useridint = userID.toInt()
+        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetchusers.php?ID=$useridint"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -175,7 +172,7 @@ class Admin_Announcement2 : AppCompatActivity() {
                     val facultymemebers = mutableListOf<String>()
                     for (i in 0 until response.length()) {
                         val jsonObject = response.getJSONObject(i)
-                        val facultymember = jsonObject.getString("FacultyName")
+                        val facultymember = jsonObject.getString("Name")
                         facultymemebers.add(facultymember)
                     }
                     callback(facultymemebers)
@@ -190,8 +187,7 @@ class Admin_Announcement2 : AppCompatActivity() {
             }
         )
         reqQueue.add(jsonArrayRequest)
-    } // Returns all sessions from academicsessions table
-
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun submitAnnouncement(title: String, content: String) { // Method to handle announcement submission
@@ -201,7 +197,7 @@ class Admin_Announcement2 : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_faculty.php" +
+        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_users.php" +
                 "?userID=$userID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
@@ -245,11 +241,11 @@ class Admin_Announcement2 : AppCompatActivity() {
 
     private fun addRecipients(announcementID: Int) {
         val encodedFacultyMembers = URLEncoder.encode(selectedFacultyMembers.joinToString(","), "UTF-8")
-
+        val userIdint = userID.toInt()
 
         // API for adding recipients
-        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/add_faculty_recipients.php" + "?announcementID=$announcementID" +
-                "&FacultyMembers=$encodedFacultyMembers"
+        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/insert_user_rec.php" + "?announcementID=$announcementID" +
+                "&FacultyMembers=$encodedFacultyMembers&ID=$userIdint"
 
         Log.d("TOSENTFAC", "Faculty Members: $encodedFacultyMembers")
         val stringRequest = StringRequest(
@@ -257,6 +253,7 @@ class Admin_Announcement2 : AppCompatActivity() {
             apiAddRecipients,
             { response ->
                 try {
+                    Log.d("TOSENTFAC", "Faculty Members: $response")
                     val jsonResponse = JSONObject(response)
                     val success = jsonResponse.getBoolean("success")
                     if (success) {
@@ -279,13 +276,15 @@ class Admin_Announcement2 : AppCompatActivity() {
     private fun addAllRecipients(announcementID: Int) {
         // Implement the logic to add all faculty members as recipients
         // This could involve calling an API that handles sending to all faculty members
-        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/addall_faculty_recipients.php" + "?announcementID=$announcementID"
+        val userIdint = userID.toInt()
+        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_all_users.php" + "?announcementID=$announcementID&ID=$userIdint"
 
         val stringRequest = StringRequest(
             Request.Method.GET,
             apiAddRecipients,
             { response ->
                 try {
+                    Log.d("FACTANN", "$response")
                     val jsonResponse = JSONObject(response)
                     val success = jsonResponse.getBoolean("success")
                     if (success) {
@@ -305,4 +304,5 @@ class Admin_Announcement2 : AppCompatActivity() {
 
         Volley.newRequestQueue(this).add(stringRequest)
     }
+
 }

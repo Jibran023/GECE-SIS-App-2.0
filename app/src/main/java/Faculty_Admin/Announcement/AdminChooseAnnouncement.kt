@@ -38,6 +38,7 @@ class AdminChooseAnnouncement : AppCompatActivity() {
 
         val facultyproceedbtn = findViewById<Button>(R.id.facultybutton)
         val studentproceedbtn = findViewById<Button>(R.id.Studentbutton)
+        val usersproceedbtn = findViewById<Button>(R.id.usersbutton)
 
         facultyproceedbtn.setOnClickListener{
             val intent = Intent(this, Admin_Announcement2::class.java).apply {// Takes us to faculty announcement
@@ -50,6 +51,15 @@ class AdminChooseAnnouncement : AppCompatActivity() {
 
         studentproceedbtn.setOnClickListener{
             val intent = Intent(this, Admin_Announcement::class.java).apply {// Takes us to students announcement
+                putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
+
+        usersproceedbtn.setOnClickListener{
+            val intent = Intent(this, Admin_Announcement3::class.java).apply {// Takes us to users announcement
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

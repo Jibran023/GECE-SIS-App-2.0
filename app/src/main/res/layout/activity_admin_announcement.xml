@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
 
-                <AutoCompleteTextView
+                <MultiAutoCompleteTextView
                     android:id="@+id/semesterdept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,6 +85,33 @@
                     android:background="@color/white"
                     tools:ignore="LabelFor"
                     />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Students"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp"
+                android:labelFor="@id/multi_auto_complete_txt_department"/>
+
+            <!-- Department Dropdown -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/studentsdept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:hint="e.g 2026"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

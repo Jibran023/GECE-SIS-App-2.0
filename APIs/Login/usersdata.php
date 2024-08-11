@@ -1,8 +1,7 @@
 <?php
-// Database connection parameters
-$host = '127.0.0.1';  // Host name
+$host = '127.0.0.1:3307';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = '';       // MySQL password (default is empty for XAMPP)
+$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
 
 // Create connection

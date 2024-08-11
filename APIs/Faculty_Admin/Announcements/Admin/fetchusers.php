@@ -1,7 +1,7 @@
 <?php
 $host = '127.0.0.1:3307';  // Host name
-$username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
+$username = 'root';   // MySQL username
+$password = 'mazerunner';       // MySQL password
 $database = 'gecesisapp';  // Your database name
 
 // Create connection
@@ -12,9 +12,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to select all columns from the users table
-$sql = "SELECT * FROM studentsinformation";
-$result = $conn->query($sql);
+// Retrieve the ID parameter from the URL
+$ID = $_GET['ID'];
+
+// SQL query to select all columns from the users table, excluding the user with the given ID
+$sql = "SELECT * FROM users WHERE id != ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $ID);
+$stmt->execute();
+$result = $stmt->get_result();
 
 // Create an array to hold the results
 $data = array();
@@ -35,6 +41,7 @@ header('Content-Type: application/json');
 // Output the data as JSON
 echo json_encode($data);
 
-// Close connection
+// Close connections
+$stmt->close();
 $conn->close();
 ?>

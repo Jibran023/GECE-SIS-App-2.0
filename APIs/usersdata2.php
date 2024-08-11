@@ -10,9 +10,9 @@ function encodeToBase64($data) {
 }
 
 // Database connection parameters
-$host = '127.0.0.1';  // Host name
+$host = '127.0.0.1:3307';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = '';       // MySQL password (default is empty for XAMPP)
+$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
 
 // Create connection
@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to select all columns from the users table
-$sql = "SELECT id, Email, Password, department FROM users";
+$sql = "SELECT * FROM lugpa";
 $result = $conn->query($sql);
 
 // Create an array to hold the results
@@ -40,15 +40,7 @@ if ($result->num_rows > 0) {
     $data = array("message" => "No results");
 }
 
-// Encode the data array to Base64
-$base64_encoded = encodeToBase64($data);
-
-// Set the content type to JSON
-header('Content-Type: application/json');
-
-// Output the Base64 encoded data as JSON
-// echo json_encode(array("encoded_data" => $base64_encoded));
-echo $base64_encoded;
+echo json_encode($data);
 
 // Close connection
 $conn->close();

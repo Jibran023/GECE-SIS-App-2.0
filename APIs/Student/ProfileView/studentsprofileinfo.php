@@ -2,10 +2,9 @@
 
 header('Content-Type: application/json');
 
-// Database connection parameters
-$host = '127.0.0.1';  // Host name
+$host = '127.0.0.1:3307';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
-$password = '';       // MySQL password (default is empty for XAMPP)
+$password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
 
 // Create connection
@@ -18,6 +17,7 @@ if ($conn->connect_error) {
 
 // Get the id from the request
 $id = $_GET['id'];
+
 
 // Prepare the SQL statement
 $sql = "SELECT * FROM studentsinformation WHERE id = ?";
