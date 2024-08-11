@@ -11,7 +11,8 @@ data class Announcement(
     val title: String,
     val content: String,
     val announcementBy: String,
-    val postedDate: String
+    val postedDate: String,
+    val course: String
 )
 
 
@@ -29,6 +30,7 @@ class AnnouncementAdapter(private val announcements: List<Announcement>) :
         holder.contentTextView.text = announcement.content
         holder.announcementByTextView.text = "By: ${announcement.announcementBy}"
         holder.postedDateTextView.text = "Posted on: ${announcement.postedDate}"
+        holder.coursetextview.text = announcement.course
     }
 
     override fun getItemCount(): Int {
@@ -40,5 +42,6 @@ class AnnouncementAdapter(private val announcements: List<Announcement>) :
         val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
         val announcementByTextView: TextView = itemView.findViewById(R.id.announcementByTextView)
         val postedDateTextView: TextView = itemView.findViewById(R.id.postedDateTextView)
+        val coursetextview: TextView = itemView.findViewById(R.id.courseTextView)
     }
 }

@@ -1,0 +1,317 @@
+2024-08-11 23:34:20 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-11 23:39:34 - Database connection successful.
+2024-08-11 23:39:34 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-11 23:39:34 - Failed to prepare SQL statement: Unknown column 'oc.CourseName' in 'where clause'
+2024-08-11 23:39:34 - Connection closed.
+2024-08-12 00:11:49 - Database connection successful.
+2024-08-12 00:11:49 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:11:49 - RollNumber found: 41901
+2024-08-12 00:11:49 - RollNumber found: 41903
+2024-08-12 00:11:49 - RollNumber found: 41904
+2024-08-12 00:11:49 - RollNumber found: 41906
+2024-08-12 00:11:49 - RollNumber found: 41907
+2024-08-12 00:11:49 - RollNumber found: 41908
+2024-08-12 00:11:49 - RollNumber found: 41909
+2024-08-12 00:11:49 - RollNumber found: 41910
+2024-08-12 00:11:49 - RollNumber found: 41911
+2024-08-12 00:11:49 - RollNumber found: 41913
+2024-08-12 00:11:49 - RollNumber found: 41914
+2024-08-12 00:11:49 - RollNumber found: 41915
+2024-08-12 00:11:49 - RollNumber found: 41916
+2024-08-12 00:11:49 - RollNumber found: 41917
+2024-08-12 00:11:49 - RollNumber found: 41918
+2024-08-12 00:11:49 - RollNumber found: 41919
+2024-08-12 00:11:49 - RollNumber found: 41920
+2024-08-12 00:11:49 - RollNumber found: 41921
+2024-08-12 00:11:49 - RollNumber found: 41922
+2024-08-12 00:11:49 - RollNumber found: 41923
+2024-08-12 00:11:49 - RollNumber found: 41925
+2024-08-12 00:11:49 - RollNumber found: 41927
+2024-08-12 00:11:49 - RollNumber found: 41928
+2024-08-12 00:11:49 - RollNumber found: 41931
+2024-08-12 00:11:49 - RollNumber found: 41932
+2024-08-12 00:11:49 - RollNumber found: 41934
+2024-08-12 00:11:49 - RollNumber found: 41935
+2024-08-12 00:11:49 - RollNumber found: 41940
+2024-08-12 00:11:49 - RollNumber found: 41942
+2024-08-12 00:11:49 - RollNumber found: 41943
+2024-08-12 00:11:49 - RollNumber found: 41944
+2024-08-12 00:11:49 - RollNumber found: 41946
+2024-08-12 00:11:49 - RollNumber found: 41948
+2024-08-12 00:11:49 - RollNumber found: 41950
+2024-08-12 00:11:49 - RollNumber found: 41951
+2024-08-12 00:11:49 - Connection closed.
+2024-08-12 00:17:07 - Database connection successful.
+2024-08-12 00:17:07 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:17:07 - RollNumber found: 41901
+2024-08-12 00:17:07 - RollNumber found: 41903
+2024-08-12 00:17:07 - RollNumber found: 41904
+2024-08-12 00:17:07 - RollNumber found: 41906
+2024-08-12 00:17:07 - RollNumber found: 41907
+2024-08-12 00:17:07 - RollNumber found: 41908
+2024-08-12 00:17:07 - RollNumber found: 41909
+2024-08-12 00:17:07 - RollNumber found: 41910
+2024-08-12 00:17:07 - RollNumber found: 41911
+2024-08-12 00:17:07 - RollNumber found: 41913
+2024-08-12 00:17:07 - RollNumber found: 41914
+2024-08-12 00:17:07 - RollNumber found: 41915
+2024-08-12 00:17:07 - RollNumber found: 41916
+2024-08-12 00:17:07 - RollNumber found: 41917
+2024-08-12 00:17:07 - RollNumber found: 41918
+2024-08-12 00:17:07 - RollNumber found: 41919
+2024-08-12 00:17:07 - RollNumber found: 41920
+2024-08-12 00:17:07 - RollNumber found: 41921
+2024-08-12 00:17:07 - RollNumber found: 41922
+2024-08-12 00:17:07 - RollNumber found: 41923
+2024-08-12 00:17:07 - RollNumber found: 41925
+2024-08-12 00:17:07 - RollNumber found: 41927
+2024-08-12 00:17:07 - RollNumber found: 41928
+2024-08-12 00:17:07 - RollNumber found: 41931
+2024-08-12 00:17:07 - RollNumber found: 41932
+2024-08-12 00:17:07 - RollNumber found: 41934
+2024-08-12 00:17:07 - RollNumber found: 41935
+2024-08-12 00:17:07 - RollNumber found: 41940
+2024-08-12 00:17:07 - RollNumber found: 41942
+2024-08-12 00:17:07 - RollNumber found: 41943
+2024-08-12 00:17:07 - RollNumber found: 41944
+2024-08-12 00:17:07 - RollNumber found: 41946
+2024-08-12 00:17:07 - RollNumber found: 41948
+2024-08-12 00:17:07 - RollNumber found: 41950
+2024-08-12 00:17:07 - RollNumber found: 41951
+2024-08-12 00:17:07 - Connection closed.
+2024-08-12 00:17:07 - Database connection successful.
+2024-08-12 00:17:07 - Announcement ID: 12, RollNumbers (raw): 41901,41903,41904,41906,41907,41908,41909,41910,41911,41913,41914,41915,41916,41917,41918,41919,41920,41921,41922,41923,41925,41927,41928,41931,41932,41934,41935,41940,41942,41943,41944,41946,41948,41950,41951
+2024-08-12 00:17:07 - rollNumbers received as string: 41901,41903,41904,41906,41907,41908,41909,41910,41911,41913,41914,41915,41916,41917,41918,41919,41920,41921,41922,41923,41925,41927,41928,41931,41932,41934,41935,41940,41942,41943,41944,41946,41948,41950,41951
+2024-08-12 00:17:07 - rollNumbers converted to array: 41901, 41903, 41904, 41906, 41907, 41908, 41909, 41910, 41911, 41913, 41914, 41915, 41916, 41917, 41918, 41919, 41920, 41921, 41922, 41923, 41925, 41927, 41928, 41931, 41932, 41934, 41935, 41940, 41942, 41943, 41944, 41946, 41948, 41950, 41951
+2024-08-12 00:17:07 - Attempting to add RollNumber: 41901
+2024-08-12 00:17:07 - Successfully added RollNumber: 41901
+2024-08-12 00:17:07 - Attempting to add RollNumber: 41903
+2024-08-12 00:17:07 - Successfully added RollNumber: 41903
+2024-08-12 00:17:07 - Attempting to add RollNumber: 41904
+2024-08-12 00:17:07 - Successfully added RollNumber: 41904
+2024-08-12 00:17:07 - Attempting to add RollNumber: 41906
+2024-08-12 00:17:07 - Successfully added RollNumber: 41906
+2024-08-12 00:17:07 - Attempting to add RollNumber: 41907
+2024-08-12 00:17:08 - Successfully added RollNumber: 41907
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41908
+2024-08-12 00:17:08 - Successfully added RollNumber: 41908
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41909
+2024-08-12 00:17:08 - Successfully added RollNumber: 41909
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41910
+2024-08-12 00:17:08 - Successfully added RollNumber: 41910
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41911
+2024-08-12 00:17:08 - Successfully added RollNumber: 41911
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41913
+2024-08-12 00:17:08 - Successfully added RollNumber: 41913
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41914
+2024-08-12 00:17:08 - Successfully added RollNumber: 41914
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41915
+2024-08-12 00:17:08 - Successfully added RollNumber: 41915
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41916
+2024-08-12 00:17:08 - Successfully added RollNumber: 41916
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41917
+2024-08-12 00:17:08 - Successfully added RollNumber: 41917
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41918
+2024-08-12 00:17:08 - Successfully added RollNumber: 41918
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41919
+2024-08-12 00:17:08 - Successfully added RollNumber: 41919
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41920
+2024-08-12 00:17:08 - Successfully added RollNumber: 41920
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41921
+2024-08-12 00:17:08 - Successfully added RollNumber: 41921
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41922
+2024-08-12 00:17:08 - Successfully added RollNumber: 41922
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41923
+2024-08-12 00:17:08 - Successfully added RollNumber: 41923
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41925
+2024-08-12 00:17:08 - Successfully added RollNumber: 41925
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41927
+2024-08-12 00:17:08 - Successfully added RollNumber: 41927
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41928
+2024-08-12 00:17:08 - Successfully added RollNumber: 41928
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41931
+2024-08-12 00:17:08 - Successfully added RollNumber: 41931
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41932
+2024-08-12 00:17:08 - Successfully added RollNumber: 41932
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41934
+2024-08-12 00:17:08 - Successfully added RollNumber: 41934
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41935
+2024-08-12 00:17:08 - Successfully added RollNumber: 41935
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41940
+2024-08-12 00:17:08 - Successfully added RollNumber: 41940
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41942
+2024-08-12 00:17:08 - Successfully added RollNumber: 41942
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41943
+2024-08-12 00:17:08 - Successfully added RollNumber: 41943
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41944
+2024-08-12 00:17:08 - Successfully added RollNumber: 41944
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41946
+2024-08-12 00:17:08 - Successfully added RollNumber: 41946
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41948
+2024-08-12 00:17:08 - Successfully added RollNumber: 41948
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41950
+2024-08-12 00:17:08 - Successfully added RollNumber: 41950
+2024-08-12 00:17:08 - Attempting to add RollNumber: 41951
+2024-08-12 00:17:08 - Successfully added RollNumber: 41951
+2024-08-12 00:17:08 - All RollNumbers added successfully.
+2024-08-12 00:17:08 - Database connection closed.
+2024-08-12 00:27:40 - Database connection successful.
+2024-08-12 00:27:40 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:28:15 - Database connection successful.
+2024-08-12 00:28:15 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:29:23 - Database connection successful.
+2024-08-12 00:29:23 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: 
+2024-08-12 00:31:04 - Database connection successful.
+2024-08-12 00:31:04 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:31:04 - RollNumber found: 41901
+2024-08-12 00:31:04 - RollNumber found: 41903
+2024-08-12 00:31:04 - RollNumber found: 41904
+2024-08-12 00:31:04 - RollNumber found: 41906
+2024-08-12 00:31:04 - RollNumber found: 41907
+2024-08-12 00:31:04 - RollNumber found: 41908
+2024-08-12 00:31:04 - RollNumber found: 41909
+2024-08-12 00:31:04 - RollNumber found: 41910
+2024-08-12 00:31:04 - RollNumber found: 41911
+2024-08-12 00:31:04 - RollNumber found: 41913
+2024-08-12 00:31:04 - RollNumber found: 41914
+2024-08-12 00:31:04 - RollNumber found: 41915
+2024-08-12 00:31:04 - RollNumber found: 41916
+2024-08-12 00:31:04 - RollNumber found: 41917
+2024-08-12 00:31:04 - RollNumber found: 41918
+2024-08-12 00:31:04 - RollNumber found: 41919
+2024-08-12 00:31:04 - RollNumber found: 41920
+2024-08-12 00:31:04 - RollNumber found: 41921
+2024-08-12 00:31:04 - RollNumber found: 41922
+2024-08-12 00:31:04 - RollNumber found: 41923
+2024-08-12 00:31:04 - RollNumber found: 41925
+2024-08-12 00:31:04 - RollNumber found: 41927
+2024-08-12 00:31:04 - RollNumber found: 41928
+2024-08-12 00:31:04 - RollNumber found: 41931
+2024-08-12 00:31:04 - RollNumber found: 41932
+2024-08-12 00:31:04 - RollNumber found: 41934
+2024-08-12 00:31:04 - RollNumber found: 41935
+2024-08-12 00:31:04 - RollNumber found: 41940
+2024-08-12 00:31:04 - RollNumber found: 41942
+2024-08-12 00:31:04 - RollNumber found: 41943
+2024-08-12 00:31:04 - RollNumber found: 41944
+2024-08-12 00:31:04 - RollNumber found: 41946
+2024-08-12 00:31:04 - RollNumber found: 41948
+2024-08-12 00:31:04 - RollNumber found: 41950
+2024-08-12 00:31:04 - RollNumber found: 41951
+2024-08-12 00:31:04 - Connection closed.
+2024-08-12 00:31:50 - Database connection successful.
+2024-08-12 00:31:50 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:35:14 - Database connection successful.
+2024-08-12 00:35:14 - Course Name: General Methods of Teaching, Session Description: Fall 2019, Section Name: Section A
+2024-08-12 00:35:14 - RollNumber found: 41901, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41903, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41904, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41906, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41907, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41908, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41909, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41910, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41911, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41913, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41914, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41915, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41916, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41917, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41918, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41919, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41920, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41921, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41922, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41923, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41925, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41927, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41928, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41931, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41932, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41934, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41935, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41940, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41942, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41943, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41944, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41946, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41948, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41950, SectionID found: 1
+2024-08-12 00:35:14 - RollNumber found: 41951, SectionID found: 1
+2024-08-12 00:35:14 - Connection closed.
+2024-08-12 00:35:15 - Database connection successful.
+2024-08-12 00:35:15 - Announcement ID: 18, RollNumbers (raw): 41901,41903,41904,41906,41907,41908,41909,41910,41911,41913,41914,41915,41916,41917,41918,41919,41920,41921,41922,41923,41925,41927,41928,41931,41932,41934,41935,41940,41942,41943,41944,41946,41948,41950,41951
+2024-08-12 00:35:15 - rollNumbers received as string: 41901,41903,41904,41906,41907,41908,41909,41910,41911,41913,41914,41915,41916,41917,41918,41919,41920,41921,41922,41923,41925,41927,41928,41931,41932,41934,41935,41940,41942,41943,41944,41946,41948,41950,41951
+2024-08-12 00:35:15 - rollNumbers converted to array: 41901, 41903, 41904, 41906, 41907, 41908, 41909, 41910, 41911, 41913, 41914, 41915, 41916, 41917, 41918, 41919, 41920, 41921, 41922, 41923, 41925, 41927, 41928, 41931, 41932, 41934, 41935, 41940, 41942, 41943, 41944, 41946, 41948, 41950, 41951
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41901
+2024-08-12 00:35:15 - Successfully added RollNumber: 41901
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41903
+2024-08-12 00:35:15 - Successfully added RollNumber: 41903
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41904
+2024-08-12 00:35:15 - Successfully added RollNumber: 41904
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41906
+2024-08-12 00:35:15 - Successfully added RollNumber: 41906
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41907
+2024-08-12 00:35:15 - Successfully added RollNumber: 41907
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41908
+2024-08-12 00:35:15 - Successfully added RollNumber: 41908
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41909
+2024-08-12 00:35:15 - Successfully added RollNumber: 41909
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41910
+2024-08-12 00:35:15 - Successfully added RollNumber: 41910
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41911
+2024-08-12 00:35:15 - Successfully added RollNumber: 41911
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41913
+2024-08-12 00:35:15 - Successfully added RollNumber: 41913
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41914
+2024-08-12 00:35:15 - Successfully added RollNumber: 41914
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41915
+2024-08-12 00:35:15 - Successfully added RollNumber: 41915
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41916
+2024-08-12 00:35:15 - Successfully added RollNumber: 41916
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41917
+2024-08-12 00:35:15 - Successfully added RollNumber: 41917
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41918
+2024-08-12 00:35:15 - Successfully added RollNumber: 41918
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41919
+2024-08-12 00:35:15 - Successfully added RollNumber: 41919
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41920
+2024-08-12 00:35:15 - Successfully added RollNumber: 41920
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41921
+2024-08-12 00:35:15 - Successfully added RollNumber: 41921
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41922
+2024-08-12 00:35:15 - Successfully added RollNumber: 41922
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41923
+2024-08-12 00:35:15 - Successfully added RollNumber: 41923
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41925
+2024-08-12 00:35:15 - Successfully added RollNumber: 41925
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41927
+2024-08-12 00:35:15 - Successfully added RollNumber: 41927
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41928
+2024-08-12 00:35:15 - Successfully added RollNumber: 41928
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41931
+2024-08-12 00:35:15 - Successfully added RollNumber: 41931
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41932
+2024-08-12 00:35:15 - Successfully added RollNumber: 41932
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41934
+2024-08-12 00:35:15 - Successfully added RollNumber: 41934
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41935
+2024-08-12 00:35:15 - Successfully added RollNumber: 41935
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41940
+2024-08-12 00:35:15 - Successfully added RollNumber: 41940
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41942
+2024-08-12 00:35:15 - Successfully added RollNumber: 41942
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41943
+2024-08-12 00:35:15 - Successfully added RollNumber: 41943
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41944
+2024-08-12 00:35:15 - Successfully added RollNumber: 41944
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41946
+2024-08-12 00:35:15 - Successfully added RollNumber: 41946
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41948
+2024-08-12 00:35:15 - Successfully added RollNumber: 41948
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41950
+2024-08-12 00:35:15 - Successfully added RollNumber: 41950
+2024-08-12 00:35:15 - Attempting to add RollNumber: 41951
+2024-08-12 00:35:15 - Successfully added RollNumber: 41951
+2024-08-12 00:35:15 - All RollNumbers added successfully.
+2024-08-12 00:35:15 - Database connection closed.

@@ -114,7 +114,8 @@ class Faculty_Announcement2 : AppCompatActivity() {
                             title = jsonObject.getString("Title"),
                             content = jsonObject.getString("Content"),
                             announcementBy = jsonObject.getString("Name"),
-                            postedDate = jsonObject.getString("PostedDateTime")
+                            postedDate = jsonObject.getString("PostedDateTime"),
+                            course = ""
                         )
                         announcementList.add(announcement)
                     }

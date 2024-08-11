@@ -134,6 +134,7 @@ class Student_Announcement : AppCompatActivity() {
                             Log.d("RollNOP", "Fetched JSON Data: $rollno")
                         }
                         fetchstudentannouncementsfromadmin()
+
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
@@ -144,46 +145,99 @@ class Student_Announcement : AppCompatActivity() {
             )
             reqQueue.add(jsonArrayRequest)
         }
+        else if (userType == "other")
+        {
+            fetchstudentannouncementsfromadmin() // We call the function only because we already have the user id
+        }
+
+
     }
 
     private fun fetchstudentannouncementsfromadmin(){
-        if (rollno == null) {
-            Log.e("STDANNOUNCE2", "Roll number is null, cannot fetch announcements.")
-            return
-        }
-        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val rollnoint = rollno?.toIntOrNull() ?: 1
-        Log.d("ROLLLO", "Roll no is : $rollnoint")
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncements.php?id=$rollnoint"
-        val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET,
-            apigetcohorts,
-            null,
-            { response ->
-                Log.d("STDANNOUNCE2", "Fetched JSON Data: $response")
-                try {
-
-                    for (i in 0 until response.length()) {
-                        val jsonObject = response.getJSONObject(i)
-                        val announcement = Announcement(
-                            title = jsonObject.getString("Title"),
-                            content = jsonObject.getString("Content"),
-                            announcementBy = jsonObject.getString("Name"),
-                            postedDate = jsonObject.getString("PostedDateTime")
-                        )
-                        announcementList.add(announcement)
-                    }
-                    announcementAdapter.notifyDataSetChanged()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-
-                }
-            },
-            { error ->
-                Log.e("STDANNOUNCE2", "Error fetching the data: ${error.message}")
+        if (userType == "student"){
+            if (rollno == null) {
+                Log.e("STDANNOUNCE2", "Roll number is null, cannot fetch announcements.")
+                return
             }
-        )
-        reqQueue.add(jsonArrayRequest)
+            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+            val rollnoint = rollno?.toIntOrNull() ?: 1
+            Log.d("ROLLLO", "Roll no is : $rollnoint")
+            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyboth.php?id=$rollnoint"
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apigetcohorts,
+                null,
+                { response ->
+                    Log.d("STDANNOUNCE2", "Fetched JSON Data: $response")
+                    try {
+
+                        for (i in 0 until response.length()) {
+                            val jsonObject = response.getJSONObject(i)
+                            val announcement = Announcement(
+                                title = jsonObject.getString("Title"),
+                                content = jsonObject.getString("Content"),
+                                announcementBy = jsonObject.getString("Name"),
+                                postedDate = jsonObject.getString("PostedDateTime"),
+                                course = jsonObject.getString("Course")
+                            )
+                            announcementList.add(announcement)
+                        }
+//                        fetchstudentannouncementsfromfaculty()
+                        announcementAdapter.notifyDataSetChanged()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+
+                    }
+                },
+                { error ->
+                    Log.e("STDANNOUNCE2", "Error fetching the data: ${error.message}")
+                }
+            )
+            reqQueue.add(jsonArrayRequest)
+        }
+
+        else if (userType == "other")
+        {
+            if (userID == null) {
+                Log.e("USERSANN", "user id is null, cannot fetch announcements.")
+                return
+            }
+            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+            val rollnoint = userID.toIntOrNull() ?: 1
+            Log.d("USERSANN", "User id no is : $rollnoint")
+            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/users/fetch_users_announcements.php?id=$rollnoint"
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apigetcohorts,
+                null,
+                { response ->
+                    Log.d("USERSANN", "Fetched JSON Data: $response")
+                    try {
+
+                        for (i in 0 until response.length()) {
+                            val jsonObject = response.getJSONObject(i)
+                            val announcement = Announcement(
+                                title = jsonObject.getString("Title"),
+                                content = jsonObject.getString("Content"),
+                                announcementBy = jsonObject.getString("Name"),
+                                postedDate = jsonObject.getString("PostedDateTime"),
+                                course = ""
+                            )
+                            announcementList.add(announcement)
+                        }
+                        announcementAdapter.notifyDataSetChanged()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+
+                    }
+                },
+                { error ->
+                    Log.e("STDANNOUNCE2", "Error fetching the data: ${error.message}")
+                }
+            )
+            reqQueue.add(jsonArrayRequest)
+        }
+
     }
 
     private fun fetchstudentannouncementsfromfaculty(){
@@ -194,7 +248,7 @@ class Student_Announcement : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val rollnoint = rollno?.toIntOrNull() ?: 1
         Log.d("ROLLLO", "Roll no is : $rollnoint")
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncements.php?id=$rollnoint"
+        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyfaculty.php?id=$rollnoint"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,
@@ -209,9 +263,12 @@ class Student_Announcement : AppCompatActivity() {
                             title = jsonObject.getString("Title"),
                             content = jsonObject.getString("Content"),
                             announcementBy = jsonObject.getString("Name"),
-                            postedDate = jsonObject.getString("PostedDateTime")
+                            postedDate = jsonObject.getString("PostedDateTime"),
+                            course = "Course: " + jsonObject.getString("NAME")
+
                         )
                         announcementList.add(announcement)
+                        Log.d("AnnA", "title: ${announcement.title} | content: ${announcement.content} | course: ${announcement.course}")
                     }
                     announcementAdapter.notifyDataSetChanged()
                 } catch (e: Exception) {

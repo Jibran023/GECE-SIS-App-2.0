@@ -22,7 +22,7 @@ $semesterDescription = $_GET['semesterDescription'];
 
 // Prepare the SQL statement
 $sql = "
-SELECT c.CourseID, c.Name
+SELECT c.CourseID, c.Name, fc.CourseID as FAC
 FROM courses c
 JOIN facultycourses fc ON c.CourseID = fc.CourseID JOIN faculty f ON fc.FacultyID = f.FacultyID
 WHERE f.facultyID = ? AND fc.SessionID = (

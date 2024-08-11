@@ -1,51 +1,41 @@
 <?php
-// Database connection
+
+header('Content-Type: application/json');
+
 $host = '127.0.0.1:3307';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
 $password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Create connection
+$conn = new mysqli($host, $username, $password, $database);
 
-    // Get the JSON input
-    $data = json_decode(file_get_contents("php://input"), true);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}	
 
-    $userID = $data['userID'];
-    $title = $data['Title'];
-    $content = $data['Content'];
-    $postedDateTime = $data['PostedDateTime'];
-    $facultyMembers = $data['FacultyMembers'];
+// Get the id from the request
+$id = $_GET['id'];
 
-    // Insert the announcement into the announcementbyro table
-    $stmt = $pdo->prepare("INSERT INTO announcementbyro (userID, Title, Content, PostedDateTime, SentTo)
-                           VALUES (:userID, :Title, :Content, :PostedDateTime, 'Faculty')");
-    $stmt->execute([
-        ':userID' => $userID,
-        ':Title' => $title,
-        ':Content' => $content,
-        ':PostedDateTime' => $postedDateTime
-    ]);
 
-    // Get the last inserted AnnouncementID
-    $announcementID = $pdo->lastInsertId();
+// Prepare the SQL statement
+$sql = "SELECT * FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    // Insert into announcementbyro_facultyrecipients for each selected faculty member
-    foreach ($facultyMembers as $facultyID) {
-        $stmt = $pdo->prepare("INSERT INTO announcementbyro_facultyrecipients (AnnouncementID, FacultyID)
-                               VALUES (:AnnouncementID, :FacultyID)");
-        $stmt->execute([
-            ':AnnouncementID' => $announcementID,
-            ':FacultyID' => $facultyID
-        ]);
-    }
-
-    // Return success response
-    echo json_encode(['success' => true]);
-
-} catch (PDOException $e) {
-    // Return error response
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+// Fetch data
+$data = array();
+while ($row = $result->fetch_assoc()) {
+    $data[] = $row;
 }
+
+// Output the data as JSON
+echo json_encode($data);
+
+// Close connection
+$stmt->close();
+$conn->close();
 ?>

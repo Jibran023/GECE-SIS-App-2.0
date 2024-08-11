@@ -66,7 +66,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"
-                android:labelFor="@id/multi_auto_complete_txt_department"/>
+                />
 
             <!-- Department Dropdown -->
             <com.google.android.material.textfield.TextInputLayout

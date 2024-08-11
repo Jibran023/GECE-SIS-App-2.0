@@ -17,11 +17,13 @@ $id = $_GET['id'];
 
 
 // SQL query to select all columns from the users table
-$sql = "Select ar.Title, ar.Content, u.Name , ar.PostedDateTime
-From announcementbyro_studentrecipients af 
-INNER JOIN announcementbyro ar ON af.AnnouncementID = ar.AnnouncementID
+$sql = "Select ar.Title, ar.Content, f.FacultyName , ar.PostedDateTime, c.Name as NAME
+From announcementrecipients af 
+INNER JOIN announcements ar ON af.AnnouncementID = ar.AnnouncementID
 INNER JOIN studentsinformation si ON af.RollNumber = si.RollNumber
-INNER JOIN users u ON ar.userID = u.id
+INNER JOIN facultycourses fc ON ar.facultyCoursesID = fc.CourseID
+INNER JOIN faculty f ON fc.id = f.FacultyID
+INNER JOIN courses c ON c.CourseID = fc.CourseID
 WHERE si.RollNumber = ?";
 
 $stmt = $conn->prepare($sql);

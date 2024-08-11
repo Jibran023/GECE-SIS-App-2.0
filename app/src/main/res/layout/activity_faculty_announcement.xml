@@ -62,30 +62,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Your Semester"
+                android:text="Select Your Session"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"
-                android:labelFor="@id/multi_auto_complete_txt_department"/>
+                />
 
             <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
+            <Spinner
+                android:id="@+id/year_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <AutoCompleteTextView
-                    android:id="@+id/semesterdept"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Fall 2021"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:inputType="none"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginRight="24dp"
+                android:spinnerMode="dropdown" />
 
             <!-- Department Label -->
             <TextView
@@ -95,27 +86,18 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"
-                android:labelFor="@id/multi_auto_complete_txt_department"/>
+                />
 
-            <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
+            <Spinner
+                android:id="@+id/course_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginRight="24dp"
+                android:spinnerMode="dropdown" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_department"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Math"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Section Label -->
+            <!-- Department Label -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,25 +105,17 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"
-                android:labelFor="@id/multi_auto_complete_txt_section"/>
+                />
 
-            <!-- Section Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
+            <Spinner
+                android:id="@+id/section_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginRight="24dp"
+                android:spinnerMode="dropdown" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/multi_auto_complete_txt_section"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g Section A"
-                    android:textColor="@color/black"
-                    android:inputType="none"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Announcement Title EditText -->
             <EditText
