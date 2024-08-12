@@ -16,11 +16,13 @@ import com.example.gece_sisapp20.R
 
 class ComplaintScreenFirst : AppCompatActivity() {
     private var userType: String? = null
+    private lateinit var userID : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_complaint_screen_first)
         userType = intent.getStringExtra("USER_TYPE")
+        userID = intent.getStringExtra("USER_ID").toString()
 
         var complaintfirstpagebackbtn = findViewById<ImageView>(R.id.complaintfirstpageback_button)
         complaintfirstpagebackbtn.setOnClickListener {

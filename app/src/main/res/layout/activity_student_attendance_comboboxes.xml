@@ -54,30 +54,11 @@
             android:textColor="@color/black"
             android:layout_marginTop="34dp"
             android:layout_marginRight="24dp"
-            android:text="@string/year_label"
+            android:text="Session"
             android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/year_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:spinnerMode="dropdown" />
-
-        <!-- Spinner for Semester -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="34dp"
-            android:layout_marginRight="24dp"
-            android:text="@string/semester_label"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/semester_spinner"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="24dp"
