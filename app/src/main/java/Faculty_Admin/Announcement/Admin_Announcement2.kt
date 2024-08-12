@@ -78,7 +78,7 @@ class Admin_Announcement2 : AppCompatActivity() {
         }
 
         val semesterDeptTextView = findViewById<MultiAutoCompleteTextView>(R.id.semesterdept)
-        val studentDeptTextView = findViewById<MultiAutoCompleteTextView>(R.id.studentsdept)
+//        val studentDeptTextView = findViewById<MultiAutoCompleteTextView>(R.id.studentsdept)
 
         fetchfacultymembers { facultymembers ->
             if (facultymembers.isNotEmpty()) {

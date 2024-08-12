@@ -1,5 +1,7 @@
 package Faculty_Admin.Announcement
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -9,10 +11,15 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ListView
 import android.widget.MultiAutoCompleteTextView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
@@ -25,162 +32,7 @@ import java.net.URLEncoder
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
-//class Admin_Announcement : AppCompatActivity() {
-//    private var userType: String? = null
-//    private lateinit var userID : String
-//    private lateinit var selectedSessionDescription: String // Selected Session
-//    private lateinit var announcementTitle: EditText
-//    private lateinit var announcementContent: EditText
-//    private var isAllSelected = false // Track if "All" was selected
-//
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    val currentDateTime = LocalDateTime.now()
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    val formattedDateTime = currentDateTime.format(formatter)
-//
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_admin_announcement)
-//        userType = intent.getStringExtra("USER_TYPE")
-//        userID = intent.getStringExtra("USER_ID").toString()
-//
-//        val backbtn = findViewById<ImageButton>(R.id.backbtn)
-//        backbtn.setOnClickListener {
-//            val intent = Intent(this, AdminChooseAnnouncement::class.java).apply {
-//                putExtra("USER_TYPE", userType)
-//                putExtra("USER_ID", userID)
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            }
-//            startActivity(intent)
-//        }
-//
-//        Log.d("FacultyAnnounce1", "User Type is: $userType | User ID is: $userID")
-//
-//        announcementTitle = findViewById(R.id.announcementtitle)
-//        announcementContent = findViewById(R.id.announcementcontent)
-//
-//
-//        val deletebtn = findViewById<Button>(R.id.deletebtn)
-//        deletebtn.setOnClickListener {
-//            // Clear the announcement title and content
-//            announcementTitle.text.clear()
-//            announcementContent.text.clear()
-//        }
-//
-//        val semesterDeptTextView = findViewById<AutoCompleteTextView>(R.id.semesterdept)
-//        fetchSessionDescriptions { sessionDescriptions ->
-//            val adapter = ArrayAdapter(
-//                this,
-//                android.R.layout.simple_dropdown_item_1line,
-//                sessionDescriptions
-//            )
-//            semesterDeptTextView.setAdapter(adapter)
-//
-//        }
-//
-//        val submitbtn = findViewById<Button>(R.id.submitbtn)
-//        submitbtn.setOnClickListener {
-//            val title = announcementTitle.text.toString().trim()
-//            val content = announcementContent.text.toString().trim()
-//            val selectedSession = semesterDeptTextView.text.toString().trim()
-//
-//            selectedSessionDescription = selectedSession
-//
-//            // Handle the announcement submission
-//            submitAnnouncement(title, content)
-//        }
-//
-//
-//    }
-//
-//    override fun onBackPressed() {
-//        super.onBackPressed()
-//        val intent = Intent(this, AdminChooseAnnouncement::class.java).apply {
-//            putExtra("USER_TYPE", userType)
-//            putExtra("USER_ID", userID)
-//            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        }
-//        startActivity(intent)
-//    }
-//
-//    private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) { // CHANGE THIS SO IT RETRIEVES COHORTS
-//        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-//        val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchsessions.php"
-//
-//        val jsonArrayRequest = JsonArrayRequest(
-//            Request.Method.GET,
-//            apigetcohorts,
-//            null,
-//            { response ->
-//                Log.d("SessionData", "Fetched JSON Data: $response")
-//                try {
-//                    val sessionDescriptions = mutableListOf<String>()
-//                    for (i in 0 until response.length()) {
-//                        val jsonObject = response.getJSONObject(i)
-//                        val description = jsonObject.getString("Description")
-//                        sessionDescriptions.add(description)
-//                    }
-//                    callback(sessionDescriptions)
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                    callback(emptyList()) // In case of error, return an empty list
-//                }
-//            },
-//            { error ->
-//                Log.e("SessionData", "Error fetching the data: ${error.message}")
-//                callback(emptyList()) // In case of error, return an empty list
-//            }
-//        )
-//        reqQueue.add(jsonArrayRequest)
-//    } // Returns all sessions from academicsessions table
-//
-//
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun submitAnnouncement(title: String, content: String) { // Method to handle announcement submission
-//        // Implement the logic for submitting the announcement here
-//        Log.d("FacultyAnnounce", "Title: $title | Content: $content | Session: $selectedSessionDescription | Posted Time: $formattedDateTime")
-//    }
-//
-//    private fun fetchstudentsdata(callback: (List<String>) -> Unit){
-//        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-//        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Courses/fetchstudentsinadmincourses.php"
-//        val jsonArrayRequest = JsonArrayRequest(
-//            Request.Method.GET,
-//            apigetcohorts,
-//            null,
-//            { response ->
-//                Log.d("COURSESADMIN", "Fetched JSON Data: $response")
-//                try {
-//                    val allstudents = mutableListOf<String>()
-//                    for (i in 0 until response.length()) {
-//                        val jsonObject = response.getJSONObject(i)
-//                        val STUDENT = jsonObject.get("Name")
-//                        allstudents.add(STUDENT.toString())
-//                    }
-//                    callback(allstudents)
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                    callback(emptyList()) // In case of error, return an empty list
-//                }
-//            },
-//            { error ->
-//                Log.e("COURSESADMIN", "Error fetching the data: ${error.message}")
-//                callback(emptyList()) // In case of error, return an empty list
-//            }
-//        )
-//        reqQueue.add(jsonArrayRequest)
-//    }
-//
-//}
-
 class Admin_Announcement : AppCompatActivity() {
-    private lateinit var cohortDropdown: MultiAutoCompleteTextView
-    private lateinit var studentDropdown: MultiAutoCompleteTextView
     private lateinit var submitButton: Button
     private lateinit var deleteButton: Button
 
@@ -190,10 +42,17 @@ class Admin_Announcement : AppCompatActivity() {
     private var userType: String? = null
     private lateinit var userID: String
 
-    private var isAllCohortsSelected = false
-    private var isAllStudentsSelected = false
 
-    private lateinit var selectedcohorts: List<String>
+    private lateinit var selectedCohorts: List<String>
+    private lateinit var select_students_list: List<String>
+
+    private lateinit var cohortDialog: Dialog
+    private lateinit var studentDialog: Dialog
+
+    private lateinit var select_cohorts: TextView
+    private lateinit var select_students: TextView
+
+    private var isAllSelected = false
 
     @RequiresApi(Build.VERSION_CODES.O)
     val currentDateTime = LocalDateTime.now()
@@ -211,12 +70,16 @@ class Admin_Announcement : AppCompatActivity() {
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
 
-        cohortDropdown = findViewById(R.id.semesterdept)
-        studentDropdown = findViewById(R.id.studentsdept)
+        select_cohorts = findViewById(R.id.select_cohorts)
+        select_students = findViewById(R.id.select_students)
+
         submitButton = findViewById(R.id.submitbtn)
         deleteButton = findViewById(R.id.deletebtn)
         title = findViewById(R.id.announcementtitle)
         content = findViewById(R.id.announcementcontent)
+
+        select_students_list = emptyList() // setting to empty initially
+        selectedCohorts = emptyList()
 
         val backbtn = findViewById<ImageButton>(R.id.backbtn)
         backbtn.setOnClickListener {
@@ -228,116 +91,60 @@ class Admin_Announcement : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set tokenizer for MultiAutoCompleteTextView
-        cohortDropdown.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
-        studentDropdown.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
-
-        // Initialize adapters only once
-        val cohortAdapter =
-            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf<String>())
-        cohortDropdown.setAdapter(cohortAdapter)
-
-        val studentAdapter =
-            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, mutableListOf<String>())
-        studentDropdown.setAdapter(studentAdapter)
-
-
-        fetchCohorts { cohorts ->
-            cohortAdapter.clear()
-            cohortAdapter.addAll(listOf("All") + cohorts)
-            cohortAdapter.notifyDataSetChanged()
+        select_cohorts.setOnClickListener{
+            showCohortDialog()
+        }
+        select_students.setOnClickListener{
+            showStudentDialog()
         }
 
-        cohortDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedCohort = cohortAdapter.getItem(position).toString()
-            Log.d("Selected Cohort", "Selected cohort is: $selectedCohort")
-            handleCohortSelection(selectedCohort, cohortAdapter, studentAdapter)
-        }
-
-        studentDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedStudent = studentDropdown.adapter.getItem(position).toString()
-            if (selectedStudent == "All") {
-                isAllStudentsSelected = true
-                studentDropdown.setText("All,")
-                Log.d("StudentSelection", "Selected student: All")
-                // Disable other student options if "All" is selected
-                if (isAllCohortsSelected) {
-                    studentDropdown.isEnabled = false
-                }
-            } else {
-                if (isAllStudentsSelected) {
-                    isAllStudentsSelected = false
-                    studentDropdown.setText(selectedStudent)
-                }
-                Log.d("StudentSelection", "Selected student: $selectedStudent")
-                // Re-enable student dropdown if needed
-                if (isAllCohortsSelected) {
-                    studentDropdown.isEnabled = false
-                } else {
-                    studentDropdown.isEnabled = true
-                }
-            }
-            studentDropdown.setSelection(studentDropdown.text.length)
-        }
-
-        submitButton.setOnClickListener {
-            val selectedCohort = cohortDropdown.text.toString().trim()
-            val selectedStudent = studentDropdown.text.toString().trim()
-            val pastitile = title.text.toString().trim()
-            val Content = content.text.toString().trim()
-
-            Log.d("ROSTUDAnnounce", "Selected student: $selectedStudent | SelectedCohort: $selectedCohort")
-        }
-
-        deleteButton.setOnClickListener {
-            // Handle deletion logic here
+        val deletebtn = findViewById<Button>(R.id.deletebtn)
+        deletebtn.setOnClickListener {
+            // Clear the announcement title and content
             title.text.clear()
             content.text.clear()
         }
-    }
 
-    private fun handleCohortSelection(selectedCohort: String, cohortAdapter: ArrayAdapter<String>, studentAdapter: ArrayAdapter<String>) {
-        if (selectedCohort == "All") {
-            isAllCohortsSelected = true
-            cohortDropdown.setText("All,")
-            studentDropdown.setText("All,")
-            Log.d("Baba Where", "We are in handleCohortSelection")
+        submitButton.setOnClickListener{
 
-            fetchStudents(listOf("All")) { students ->
-                studentAdapter.clear()
-                studentAdapter.addAll(listOf("All") + students)
-                studentAdapter.notifyDataSetChanged()
-                Log.d("Baba Where", "We are in fetchStudents")
-                // Disable student options if "All" is selected in both
-                if (isAllStudentsSelected) {
-                    studentDropdown.isEnabled = false
+            if (selectedCohorts.isEmpty()){
+                Toast.makeText(this, "Please Select a Cohort!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                if(select_students_list.isEmpty())
+                {
+                    Toast.makeText(this, "Please Select a Student!", Toast.LENGTH_SHORT).show()
                 }
-            }
-        } else {
-            val currentText = cohortDropdown.text.toString()
-            Log.d("Baba Where", "We are in handleCohortSelection else condition")
+                else{
+                    val Title = title.text.toString().trim()
+                    val Content = content.text.toString().trim()
+                    if (Title.isEmpty()){
+                        Toast.makeText(this, "Please enter an announcement title!", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        if (Content.isEmpty()){
+                            Toast.makeText(this, "Please enter announcement content!", Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            Log.d("AdminANN", "Title: $Title | Content: $Content | Cohort: ${selectedCohorts.joinToString(", ")} | Students:${select_students_list.joinToString(", ")} ")
+                            submitAnnouncement(Title, Content)
+                        }
+                    }
 
-            if (currentText.contains("All,")) {
-                isAllCohortsSelected = false
-                cohortDropdown.setText(currentText.replace("All,", ""))
-                studentDropdown.setText("")
+                }
+
             }
-            selectedcohorts = cohortDropdown.text.split(",").filter { it.isNotBlank() }
-            fetchStudents(selectedcohorts) { students ->
-                studentAdapter.clear()
-                studentAdapter.addAll(listOf("All") + students)
-                studentAdapter.notifyDataSetChanged()
-                Log.d("Baba Where", "we are in after if statement")
-            }
+
         }
-        cohortDropdown.setSelection(cohortDropdown.text.length)
+
+
+
     }
 
 
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetCohorts =
-            "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
+        val apiGetCohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -351,7 +158,6 @@ class Admin_Announcement : AppCompatActivity() {
                     cohorts.add(cohort)
                 }
                 callback(cohorts)
-                Log.d("Fetcher", "Fetched Cohorts Successfully!")
             },
             { error ->
                 Log.e("FetchCohorts", "Error fetching cohorts: ${error.message}")
@@ -362,33 +168,37 @@ class Admin_Announcement : AppCompatActivity() {
     }
 
     private fun fetchStudents(selectedCohorts: List<String>, callback: (List<String>) -> Unit) {
-        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        if (selectedCohorts.isEmpty()) {
+            // Handle the case where no cohorts are selected
+            callback(emptyList())
+            return
+        }
+        else {
+            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+            val encodedCohorts = URLEncoder.encode(selectedCohorts.joinToString(","), "UTF-8")
+            val apiGetStudents = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
 
-        // Join selected cohorts with commas and encode them
-        val encodedCohorts = URLEncoder.encode(selectedCohorts.joinToString(","), "UTF-8")
-        val apiGetStudents =
-            "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
-
-        val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET,
-            apiGetStudents,
-            null,
-            { response ->
-                Log.d("CohortStds", "Retrieved Students: $response")
-                val students = mutableListOf<String>()
-                for (i in 0 until response.length()) {
-                    // If the response is an array of strings
-                    val student = response.getString(i)
-                    students.add(student)
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apiGetStudents,
+                null,
+                { response ->
+                    val students = mutableListOf<String>()
+                    for (i in 0 until response.length()) {
+                        val student = response.getString(i)
+                        students.add(student)
+                    }
+                    students.add("All")
+                    callback(students)
+                },
+                { error ->
+                    Log.e("FetchStudents", "Error fetching students: ${error.message}")
+                    callback(emptyList())
                 }
-                callback(students)
-            },
-            { error ->
-                Log.e("FetchStudents", "Error fetching students: ${error.message}")
-                callback(emptyList())
-            }
-        )
-        reqQueue.add(jsonArrayRequest)
+            )
+            reqQueue.add(jsonArrayRequest)
+        }
+
     }
 
     override fun onBackPressed() {
@@ -400,4 +210,189 @@ class Admin_Announcement : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+
+    private fun showCohortDialog() {
+        fetchCohorts { cohorts ->
+            cohortDialog = createDialogWithCheckboxes(
+                this, "Select Cohorts", cohorts
+            ) { selectedItems ->
+                selectedCohorts = selectedItems
+                select_cohorts.text = selectedItems.joinToString(", ")
+                Log.d("Selected", "Selected Cohorts: ${selectedCohorts.joinToString(", ")}")
+
+                // Clear selected students when a new cohort is selected
+                select_students_list = emptyList()
+                select_students.text = ""
+                select_students.isEnabled = selectedCohorts.isNotEmpty()
+            }
+            cohortDialog.show()
+        }
+    }
+
+    private fun showStudentDialog() {
+        if (selectedCohorts.isEmpty()) {
+            Log.e("ShowStudentDialog", "No cohorts selected")
+            return
+        } else {
+            fetchStudents(selectedCohorts) { students ->
+                studentDialog = createDialogWithCheckboxes(
+                    this, "Select Students", students
+                ) { selectedStudents ->
+                    select_students_list = selectedStudents
+                    Log.d("ShowStudentDialog", "Selected Students: ${selectedStudents.joinToString(", ")}")
+                    select_students.text = selectedStudents.joinToString(", ")
+                }
+                studentDialog.show()
+            }
+        }
+    }
+
+    private fun createDialogWithCheckboxes(
+        context: Context,
+        title: String,
+        items: List<String>,
+        onItemsSelected: (selectedItems: List<String>) -> Unit
+    ): Dialog {
+        val selectedItems = mutableListOf<String>()
+        val dialog = Dialog(context)
+        dialog.setContentView(R.layout.dialog_list_checkboxes)
+
+        val titleView = dialog.findViewById<TextView>(R.id.dialog_title)
+        titleView.text = title
+
+        val listView = dialog.findViewById<ListView>(R.id.listView)
+        val adapter = CheckboxAdapter(items, selectedItems)
+        listView.adapter = adapter
+
+        val applyButton = dialog.findViewById<Button>(R.id.apply_button)
+        applyButton.setOnClickListener {
+            if (selectedItems.contains("All")) {
+                // If "All" is selected, replace the selection with all items except "All"
+                selectedItems.clear()
+                selectedItems.addAll(items.filter { it != "All" })
+            }
+            onItemsSelected(selectedItems)
+            dialog.dismiss()
+        }
+
+        return dialog
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun submitAnnouncement(title: String, content: String) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+
+        val encodedTitle = URLEncoder.encode(title, "UTF-8")
+        val encodedContent = URLEncoder.encode(content, "UTF-8")
+
+        // API for creating announcement
+        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_students.php" +
+                "?userID=$userID" +
+                "&Title=$encodedTitle" +
+                "&Content=$encodedContent" +
+                "&PostedDateTime=$formattedDateTime"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            apiCreateAnnouncement,
+            { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    val success = jsonResponse.getBoolean("success")
+                    if (success) {
+                        val announcementID = jsonResponse.getInt("announcementID")
+                        addRecipients(announcementID, selectedCohorts, select_students_list)
+
+                        Log.d("AnnID", "Announcement ID is: $announcementID")
+                    } else {
+                        Log.e("SubmitAnnouncement", "Failed to submit announcement: ${jsonResponse.getString("message")}")
+                    }
+                } catch (e: JSONException) {
+                    Log.e("SubmitAnnouncement", "Error parsing JSON response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("SubmitAnnouncement", "Error creating announcement: ${error.message}")
+            }
+        )
+
+        reqQueue.add(stringRequest)
+    }
+
+
+    private fun addRecipients(announcementID: Int, cohorts: List<String>, students: List<String>) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        val encodedCohorts = URLEncoder.encode(cohorts.joinToString(","), "UTF-8")
+        val encodedStudents = URLEncoder.encode(students.joinToString(","), "UTF-8")
+        val apiFetchRollNumbers = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetchallrolenumbers.php?cohorts=$encodedCohorts&students=$encodedStudents"
+
+        val fetchRollNumbersRequest = StringRequest(
+            Request.Method.GET,
+            apiFetchRollNumbers,
+            { response ->
+                try {
+
+                    val jsonResponse = JSONObject(response)
+                    val success = jsonResponse.getBoolean("success")
+                    if (success) {
+                        Log.d("STDREQ", "ROLL NUMBERS FETCHED: $response")
+                        val rollNumbers = jsonResponse.getJSONArray("rollNumbers")
+                        val rollNumbersList = mutableListOf<String>()
+                        for (i in 0 until rollNumbers.length()) {
+                            rollNumbersList.add(rollNumbers.getInt(i).toString())
+                        }
+
+                        insertRecipients(announcementID, rollNumbersList)
+                    } else {
+                        Log.e("STDREQ", "Failed to fetch roll numbers: ${jsonResponse.getString("message")}")
+                    }
+                } catch (e: JSONException) {
+                    Log.e("STDREQ", "Error parsing JSON response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("STDREQ", "Error fetching roll numbers: ${error.message}")
+            }
+        )
+
+        reqQueue.add(fetchRollNumbersRequest)
+    }
+
+    private fun insertRecipients(announcementID: Int, rollNumbers: List<String>) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        val encodedRollNumbers = URLEncoder.encode(rollNumbers.joinToString(","), "UTF-8")
+        val apiInsertRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/send_announcement_to_students.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
+
+        val insertRecipientsRequest = StringRequest(
+            Request.Method.GET,
+            apiInsertRecipients,
+            { response ->
+                try {
+                    Log.d("STDREQ", "Recipients added successfully: $response")
+                    val jsonResponse = JSONObject(response)
+                    val success = jsonResponse.getBoolean("success")
+                    if (success) {
+                        Log.d("STDREQ", "Recipients added successfully")
+                        Toast.makeText(this, "Announcement was successfully made to the student(s)!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Log.e("STDREQ", "Failed to add recipients: ${jsonResponse.getString("message")}")
+                    }
+                } catch (e: JSONException) {
+                    Log.e("STDREQ", "Error parsing JSON response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("STDREQ", "Error adding recipients: ${error.message}")
+            }
+        )
+
+        reqQueue.add(insertRecipientsRequest)
+    }
+
+
+
+
 }
+

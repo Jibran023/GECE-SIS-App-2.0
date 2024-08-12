@@ -68,24 +68,21 @@
                 android:layout_marginBottom="4dp"
                 />
 
-            <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
+            <!-- Cohorts Selection -->
+            <TextView
+                android:id="@+id/select_cohorts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <MultiAutoCompleteTextView
-                    android:id="@+id/semesterdept"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g 2026"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:inputType="none"
-                    android:background="@color/white"
-                    tools:ignore="LabelFor"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/orangeborder"
+                android:hint="Select Cohorts"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:drawablePadding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -96,24 +93,21 @@
                 android:layout_marginBottom="4dp"
                 />
 
-            <!-- Department Dropdown -->
-            <com.google.android.material.textfield.TextInputLayout
+            <!-- Students Selection -->
+            <TextView
+                android:id="@+id/select_students"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu">
-
-                <MultiAutoCompleteTextView
-                    android:id="@+id/studentsdept"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/white"
-                    android:hint="e.g 2026"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    tools:ignore="LabelFor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                android:background="@drawable/orangeborder"
+                android:hint="Select Students"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:drawablePadding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
 
 
 
