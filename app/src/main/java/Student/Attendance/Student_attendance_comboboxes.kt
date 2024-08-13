@@ -19,6 +19,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 
 
@@ -174,7 +175,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
 
     private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchsessions.php"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchsessions.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -206,7 +207,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
     private fun fetchstudentrollenumber(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val studentIDint = userID.toIntOrNull()?: 1
-        val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/studentsrole.php?id=$studentIDint"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/studentsrole.php?id=$studentIDint"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -245,7 +246,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
 
         if (userType == "student") {
             val rollnoint = rollno?.toIntOrNull() ?: 1
-            val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchcoursesstudent.php?rollNumber=$rollnoint&semesterDescription=$selectedSessionDescription"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchcoursesstudent.php?rollNumber=$rollnoint&semesterDescription=$selectedSessionDescription"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,

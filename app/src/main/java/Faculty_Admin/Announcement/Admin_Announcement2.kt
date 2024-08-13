@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import org.json.JSONArray
 import org.json.JSONException
@@ -163,7 +164,7 @@ class Admin_Announcement2 : AppCompatActivity() {
     // CHANGE THIS SO IT RETRIEVES COHORTS
     private fun fetchfacultymembers(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetchfacultymembers.php"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchfacultymembers.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -201,7 +202,7 @@ class Admin_Announcement2 : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_faculty.php" +
+        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_faculty.php" +
                 "?userID=$userID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
@@ -248,7 +249,7 @@ class Admin_Announcement2 : AppCompatActivity() {
 
 
         // API for adding recipients
-        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/add_faculty_recipients.php" + "?announcementID=$announcementID" +
+        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/add_faculty_recipients.php" + "?announcementID=$announcementID" +
                 "&FacultyMembers=$encodedFacultyMembers"
 
         Log.d("TOSENTFAC", "Faculty Members: $encodedFacultyMembers")
@@ -279,7 +280,7 @@ class Admin_Announcement2 : AppCompatActivity() {
     private fun addAllRecipients(announcementID: Int) {
         // Implement the logic to add all faculty members as recipients
         // This could involve calling an API that handles sending to all faculty members
-        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/addall_faculty_recipients.php" + "?announcementID=$announcementID"
+        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/addall_faculty_recipients.php" + "?announcementID=$announcementID"
 
         val stringRequest = StringRequest(
             Request.Method.GET,

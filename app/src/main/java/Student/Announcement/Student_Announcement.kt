@@ -18,6 +18,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.OtherDashboard
 import com.example.gece_sisapp20.R
 
@@ -116,7 +117,7 @@ class Student_Announcement : AppCompatActivity() {
         val studentIDint = userID.toIntOrNull()?: 1
 
         if (userType== "student"){
-            val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/studentsrole.php?id=$studentIDint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/studentsrole.php?id=$studentIDint"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -162,7 +163,7 @@ class Student_Announcement : AppCompatActivity() {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val rollnoint = rollno?.toIntOrNull() ?: 1
             Log.d("ROLLLO", "Roll no is : $rollnoint")
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyboth.php?id=$rollnoint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyboth.php?id=$rollnoint"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -205,7 +206,7 @@ class Student_Announcement : AppCompatActivity() {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val rollnoint = userID.toIntOrNull() ?: 1
             Log.d("USERSANN", "User id no is : $rollnoint")
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/users/fetch_users_announcements.php?id=$rollnoint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/users/fetch_users_announcements.php?id=$rollnoint"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -248,7 +249,7 @@ class Student_Announcement : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val rollnoint = rollno?.toIntOrNull() ?: 1
         Log.d("ROLLLO", "Roll no is : $rollnoint")
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyfaculty.php?id=$rollnoint"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Students/fetchstudentannouncementsbyfaculty.php?id=$rollnoint"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

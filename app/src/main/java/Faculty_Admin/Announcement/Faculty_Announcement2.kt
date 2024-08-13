@@ -15,6 +15,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -99,7 +100,7 @@ class Faculty_Announcement2 : AppCompatActivity() {
     private fun fetchfacultyannouncements(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val useridint = userID.toIntOrNull()?: 1
-        val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/fetchfacultyannouncements.php?id=$useridint"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/fetchfacultyannouncements.php?id=$useridint"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

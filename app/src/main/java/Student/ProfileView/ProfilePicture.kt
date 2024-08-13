@@ -144,7 +144,7 @@ class ProfilePicture : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         if (userType == "student"){
             val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
-            val apigetcohorts = "http://192.168.18.55/geceapi/Student/ProfileView/studentsprofileinfo.php?id=$studentIDint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/ProfileView/studentsprofileinfo.php?id=$studentIDint"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -186,7 +186,7 @@ class ProfilePicture : AppCompatActivity() {
 
         else if (userType == "other"){
             val studentIDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check here
-            val apigetcohorts = "http://192.168.18.55/geceapi/otherusersinfo.php?id=$studentIDint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/otherusersinfo.php?id=$studentIDint"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,

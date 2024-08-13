@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -148,17 +149,6 @@ class Faculty_Announcement : AppCompatActivity() {
                                 sectionSpinner.adapter = sectionAdapter
                             }
                         }
-//                        else {
-//                            val emptySections: List<String> = emptyList()
-//                            val sectionAdapter = ArrayAdapter(
-//                                this@Faculty_Announcement,
-//                                android.R.layout.simple_spinner_item,
-//                                emptySections
-//                            )
-//                            sectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//                            sectionSpinner.adapter = sectionAdapter
-//                            Toast.makeText(this@Faculty_Announcement, "No sections available", Toast.LENGTH_SHORT).show()
-//                        }
                     }
                 }
             }
@@ -221,7 +211,7 @@ class Faculty_Announcement : AppCompatActivity() {
 
     private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchsessions.php"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchsessions.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -254,7 +244,7 @@ class Faculty_Announcement : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val studentIDint = userID.toIntOrNull() ?: 1
         if (userType == "faculty") {
-            val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchcoursesfaculty.php?facultyID=$studentIDint&semesterDescription=$selectedSessionDescription"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchcoursesfaculty.php?facultyID=$studentIDint&semesterDescription=$selectedSessionDescription"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -293,7 +283,7 @@ class Faculty_Announcement : AppCompatActivity() {
     private fun fetchSections(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         // Construct the API URL with selected session and course
-        val apigetsections = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/fetch_sections.php?facultyID=$userID&courseName=$selectedcourse&sessionDescription=$selectedSessionDescription"
+        val apigetsections = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/fetch_sections.php?facultyID=$userID&courseName=$selectedcourse&sessionDescription=$selectedSessionDescription"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetsections,
@@ -337,7 +327,7 @@ class Faculty_Announcement : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudents.php" +
+        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudents.php" +
                 "?userID=$facCourseID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
@@ -381,7 +371,7 @@ class Faculty_Announcement : AppCompatActivity() {
 
     private fun addAllRecipients(announcementID: Int) {
 
-        val apiGetRollNumbers = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/get_roll_numbers.php?CourseName=$selectedcourse&SessionDescription=$selectedSessionDescription"
+        val apiGetRollNumbers = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/get_roll_numbers.php?CourseName=$selectedcourse&SessionDescription=$selectedSessionDescription"
 
         Log.d("URLUSED", "Url that is used for roll numbers: $apiGetRollNumbers")
         val stringRequest = StringRequest(
@@ -399,7 +389,7 @@ class Faculty_Announcement : AppCompatActivity() {
                             rollNumbers.add(rollNumbersArray.getString(i))
                         }
 
-                        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudentsall.php?announcementID=$announcementID&rollNumbers=${rollNumbers.joinToString(",")}"
+                        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudentsall.php?announcementID=$announcementID&rollNumbers=${rollNumbers.joinToString(",")}"
                         Log.d("URLUSED", "Url that is used to add recipients: $apiAddRecipients")
 
                         // Call the second script to add the recipients
@@ -444,7 +434,7 @@ class Faculty_Announcement : AppCompatActivity() {
     private fun addRecipients(announcementID: Int, sectionName: String) {
 
         // First API for retrieving roll numbers based on section name
-        val apiGetRollNumbers = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/get_roll_numbers_bysection.php?CourseName=$selectedcourse&SessionDescription=$selectedSessionDescription&SectionName=$sectionName"
+        val apiGetRollNumbers = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/get_roll_numbers_bysection.php?CourseName=$selectedcourse&SessionDescription=$selectedSessionDescription&SectionName=$sectionName"
 
         Log.d("URLUSED", "Url that is used for getting roll numbers: $apiGetRollNumbers")
 
@@ -490,7 +480,7 @@ class Faculty_Announcement : AppCompatActivity() {
         val rollNumbersStr = rollNumbers.joinToString(",")
 
         // Second API for adding recipients based on the retrieved roll numbers
-        val apiAddRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudentsbysection.php?announcementID=$announcementID&rollNumbers=$rollNumbersStr&sectionID=$selectedsectionid"
+        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/sendanntostudentsbysection.php?announcementID=$announcementID&rollNumbers=$rollNumbersStr&sectionID=$selectedsectionid"
 
         Log.d("URLUSED", "Url that is used for adding recipients: $apiAddRecipients")
 

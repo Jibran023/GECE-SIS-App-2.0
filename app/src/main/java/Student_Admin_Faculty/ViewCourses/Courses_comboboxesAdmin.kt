@@ -22,6 +22,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import com.example.gece_sisapp20.UserCredentials
 
@@ -136,7 +137,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
 
     private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Student/Courses/fetchsessions.php"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchsessions.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -170,7 +171,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
 
         if (whotosearch == "student"){
             Log.d("whotosearch", "Fetched JSON Data: $whotosearch")
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Courses/fetchstudentsinadmincourses.php"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Courses/fetchstudentsinadmincourses.php"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -205,7 +206,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
         {
             Log.d("whotosearch", "Fetched JSON Data: $whotosearch")
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Courses/fetchfacultyinadmincourses.php"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Courses/fetchfacultyinadmincourses.php"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -244,7 +245,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
         if (whotosearch == "student") {
             Log.d("FETCHSTU", "we are here")
             Log.d("FETCHSTU1", "Selected people is: $selectedpeople | selected desc is: $selectedSessionDescription")
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Courses/fetchstudentcoursesinadmin.php?studentname=$selectedpeople&semesterDescription=$selectedSessionDescription"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Courses/fetchstudentcoursesinadmin.php?studentname=$selectedpeople&semesterDescription=$selectedSessionDescription"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -276,7 +277,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
         else if (whotosearch == "faculty"){
             Log.d("FETCHFACU", "we are here")
             Log.d("FETCHSTU1", "Selected people is: $selectedpeople | selected desc is: $selectedSessionDescription")
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Courses/fetchfacultycoursesinadmin.php?FacultyName=$selectedpeople&semesterDescription=$selectedSessionDescription"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Courses/fetchfacultycoursesinadmin.php?FacultyName=$selectedpeople&semesterDescription=$selectedSessionDescription"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,

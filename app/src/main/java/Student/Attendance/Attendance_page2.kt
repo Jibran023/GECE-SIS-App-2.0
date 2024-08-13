@@ -12,6 +12,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 
 
@@ -62,7 +63,7 @@ class attendance_page2 : AppCompatActivity() {
         }
 
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetAttendance = "http://192.168.18.55/geceapi/Student/Attendance/fetch_attendance.php?rollNumber=$rollno&semesterDescription=$selectedSessionDescription&courseID=$selectedCourseID"
+        val apigetAttendance = "${LoginScreen.BASE_URL}/geceapi/Student/Attendance/fetch_attendance.php?rollNumber=$rollno&semesterDescription=$selectedSessionDescription&courseID=$selectedCourseID"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,

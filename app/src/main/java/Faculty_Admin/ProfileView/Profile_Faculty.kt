@@ -111,7 +111,7 @@ class Profile_Faculty : AppCompatActivity() {
         val IDint = userID.toIntOrNull() ?: 1 // We know it is a studentid hence we haven't kept a check
 
         if (userType == "admin") {
-            val apigetcohorts = "http://192.168.18.55/geceapi/Faculty_Admin/ProfileView/usersprofileinfo.php?id=$IDint"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/ProfileView/usersprofileinfo.php?id=$IDint"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -145,7 +145,7 @@ class Profile_Faculty : AppCompatActivity() {
         }
 
         else if (userType == "faculty") {
-            val apigetfacultydata = "http://192.168.18.55/geceapi/Faculty_Admin/ProfileView/facultyprofileinfo.php?id=$IDint"
+            val apigetfacultydata = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/ProfileView/facultyprofileinfo.php?id=$IDint"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,

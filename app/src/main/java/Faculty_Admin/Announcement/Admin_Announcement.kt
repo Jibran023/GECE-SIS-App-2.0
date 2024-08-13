@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -144,7 +145,7 @@ class Admin_Announcement : AppCompatActivity() {
 
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetCohorts = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
+        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -176,7 +177,7 @@ class Admin_Announcement : AppCompatActivity() {
         else {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val encodedCohorts = URLEncoder.encode(selectedCohorts.joinToString(","), "UTF-8")
-            val apiGetStudents = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
+            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -288,7 +289,7 @@ class Admin_Announcement : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_students.php" +
+        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_students.php" +
                 "?userID=$userID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
@@ -321,12 +322,11 @@ class Admin_Announcement : AppCompatActivity() {
         reqQueue.add(stringRequest)
     }
 
-
     private fun addRecipients(announcementID: Int, cohorts: List<String>, students: List<String>) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val encodedCohorts = URLEncoder.encode(cohorts.joinToString(","), "UTF-8")
         val encodedStudents = URLEncoder.encode(students.joinToString(","), "UTF-8")
-        val apiFetchRollNumbers = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/fetchallrolenumbers.php?cohorts=$encodedCohorts&students=$encodedStudents"
+        val apiFetchRollNumbers = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchallrolenumbers.php?cohorts=$encodedCohorts&students=$encodedStudents"
 
         val fetchRollNumbersRequest = StringRequest(
             Request.Method.GET,
@@ -363,7 +363,7 @@ class Admin_Announcement : AppCompatActivity() {
     private fun insertRecipients(announcementID: Int, rollNumbers: List<String>) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val encodedRollNumbers = URLEncoder.encode(rollNumbers.joinToString(","), "UTF-8")
-        val apiInsertRecipients = "http://192.168.18.55/geceapi/Faculty_Admin/Announcements/Admin/send_announcement_to_students.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
+        val apiInsertRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/send_announcement_to_students.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
 
         val insertRecipientsRequest = StringRequest(
             Request.Method.GET,
@@ -390,9 +390,6 @@ class Admin_Announcement : AppCompatActivity() {
 
         reqQueue.add(insertRecipientsRequest)
     }
-
-
-
 
 }
 

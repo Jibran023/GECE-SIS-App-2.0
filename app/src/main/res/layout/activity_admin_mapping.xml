@@ -53,39 +53,32 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="24dp"
+        android:background="@color/orangeshade4"
         android:spinnerMode="dropdown"
         android:layout_below="@id/cohort_text" />
 
     <TextView
-        android:id="@+id/semester_text"
+        android:id="@+id/course_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"
         android:layout_marginRight="24dp"
-        android:text="@string/semester_label"
+        android:text="Course"
         android:textSize="18sp"
         android:layout_below="@id/cohort_spinner" />
 
     <Spinner
-        android:id="@+id/semester_spinner"
+        android:id="@+id/course_spinner"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="24dp"
+        android:background="@color/lighter_orange"
         android:spinnerMode="dropdown"
-        android:layout_below="@id/semester_text" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCourses"
-        android:layout_width="358dp"
-        android:layout_height="209dp"
-        android:layout_below="@id/semester_spinner"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="24dp" />
+        android:layout_below="@id/course_text" />
 
 
     <Button
@@ -93,12 +86,11 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="30dp"
         android:layout_marginRight="24dp"
         android:backgroundTint="#FF8570"
+        android:layout_marginTop="600dp"
         android:textColor="@color/white"
-        android:text="@string/Nextbutton"
-        android:textSize="18sp"
-        android:layout_below="@id/recyclerViewCourses" />
+        android:text="Next"
+        android:textSize="18sp" />
 
 </RelativeLayout>

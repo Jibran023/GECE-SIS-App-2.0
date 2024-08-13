@@ -303,6 +303,10 @@ class LoginScreen : AppCompatActivity() {
     private val validCredentialsAdmin = mutableMapOf<String, UserCredentials>()
     private val validCredentialsother = mutableMapOf<String, UserCredentials>()
 
+    companion object {
+        const val BASE_URL = "http://192.168.18.55"
+    }
+
     private lateinit var mainurl : String
     val secretkey = "Humara@Secret@Nahinbtana"
     val secretkeyspec =  SecretKeySpec(secretkey.toByteArray(), "AES")
@@ -452,7 +456,7 @@ class LoginScreen : AppCompatActivity() {
 
     private fun fetchUsersData(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Login/usersdata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/usersdata.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -491,154 +495,9 @@ class LoginScreen : AppCompatActivity() {
     }
 
 
-// THIS FUNCTION USES A JSON REQUEST SO THERE IS NO ENCRYPTION/DECRYPTION HERE | CHECK THE URL BEFORE USE!
-//    private fun fetchUsersData() {
-//        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-//        val apiGetUsers = "http://192.168.18.55/geceapi/usersdata.php"
-//
-//        val jsonArrayRequest = JsonArrayRequest(
-//            Request.Method.GET,
-//            apiGetUsers,
-//            null,
-//            { response ->
-//                Log.d("JSON_USERS_DATA", "USERS JSON Data: $response") // OUTPUTTING THE JSON DATA
-//                try {
-//                    for (i in 0 until response.length()) {
-//                        val jsonObject = response.getJSONObject(i)
-//                        val id = jsonObject.getString("id")
-//                        val email = jsonObject.getString("Email")
-//                        val password = jsonObject.getString("Password")
-//                        val department = jsonObject.getString("department")
-//
-//                        val credentials = UserCredentials(id, password)
-//                        when (department) {
-//                            "IT" -> validCredentialsAdmin[email] = credentials
-//                            "Registrar" -> validCredentialsAdmin[email] = credentials
-//                            else -> validCredentialsother[email] = credentials
-//                        }
-//                        Log.d("UsersDataNew", "Email: $email Password: $password Department: $department")
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            },
-//            { error ->
-//                Log.e("UsersDataNew", "Error fetching the data: ${error.message}")
-//            }
-//        )
-//
-//        reqQueue.add(jsonArrayRequest)
-//    }
-
-
-    // THIS FUNCTION TAKES BASE64 STRING AND DECODES IT | IT USES usersdata2.php
-//    private fun fetchUsersData() {
-//        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-//        val apiGetUsers = "http://192.168.18.55/geceapi/usersdata2.php"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET,
-//            apiGetUsers,
-//            { response ->
-//                try {
-//                    // Extract the encrypted data from the response string
-//                    val base64EncodedEncryptedData = response.trim() // Ensure there's no extra whitespace
-//                    Log.d("UsersDataString", "Base64 Encoded Encrypted Data: $base64EncodedEncryptedData")
-//
-//                    // Decode Base64 to get the data as byte array
-//                    val decodedData = Base64.decode(base64EncodedEncryptedData, Base64.DEFAULT)
-//
-//                    // Convert byte array to String
-//                    val decodedDataString = String(decodedData, Charsets.UTF_8)
-//                    Log.d("DecodedData", "Decoded Data String: $decodedDataString")
-//
-//
-//                    // Parse the decrypted JSON data
-//                    val jsonArray = JSONArray(decodedDataString) // we parse it to an array
-//                    for (i in 0 until jsonArray.length()) { // we retrieve the data
-//                        val jsonObject = jsonArray.getJSONObject(i)
-//                        val id = jsonObject.getString("id")
-//                        val email = jsonObject.getString("Email")
-//                        val password = jsonObject.getString("Password")
-//                        val department = jsonObject.getString("department")
-//
-//                        val credentials = UserCredentials(id, password)
-//                        when (department) {
-//                            "IT" -> validCredentialsAdmin[email] = credentials
-//                            "Registrar" -> validCredentialsAdmin[email] = credentials
-//                            else -> validCredentialsother[email] = credentials
-//                        }
-//                        Log.d("UsersDataNew", "Email: $email Password: $password Department: $department")
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            },
-//            { error ->
-//                Log.e("UsersDataNew", "Error fetching the data: ${error.message}")
-//            }
-//        )
-//        reqQueue.add(stringRequest)
-//    }
-
-
-    // THIS FUNCTION TAKES BASE64 STRING AND DECODES IT | IT USES usersdata2.php
-//    private fun fetchUsersData() {
-//        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-//        val apiGetUsers = "http://192.168.18.55/geceapi/usersdataencoded.php"
-//        val keY = "5v5CzfuycMTBnEu7X2KwbZ8qg65O9RPZr43gXTL5zMDobBa0qgJxUhbACYIfTGAX"
-//
-//        val stringRequest = StringRequest(
-//            Request.Method.GET,
-//            apiGetUsers,
-//            { response ->
-//                try {
-//                    // Extract the encrypted data from the response string
-//                    val base64EncodedEncryptedData = response.trim() // Ensure there's no extra whitespace
-//                    Log.d("UsersDataString", "Base64 Encoded Encrypted Data: $base64EncodedEncryptedData")
-//
-////                    // Decode Base64 to get the data as byte array
-////                    val decodedData = Base64.decode(base64EncodedEncryptedData, Base64.DEFAULT)
-////
-////                    // Convert byte array to String
-////                    val decodedDataString = String(decodedData, Charsets.UTF_8)
-////                    Log.d("DecodedData", "Decoded Data String: $decodedDataString")
-//
-//                    val decrypteddata = EncryptionUtil.decryptJson(base64EncodedEncryptedData, keY)
-//                    Log.d("DecryptedData", "Decrypted Data: $decrypteddata")
-//
-//                    // Parse the decrypted JSON data
-//                    val jsonArray = JSONArray(decrypteddata) // we parse it to an array
-//                    for (i in 0 until jsonArray.length()) { // we retrieve the data
-//                        val jsonObject = jsonArray.getJSONObject(i)
-//                        val id = jsonObject.getString("id")
-//                        val email = jsonObject.getString("Email")
-//                        val password = jsonObject.getString("Password")
-//                        val department = jsonObject.getString("department")
-//
-//                        val credentials = UserCredentials(id, password)
-//                        when (department) {
-//                            "IT" -> validCredentialsAdmin[email] = credentials
-//                            "Registrar" -> validCredentialsAdmin[email] = credentials
-//                            else -> validCredentialsother[email] = credentials
-//                        }
-//                        Log.d("UsersDataNew", "Email: $email Password: $password Department: $department")
-//                    }
-//                } catch (e: Exception) {
-//                    e.printStackTrace()
-//                }
-//            },
-//            { error ->
-//                Log.e("UsersDataNew", "Error fetching the data: ${error.message}")
-//            }
-//        )
-//        reqQueue.add(stringRequest)
-//    }
-
-
     private fun fetchfacultydata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Login/facultydata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/Login/facultydata.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -677,7 +536,7 @@ class LoginScreen : AppCompatActivity() {
 
     private fun fetchstudentsdata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "http://192.168.18.55/geceapi/Login/studentsdata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,

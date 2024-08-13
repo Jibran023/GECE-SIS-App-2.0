@@ -23,6 +23,22 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/back_button_description"
         android:src="@drawable/arrow_back_ios_24" />
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="25dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/add"
+        android:tint="@color/black"
+        android:contentDescription="@string/add_button_description"
+        />
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
@@ -31,7 +47,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true"/>
 
