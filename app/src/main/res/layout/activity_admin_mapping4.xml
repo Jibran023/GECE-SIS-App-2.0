@@ -67,15 +67,16 @@
                 android:layout_marginBottom="4dp"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/enter_sectionName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/orangeborder"
-                android:hint="Select Students"
+                android:hint="Section Name"
                 android:padding="12dp"
                 android:textSize="18sp"
                 android:layout_marginBottom="16dp"
+                android:inputType="textWebEmailAddress"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="8dp"
                 android:clickable="true"
@@ -95,7 +96,7 @@
             <TextView
                 android:id="@+id/select_students"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:background="@drawable/orangeborder"
                 android:hint="Select Students"
                 android:padding="12dp"
@@ -105,7 +106,9 @@
                 android:drawableEnd="@drawable/ic_arrow_drop_down"
                 android:drawablePadding="8dp"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
         </LinearLayout>
     </ScrollView>
@@ -123,10 +126,10 @@
 
         <!-- Submit Button -->
         <Button
-            android:id="@+id/submitbtn"
+            android:id="@+id/createbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:text="Create"
             android:textSize="18sp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
@@ -141,7 +144,7 @@
             android:id="@+id/deletebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="Cancel"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:paddingStart="24dp"

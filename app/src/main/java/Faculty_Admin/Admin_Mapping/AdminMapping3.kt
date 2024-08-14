@@ -89,15 +89,14 @@ class AdminMapping3 : AppCompatActivity() {
                 putExtra("COURSE_NAME", selectedCourseName)
                 putExtra("INSTRUCTOR", selectedCourseIDInstructor)
                 putExtra("COURSE_SESSION", selectedCourseSessionID)
+                putExtra("FACULTY_ID", selectedCourseFacultyID)
+                putExtra("COURSE_DESC", selectedCourseDescription)
 //                putExtra("SECTION_ID", sectionID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
         }
 
-        // Sample data for students
-        val students = listOf("John Doe", "Jane Smith", "Emily Johnson") // Replace with actual student data
-        studentCountTextView.text = "Number of students mapped: ${students.size}"
 
         // Set up the RecyclerView
         recyclerViewStudents = findViewById(R.id.recyclerViewStudents)
@@ -137,6 +136,8 @@ class AdminMapping3 : AppCompatActivity() {
             putExtra("SECTION_NAME", sectionName)
             putExtra("COURSE_NAME", selectedCourseName)
             putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+            putExtra("FACULTY_ID", selectedCourseFacultyID)
+            putExtra("COURSE_DESC", selectedCourseDescription)
 //            putExtra("SECTION_ID", sectionID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

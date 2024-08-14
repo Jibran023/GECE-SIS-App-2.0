@@ -73,8 +73,8 @@ class AdminMapping2 : AppCompatActivity() {
                 putExtra("COHORT", selectedCohort)
                 putExtra("COURSE_ID", selectedCourseID)
                 putExtra("COURSE_NAME", selectedCourseName)
-                putExtra("FACULTY_ID", selectedCourseFacultyID)
                 putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+                putExtra("FACULTY_ID", selectedCourseFacultyID)
                 putExtra("COURSE_SESSION", selectedCourseSessionID)
                 putExtra("COURSE_DESC", selectedCourseDescription)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -46,12 +46,16 @@ class AdminMapping : AppCompatActivity() {
     private lateinit var courseSpinner: Spinner
     private lateinit var sectionSpinner: Spinner
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin_mapping)
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString()
+
+        var pass: Boolean = false
 
         selectedCohorts = emptyList()
 
@@ -61,23 +65,6 @@ class AdminMapping : AppCompatActivity() {
             var intent = Intent(this, AdminDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            startActivity(intent)
-        }
-
-        val nextbtn = findViewById<Button>(R.id.nextbutton)
-        nextbtn.setOnClickListener {
-            var intent = Intent(this, AdminMapping2::class.java).apply {
-                putExtra("USER_TYPE", userType)
-                putExtra("USER_ID", userID)
-                putExtra("COHORT", selectedCohort)
-                putExtra("COURSE_ID", selectedCourseID)
-                putExtra("INSTRUCTOR", selectedCourseIDInstructor)
-                putExtra("COURSE_NAME", selectedCourseName)
-                putExtra("FACULTY_ID", selectedCourseFacultyID)
-                putExtra("COURSE_SESSION", selectedCourseSessionID)
-                putExtra("COURSE_DESC", selectedCourseDescription)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -121,10 +108,35 @@ class AdminMapping : AppCompatActivity() {
                 selectedCourseSessionID = SessionID[position]
                 selectedCourseDescription = DescriptionIDs[position]
 
+                pass = true
+
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // Handle case where no item is selected if needed
-                Toast.makeText(this@AdminMapping, "No session selected", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AdminMapping, "No Course selected", Toast.LENGTH_SHORT).show()
+                pass = false
+            }
+        }
+
+        val nextbtn = findViewById<Button>(R.id.nextbutton)
+        nextbtn.setOnClickListener {
+            if (!pass) {
+                // Show a toast message if course ID is empty
+                Toast.makeText(this, "Please select a course before proceeding.", Toast.LENGTH_SHORT).show()
+            } else {
+                var intent = Intent(this, AdminMapping2::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    putExtra("COHORT", selectedCohort)
+                    putExtra("COURSE_ID", selectedCourseID)
+                    putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+                    putExtra("COURSE_NAME", selectedCourseName)
+                    putExtra("FACULTY_ID", selectedCourseFacultyID)
+                    putExtra("COURSE_SESSION", selectedCourseSessionID)
+                    putExtra("COURSE_DESC", selectedCourseDescription)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
             }
         }
 
