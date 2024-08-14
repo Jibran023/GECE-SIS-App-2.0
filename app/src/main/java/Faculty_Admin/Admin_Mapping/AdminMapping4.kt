@@ -33,8 +33,7 @@ class AdminMapping4 : AppCompatActivity() {
     private lateinit var selectedCourseFacultyID: String
     private lateinit var selectedCourseSessionID: String
     private lateinit var selectedCourseDescription: String
-    private lateinit var sectionName: String
-    private lateinit var sectionID: String
+
 
     private lateinit var select_students: TextView
     private lateinit var SectionName: TextView
@@ -55,8 +54,7 @@ class AdminMapping4 : AppCompatActivity() {
         selectedCourseFacultyID = intent.getStringExtra("FACULTY_ID").toString()
         selectedCourseSessionID = intent.getStringExtra("COURSE_SESSION").toString()
         selectedCourseDescription = intent.getStringExtra("COURSE_DESC").toString()
-        sectionName = intent.getStringExtra("SECTION_NAME").toString()
-        sectionID = intent.getStringExtra("SECTION_ID").toString()
+
 
         select_students = findViewById(R.id.select_students)
         SectionName = findViewById(R.id.enter_sectionName)
@@ -70,7 +68,6 @@ class AdminMapping4 : AppCompatActivity() {
                 putExtra("USER_ID", userID)
                 putExtra("COHORT", selectedCohort)
                 putExtra("COURSE_ID", selectedCourseID)
-                putExtra("SECTION_NAME", sectionName)
                 putExtra("COURSE_NAME", selectedCourseName)
                 putExtra("INSTRUCTOR", selectedCourseIDInstructor)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -89,7 +86,6 @@ class AdminMapping4 : AppCompatActivity() {
             putExtra("USER_ID", userID)
             putExtra("COHORT", selectedCohort)
             putExtra("COURSE_ID", selectedCourseID)
-            putExtra("SECTION_NAME", sectionName)
             putExtra("COURSE_NAME", selectedCourseName)
             putExtra("INSTRUCTOR", selectedCourseIDInstructor)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -1,0 +1,5 @@
+<resources>
+    <!-- Confirmation dialog dimensions -->
+    <dimen name="confirmation_dialog_height">200dp</dimen>
+    <dimen name="confirmation_dialog_width">300dp</dimen>
+</resources>

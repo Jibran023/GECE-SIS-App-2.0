@@ -16,7 +16,6 @@ class StudentAdapter2(private val students: List<String>) : RecyclerView.Adapter
 
     class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val studentNameTextView: TextView = itemView.findViewById(R.id.studentNameTextView)
-        val studentCheckBox: CheckBox = itemView.findViewById(R.id.studentCheckBox)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -28,7 +27,6 @@ class StudentAdapter2(private val students: List<String>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student = students[position]
         holder.studentNameTextView.text = student
-        holder.studentCheckBox.isChecked = false // Reset checkbox state
     }
 
     override fun getItemCount(): Int {

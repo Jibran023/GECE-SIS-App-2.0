@@ -18,15 +18,14 @@ if ($conn->connect_error) {
 // Get the year and rollNumber from the request
 $year = $_GET['year'];
 $rollNumber = $_GET['rollNumber'];
-$id = $_GET['id'];
 
 // Prepare the SQL statement
 $sql = "Select * From studentmap sm
 INNER JOIN studentsinformation si ON sm.RollNumber = si.RollNumber
-Where sm.SessionID = ? AND sm.CourseID = ? AND sm.SectionID != ?;";
+Where sm.SessionID = ? AND sm.CourseID = ? AND sm.SectionID is NULL;";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $year, $rollNumber, $id); // 'ss' for string (year and rollNumber)
+$stmt->bind_param("ss", $year, $rollNumber); // 'ss' for string (year and rollNumber)
 $stmt->execute();
 $result = $stmt->get_result();
 

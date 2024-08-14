@@ -11,16 +11,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.gece_sisapp20.LoginScreen
 import com.example.gece_sisapp20.R
 import com.example.gece_sisapp20.StudentAdapter2
+import org.json.JSONException
+import org.json.JSONObject
 import java.net.URLEncoder
 
 
@@ -43,7 +48,11 @@ class AdminMapping3 : AppCompatActivity() {
 
     private lateinit var studentsaddDialog: Dialog
     private lateinit var studentsremoveDialog: Dialog
-    private lateinit var select_students_list: List<String>
+    private var select_students_list_to_remove = mutableListOf<String>()
+    private var select_students_list_to_add = mutableListOf<String>()
+
+    private lateinit var recyclerViewStudents : RecyclerView
+    private lateinit var studentCountTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +74,7 @@ class AdminMapping3 : AppCompatActivity() {
         Log.d("LATESTINFO", "Cohort select: $selectedCohort | Course ID selected: $selectedCourseID | Course Name: $selectedCourseName | Instructor: $selectedCourseIDInstructor | Instructor ID: $selectedCourseFacultyID | Course Session: $selectedCourseSessionID | Session Description: $selectedCourseDescription | Section Name: $sectionName | Section ID: $sectionID")
 
         // Find views by ID
-        val studentCountTextView : TextView = findViewById(R.id.studentCountTextView)
+        studentCountTextView = findViewById(R.id.studentCountTextView)
 
 
         // Back button functionality
@@ -79,6 +88,8 @@ class AdminMapping3 : AppCompatActivity() {
                 putExtra("SECTION_NAME", sectionName)
                 putExtra("COURSE_NAME", selectedCourseName)
                 putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+                putExtra("COURSE_SESSION", selectedCourseSessionID)
+//                putExtra("SECTION_ID", sectionID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -89,7 +100,7 @@ class AdminMapping3 : AppCompatActivity() {
         studentCountTextView.text = "Number of students mapped: ${students.size}"
 
         // Set up the RecyclerView
-        val recyclerViewStudents : RecyclerView = findViewById(R.id.recyclerViewStudents)
+        recyclerViewStudents = findViewById(R.id.recyclerViewStudents)
         // Fetch students and update the RecyclerView
         fetchStudents { students ->
             // Update the student count text
@@ -106,9 +117,13 @@ class AdminMapping3 : AppCompatActivity() {
         }
         removestudents_btn = findViewById(R.id.move)
         removestudents_btn.setOnClickListener{
-            showStudentDialog()
+            showStudentRemoveDialog()
         }
+
         delete_section_btn = findViewById(R.id.remove)
+        delete_section_btn.setOnClickListener{
+            showDeleteSectionConfirmationDialog()
+        }
 
     }
 
@@ -122,6 +137,7 @@ class AdminMapping3 : AppCompatActivity() {
             putExtra("SECTION_NAME", sectionName)
             putExtra("COURSE_NAME", selectedCourseName)
             putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+//            putExtra("SECTION_ID", sectionID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
@@ -130,7 +146,7 @@ class AdminMapping3 : AppCompatActivity() {
     private fun fetchStudents(callback: (List<String>) -> Unit) {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
-
+//            Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName", Toast.LENGTH_SHORT).show()
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apiGetStudents,
@@ -177,14 +193,16 @@ class AdminMapping3 : AppCompatActivity() {
         reqQueue.add(jsonArrayRequest)
     }
 
-    private fun showStudentDialog() {
+    private fun showStudentRemoveDialog() {
             fetchStudents { students ->
-                studentsremoveDialog = createDialogWithCheckboxes(
+                studentsremoveDialog = createDialogWithCheckboxestoremove(
                     this, "Select Students", students
                 ) { selectedStudents ->
-                    select_students_list = selectedStudents
-                    Log.d("ShowStudentDialog", "Selected Students: ${selectedStudents.joinToString(", ")}")
-//                    select_students.text = selectedStudents.joinToString(", ")
+                    select_students_list_to_remove =
+                        selectedStudents.toMutableList() // saving the selected students
+
+                    // Log the selected students
+                    Log.d("ShowStudentRemoveDialog", "Selected Students: ${selectedStudents.joinToString(", ")}")
                 }
                 studentsremoveDialog.show()
 
@@ -196,21 +214,51 @@ class AdminMapping3 : AppCompatActivity() {
             studentsaddDialog = createDialogWithCheckboxestoadd(
                 this, "Select Students", students
             ) { selectedStudents ->
-                select_students_list = selectedStudents
-                Log.d("ShowStudentDialog", "Selected Students: ${selectedStudents.joinToString(", ")}")
-//                    select_students.text = selectedStudents.joinToString(", ")
+                select_students_list_to_add = selectedStudents.toMutableList()
+
+                Log.d("ShowStudentAddDialog", "Selected Students: ${selectedStudents.joinToString(", ")}")
             }
             studentsaddDialog.show()
 
         }
     }
 
-    private fun createDialogWithCheckboxes(
-        context: Context,
-        title: String,
-        items: List<String>,
-        onItemsSelected: (selectedItems: List<String>) -> Unit
-    ): Dialog {
+    private fun removeStudentsFromSection(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        // Construct the URL with parameters
+        val studentNames = URLEncoder.encode(select_students_list_to_remove.joinToString(","), "UTF-8")
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            apiRemoveStudents,
+            null,
+            { response ->
+                try {
+                    Log.d("ReSpO", "Response: $response")
+                    // Check if the response is a JSONObject and handle it
+                    val status = response.optString("status")
+                    val message = response.optString("message")
+                    if (status == "success") {
+                        Log.d("RemoveStudents", "Successfully removed students")
+                        // Optionally, show a success message to the user
+                        onSuccess() // Call the onSuccess callback to fetch and update students
+                    } else {
+                        Log.e("RemoveStudents", "Error removing students: $message")
+                        // Optionally, show an error message to the user
+                    }
+                } catch (e: JSONException) {
+                    Log.e("RemoveStudents", "Error parsing response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("RemoveStudents", "Error removing students: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonObjectRequest)
+    }
+
+    private fun createDialogWithCheckboxestoremove(context: Context, title: String, items: List<String>, onItemsSelected: (selectedItems: List<String>) -> Unit): Dialog {
         val selectedItems = mutableListOf<String>()
         val dialog = Dialog(context)
         dialog.setContentView(R.layout.dialog_list_checkboxes)
@@ -224,44 +272,101 @@ class AdminMapping3 : AppCompatActivity() {
 
         val applyButton = dialog.findViewById<Button>(R.id.apply_button)
         applyButton.setOnClickListener {
-            // Show the confirmation dialog
-            val confirmationDialog = Dialog(context)
-            confirmationDialog.setContentView(R.layout.dialog_confirmation) // You need to create this layout
+            if (selectedItems.isEmpty()) {
+                Toast.makeText(context, "No students selected!", Toast.LENGTH_SHORT).show()
+            } else {
+                // Show the confirmation dialog
+                val confirmationDialog = Dialog(context)
+                confirmationDialog.setContentView(R.layout.dialog_confirmation) // You need to create this layout
 
-            val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
-            confirmText.text = "Are you sure you want to apply these changes?"
+                val scrollView = confirmationDialog.findViewById<ScrollView>(R.id.confirmation_scroll_view)
+                val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
 
-            val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
-            val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+                // Set the confirmation message with selected students
+                val studentsListText = selectedItems.joinToString(separator = "\n")
+                confirmText.text = "Are you sure you want to remove these students?\n\n$studentsListText"
 
-            yesButton.setOnClickListener {
-                // Handle the user's confirmation
-                if (selectedItems.contains("All")) {
-                    selectedItems.clear()
-                    selectedItems.addAll(items.filter { it != "All" })
+                // Adjust ScrollView dimensions
+                val params = scrollView.layoutParams
+                params.height = context.resources.getDimensionPixelSize(R.dimen.confirmation_dialog_height)
+                params.width = context.resources.getDimensionPixelSize(R.dimen.confirmation_dialog_width)
+                scrollView.layoutParams = params
+
+
+                val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
+                val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+
+                yesButton.setOnClickListener {
+                    // Handle the user's confirmation
+                    onItemsSelected(selectedItems)
+
+                    removeStudentsFromSection {
+                        // Fetch students and update the RecyclerView after removal
+                        fetchStudents { updatedStudents ->
+                            // Update the student count text
+                            studentCountTextView.text = "Number of students mapped: ${updatedStudents.size}"
+
+                            // Set up the RecyclerView with fetched students
+                            recyclerViewStudents.layoutManager = LinearLayoutManager(this)
+                            recyclerViewStudents.adapter = StudentAdapter2(updatedStudents)
+                        }
+                    }
+
+                    confirmationDialog.dismiss() // Close the confirmation dialog
+                    dialog.dismiss() // Close the main dialog
                 }
-                onItemsSelected(selectedItems)
-                confirmationDialog.dismiss() // Close the confirmation dialog
-                dialog.dismiss() // Close the main dialog
-            }
 
-            noButton.setOnClickListener {
-                // Dismiss the confirmation dialog without making any changes
-                confirmationDialog.dismiss()
-            }
+                noButton.setOnClickListener {
+                    // Dismiss the confirmation dialog without making any changes
+                    confirmationDialog.dismiss()
+                }
 
-            confirmationDialog.show()
+                confirmationDialog.show()
+            }
         }
 
         return dialog
     }
 
-    private fun createDialogWithCheckboxestoadd(
-        context: Context,
-        title: String,
-        items: List<String>,
-        onItemsSelected: (selectedItems: List<String>) -> Unit
-    ): Dialog {
+    private fun addStudentstoThisSection(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        // Construct the URL with parameters
+        val studentNames = URLEncoder.encode(select_students_list_to_add.joinToString(","), "UTF-8")
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+
+        Log.d("apiRemoveStds", "URL: $apiRemoveStudents")
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            apiRemoveStudents,
+            null,
+            { response ->
+                try {
+                    Log.d("ReSpO", "Response: $response")
+                    // Check if the response is a JSONObject and handle it
+                    val status = response.optString("status")
+                    val message = response.optString("message")
+
+                    if (status == "success") {
+                        Log.d("RemoveStudents", "Successfully removed students")
+                        // Optionally, show a success message to the user
+                        onSuccess() // Call the onSuccess callback to fetch and update students
+                    } else {
+                        Log.e("RemoveStudents", "Error removing students: $message")
+                        // Optionally, show an error message to the user
+                    }
+                } catch (e: JSONException) {
+                    Log.e("RemoveStudents", "Error parsing response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("RemoveStudents", "Error removing students: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonObjectRequest)
+    }
+
+    private fun createDialogWithCheckboxestoadd(context: Context, title: String, items: List<String>, onItemsSelected: (selectedItems: List<String>) -> Unit): Dialog {
         val selectedItems = mutableListOf<String>()
         val dialog = Dialog(context)
         dialog.setContentView(R.layout.dialog_list_checkboxes)
@@ -275,36 +380,197 @@ class AdminMapping3 : AppCompatActivity() {
 
         val applyButton = dialog.findViewById<Button>(R.id.apply_button)
         applyButton.setOnClickListener {
-            // Show the confirmation dialog
-            val confirmationDialog = Dialog(context)
-            confirmationDialog.setContentView(R.layout.dialog_confirmation) // You need to create this layout
+            if (selectedItems.isEmpty()) {
+                Toast.makeText(context, "No students selected!", Toast.LENGTH_SHORT).show()
+            } else {
+                // Show the confirmation dialog
+                val confirmationDialog = Dialog(context)
+                confirmationDialog.setContentView(R.layout.dialog_confirmation) // You need to create this layout
 
-            val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
-            confirmText.text = "Are you sure you want to apply these changes?"
+                val scrollView = confirmationDialog.findViewById<ScrollView>(R.id.confirmation_scroll_view)
+                val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
 
-            val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
-            val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+                // Set the confirmation message with selected students
+                val studentsListText = selectedItems.joinToString(separator = "\n")
+                confirmText.text = "Are you sure you want to add these students?\n\n$studentsListText"
 
-            yesButton.setOnClickListener {
-                // Handle the user's confirmation
-                if (selectedItems.contains("All")) {
-                    selectedItems.clear()
-                    selectedItems.addAll(items.filter { it != "All" })
+                // Adjust ScrollView dimensions
+                val params = scrollView.layoutParams
+                params.height = context.resources.getDimensionPixelSize(R.dimen.confirmation_dialog_height)
+                params.width = context.resources.getDimensionPixelSize(R.dimen.confirmation_dialog_width)
+                scrollView.layoutParams = params
+
+
+                val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
+                val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+
+                yesButton.setOnClickListener {
+                    // Handle the user's confirmation
+                    onItemsSelected(selectedItems)
+
+                    addStudentstoThisSection {
+                        // Fetch students and update the RecyclerView after removal
+                        fetchStudents { updatedStudents ->
+                            // Update the student count text
+                            studentCountTextView.text = "Number of students mapped: ${updatedStudents.size}"
+
+                            // Set up the RecyclerView with fetched students
+                            recyclerViewStudents.layoutManager = LinearLayoutManager(this)
+                            recyclerViewStudents.adapter = StudentAdapter2(updatedStudents)
+                        }
+                    }
+
+                    confirmationDialog.dismiss() // Close the confirmation dialog
+                    dialog.dismiss() // Close the main dialog
                 }
-                onItemsSelected(selectedItems)
-                confirmationDialog.dismiss() // Close the confirmation dialog
-                dialog.dismiss() // Close the main dialog
-            }
 
-            noButton.setOnClickListener {
-                // Dismiss the confirmation dialog without making any changes
-                confirmationDialog.dismiss()
+                noButton.setOnClickListener {
+                    // Dismiss the confirmation dialog without making any changes
+                    confirmationDialog.dismiss()
+                }
+                confirmationDialog.show()
             }
-
-            confirmationDialog.show()
         }
-
         return dialog
     }
+
+    private fun DeleteSection(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        // Construct the URL with parameters
+        val studentNames = URLEncoder.encode(select_students_list_to_add.joinToString(","), "UTF-8")
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+
+        Log.d("apiRemoveStds", "URL: $apiRemoveStudents")
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            apiRemoveStudents,
+            null,
+            { response ->
+                try {
+                    Log.d("ReSpO", "Response: $response")
+                    // Check if the response is a JSONObject and handle it
+                    val status = response.optString("status")
+                    val message = response.optString("message")
+
+                    if (status == "success") {
+                        Log.d("RemoveStudents", "Successfully removed students")
+                        // Optionally, show a success message to the user
+                        onSuccess() // Call the onSuccess callback to fetch and update students
+                    } else {
+                        Log.e("RemoveStudents", "Error removing students: $message")
+                        // Optionally, show an error message to the user
+                    }
+                } catch (e: JSONException) {
+                    Log.e("RemoveStudents", "Error parsing response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("RemoveStudents", "Error removing students: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonObjectRequest)
+    }
+
+    private fun showDeleteSectionConfirmationDialog() {
+        val confirmationDialog = Dialog(this)
+        confirmationDialog.setContentView(R.layout.dialog_confirmation) // Use the layout you created for confirmation
+
+        val scrollView = confirmationDialog.findViewById<ScrollView>(R.id.confirmation_scroll_view)
+        val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
+        confirmText.text = "Are you sure you want to delete this section and remove all students?"
+
+        val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
+        val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+
+        yesButton.setOnClickListener {
+            // Proceed with deletion
+//            deleteSection {
+//                // Callback after deletion is complete
+//                Toast.makeText(this, "Section deleted successfully", Toast.LENGTH_SHORT).show()
+//            }
+            confirmationDialog.dismiss() // Close the confirmation dialog
+        }
+
+        noButton.setOnClickListener {
+            confirmationDialog.dismiss() // Dismiss the confirmation dialog without making any changes
+        }
+
+        confirmationDialog.show()
+    }
+
+    private fun deleteSection(onSuccess: () -> Unit) {
+        // First, remove all students from the section
+        removeStudentsFromSection {
+            // After removing students, update the facultycourses table
+            updateFacultyCourses {
+                // After updating facultycourses, delete the section
+                deleteSectionFromTable {
+                    onSuccess() // Call the onSuccess callback to notify that the deletion process is complete
+                }
+            }
+        }
+    }
+
+    private fun updateFacultyCourses(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_faculty_section.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            apiUpdateFacultyCourses,
+            null,
+            { response ->
+                try {
+                    Log.d("UpdateFacultyCourses", "Response: $response")
+                    val status = response.optString("status")
+                    val message = response.optString("message")
+                    if (status == "success") {
+                        Log.d("UpdateFacultyCourses", "Successfully updated faculty courses")
+                        onSuccess() // Call the onSuccess callback to delete the section
+                    } else {
+                        Log.e("UpdateFacultyCourses", "Error updating faculty courses: $message")
+                    }
+                } catch (e: JSONException) {
+                    Log.e("UpdateFacultyCourses", "Error parsing response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("UpdateFacultyCourses", "Error updating faculty courses: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonObjectRequest)
+    }
+
+    private fun deleteSectionFromTable(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        val apiDeleteSection = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/delete_this_section.php?SectionID=$sectionID"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET,
+            apiDeleteSection,
+            null,
+            { response ->
+                try {
+                    Log.d("DeleteSection", "Response: $response")
+                    val status = response.optString("status")
+                    val message = response.optString("message")
+                    if (status == "success") {
+                        Log.d("DeleteSection", "Successfully deleted section")
+                        onSuccess() // Notify that the deletion process is complete
+                    } else {
+                        Log.e("DeleteSection", "Error deleting section: $message")
+                    }
+                } catch (e: JSONException) {
+                    Log.e("DeleteSection", "Error parsing response: ${e.message}")
+                }
+            },
+            { error ->
+                Log.e("DeleteSection", "Error deleting section: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonObjectRequest)
+    }
+
 
 }

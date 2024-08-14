@@ -33,6 +33,7 @@ class AdminMapping2 : AppCompatActivity() {
     private lateinit var selectedCourseFacultyID: String
     private lateinit var selectedCourseSessionID: String
     private lateinit var selectedCourseDescription: String
+//    private lateinit var sectionID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class AdminMapping2 : AppCompatActivity() {
         selectedCourseFacultyID = intent.getStringExtra("FACULTY_ID").toString()
         selectedCourseSessionID = intent.getStringExtra("COURSE_SESSION").toString()
         selectedCourseDescription = intent.getStringExtra("COURSE_DESC").toString()
+//        sectionID = intent.getStringExtra("SECTION_ID").toString()
 
 
 
@@ -79,6 +81,7 @@ class AdminMapping2 : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
 
         recyclerViewSections = findViewById(R.id.recyclerViewSections)
 
