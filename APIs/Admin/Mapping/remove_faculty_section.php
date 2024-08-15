@@ -11,6 +11,7 @@ $database = 'gecesisapp';  // Your database name
 $facultyID = $_GET['FacultyID'] ?? '';
 $courseID = $_GET['CourseID'] ?? '';
 $sessionID = $_GET['SessionID'] ?? '';
+$sectionID = $_GET['SectionID'] ?? '';
 
 // Create a connection to the database
 $conn = new mysqli($host, $username, $password, $database);
@@ -24,13 +25,11 @@ if ($conn->connect_error) {
 }
 
 // Prepare the SQL statement to update SectionID
-$query = "UPDATE facultycourses fc
-    INNER JOIN academicsession a ON fc.SessionID = a.SessionID
-    SET fc.SectionID = NULL
+$query = "Delete From facultycourses fc
     WHERE fc.FacultyID = ? 
     AND fc.CourseID = ? 
-    AND fc.SessionID = ? 
-    AND a.Current = 1";
+    AND fc.SessionID = ?
+    AND fc.SectionID = ? ";
 $stmt = $conn->prepare($query);
 
 if (!$stmt) {
@@ -42,7 +41,7 @@ if (!$stmt) {
 }
 
 // Bind parameters
-$stmt->bind_param("sss", $facultyID, $courseID, $sessionID);
+$stmt->bind_param("ssss", $facultyID, $courseID, $sessionID, $sectionID);
 
 // Execute the query
 if ($stmt->execute()) {

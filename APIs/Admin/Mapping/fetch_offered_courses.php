@@ -20,7 +20,7 @@ $rollNumber = $_GET['rollNumber'];
 
 
 // Prepare the SQL statement
-$sql = "Select c.CourseID, c.Name, f.FacultyName, f.FacultyID, a.SessionID, a.Description    From offeredcourses oc
+$sql = "Select c.CourseID, c.Name, f.FacultyName, f.FacultyID, a.SessionID, a.Description  From offeredcourses oc
 INNER JOIN courses c ON c.CourseID = oc.CourseID
 INNER JOIN facultycourses fc ON fc.CourseID = oc.CourseID
 INNER JOIN faculty f ON fc.FacultyID = f.FacultyID

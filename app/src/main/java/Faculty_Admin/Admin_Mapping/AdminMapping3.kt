@@ -1,6 +1,7 @@
 package Faculty_Admin.Admin_Mapping
 
 import Faculty_Admin.Announcement.CheckboxAdapter
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -50,6 +51,7 @@ class AdminMapping3 : AppCompatActivity() {
     private lateinit var studentsremoveDialog: Dialog
     private var select_students_list_to_remove = mutableListOf<String>()
     private var select_students_list_to_add = mutableListOf<String>()
+    private var select_students_list_to_delete = mutableListOf<String>()
 
     private lateinit var recyclerViewStudents : RecyclerView
     private lateinit var studentCountTextView: TextView
@@ -75,8 +77,6 @@ class AdminMapping3 : AppCompatActivity() {
 
         // Find views by ID
         studentCountTextView = findViewById(R.id.studentCountTextView)
-
-
         // Back button functionality
         val backButton: ImageButton = findViewById(R.id.backButton)
         backButton.setOnClickListener {
@@ -96,7 +96,6 @@ class AdminMapping3 : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
 
         // Set up the RecyclerView
         recyclerViewStudents = findViewById(R.id.recyclerViewStudents)
@@ -138,6 +137,7 @@ class AdminMapping3 : AppCompatActivity() {
             putExtra("INSTRUCTOR", selectedCourseIDInstructor)
             putExtra("FACULTY_ID", selectedCourseFacultyID)
             putExtra("COURSE_DESC", selectedCourseDescription)
+            putExtra("COURSE_SESSION", selectedCourseSessionID)
 //            putExtra("SECTION_ID", sectionID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
@@ -147,7 +147,8 @@ class AdminMapping3 : AppCompatActivity() {
     private fun fetchStudents(callback: (List<String>) -> Unit) {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
-//            Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName | SessionID: $selectedCourseSessionID | CourseID: $selectedCourseID", Toast.LENGTH_SHORT).show()
+            Log.d("AFDELETE", "Selected Section: $sectionName | ID: $sectionName | SessionID: $selectedCourseSessionID | CourseID: $selectedCourseID")
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apiGetStudents,
@@ -222,41 +223,6 @@ class AdminMapping3 : AppCompatActivity() {
             studentsaddDialog.show()
 
         }
-    }
-
-    private fun removeStudentsFromSection(onSuccess: () -> Unit) {
-        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        // Construct the URL with parameters
-        val studentNames = URLEncoder.encode(select_students_list_to_remove.joinToString(","), "UTF-8")
-        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET,
-            apiRemoveStudents,
-            null,
-            { response ->
-                try {
-                    Log.d("ReSpO", "Response: $response")
-                    // Check if the response is a JSONObject and handle it
-                    val status = response.optString("status")
-                    val message = response.optString("message")
-                    if (status == "success") {
-                        Log.d("RemoveStudents", "Successfully removed students")
-                        // Optionally, show a success message to the user
-                        onSuccess() // Call the onSuccess callback to fetch and update students
-                    } else {
-                        Log.e("RemoveStudents", "Error removing students: $message")
-                        // Optionally, show an error message to the user
-                    }
-                } catch (e: JSONException) {
-                    Log.e("RemoveStudents", "Error parsing response: ${e.message}")
-                }
-            },
-            { error ->
-                Log.e("RemoveStudents", "Error removing students: ${error.message}")
-            }
-        )
-        reqQueue.add(jsonObjectRequest)
     }
 
     private fun createDialogWithCheckboxestoremove(context: Context, title: String, items: List<String>, onItemsSelected: (selectedItems: List<String>) -> Unit): Dialog {
@@ -435,13 +401,141 @@ class AdminMapping3 : AppCompatActivity() {
         return dialog
     }
 
-    private fun DeleteSection(onSuccess: () -> Unit) {
+    private fun fetchstudentstodelete(onSuccess: () -> Unit){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        // Construct the URL with parameters
-        val studentNames = URLEncoder.encode(select_students_list_to_add.joinToString(","), "UTF-8")
-        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+            Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName", Toast.LENGTH_SHORT).show()
 
-        Log.d("apiRemoveStds", "URL: $apiRemoveStudents")
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET,
+            apiGetStudents,
+            null,
+            { response ->
+                Log.d("ShowDeleteDialog", "Selected Students: $response")
+                val students = mutableListOf<String>()
+                for (i in 0 until response.length()) {
+                    val jsonObject = response.getJSONObject(i)
+                    val student = jsonObject.getString("Name")
+                    students.add(student)
+                }
+                select_students_list_to_delete = students
+                Log.d("ShowDeleteDialog", "Selected Students: ${select_students_list_to_delete.joinToString(", ")}")
+                onSuccess()
+            },
+            { error ->
+                Log.e("FetchStudents", "Error fetching students: ${error.message}")
+
+            }
+        )
+        reqQueue.add(jsonArrayRequest)
+    }
+
+    private fun showDeleteSectionConfirmationDialog() {
+        val confirmationDialog = Dialog(this)
+        confirmationDialog.setContentView(R.layout.dialog_confirmation) // Use the layout you created for confirmation
+
+        val scrollView = confirmationDialog.findViewById<ScrollView>(R.id.confirmation_scroll_view)
+        val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
+        confirmText.text = "Are you sure you want to delete this section and remove all students?"
+
+        val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
+        val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
+
+        yesButton.setOnClickListener {
+            // Proceed with deletion
+            Toast.makeText(this, "Deleting Section Now..", Toast.LENGTH_SHORT).show()
+            deleteSection {
+                // Callback after deletion is complete
+                Toast.makeText(this, "Section deleted successfully", Toast.LENGTH_SHORT).show()
+                // Redirect to Admin Mapping 2 screen
+                val intent = Intent(this, AdminMapping2::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    putExtra("COHORT", selectedCohort)
+                    putExtra("COURSE_ID", selectedCourseID)
+                    putExtra("SECTION_NAME", sectionName)
+                    putExtra("COURSE_NAME", selectedCourseName)
+                    putExtra("INSTRUCTOR", selectedCourseIDInstructor)
+                    putExtra("FACULTY_ID", selectedCourseFacultyID)
+                    putExtra("COURSE_DESC", selectedCourseDescription)
+                    putExtra("COURSE_SESSION", selectedCourseSessionID)
+                } // Replace with your actual activity class
+
+                startActivity(intent)
+                finish()
+            }
+            confirmationDialog.dismiss() // Close the confirmation dialog
+        }
+
+        noButton.setOnClickListener {
+            confirmationDialog.dismiss() // Dismiss the confirmation dialog without making any changes
+        }
+
+        confirmationDialog.show()
+    }
+
+    private fun deleteSection(onSuccess: () -> Unit) {
+        // First, remove all students from the section
+        removeAllStudentsFromSection {
+            Toast.makeText(this, "Students Removed", Toast.LENGTH_SHORT).show()
+            // After removing students, update the facultycourses table
+            updateFacultyCourses {
+                Toast.makeText(this, "Section removed from faculty", Toast.LENGTH_SHORT).show()
+                // After updating facultycourses, delete the section
+                deleteSectionFromTable {
+                    Toast.makeText(this, "Section removed", Toast.LENGTH_SHORT).show()
+                    onSuccess() // Call the onSuccess callback to notify that the deletion process is complete
+                }
+            }
+        }
+    }
+
+    private fun removeAllStudentsFromSection(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+        fetchstudentstodelete {
+            // Construct the URL with parameters
+            val studentNames =
+                URLEncoder.encode(select_students_list_to_delete.joinToString(","), "UTF-8")
+            val apiRemoveStudents =
+                "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+            Log.d("apiGetStudents", "Url: $apiRemoveStudents")
+            Log.d("apiGetStudents", "students list: $studentNames")
+            val jsonObjectRequest = JsonObjectRequest(
+                Request.Method.GET,
+                apiRemoveStudents,
+                null,
+                { response ->
+                    try {
+                        Log.d("ReSpO", "Response: $response")
+                        // Check if the response is a JSONObject and handle it
+                        val status = response.optString("status")
+                        val message = response.optString("message")
+                        if (status == "success") {
+                            Log.d("RemoveStudents", "Successfully removed students")
+                            // Optionally, show a success message to the user
+                            onSuccess() // Call the onSuccess callback to fetch and update students
+                        } else {
+                            Log.e("RemoveStudents", "Error removing students: $message")
+                            // Optionally, show an error message to the user
+                        }
+                    } catch (e: JSONException) {
+                        Log.e("RemoveStudents", "Error parsing response: ${e.message}")
+                    }
+                },
+                { error ->
+                    Log.e("RemoveStudents", "Error removing students: ${error.message}")
+                }
+            )
+            reqQueue.add(jsonObjectRequest)
+        }
+    }
+
+    private fun removeStudentsFromSection(onSuccess: () -> Unit) {
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+//        var select_students_list_to_delete = mutableListOf<String>()
+        // Construct the URL with parameters
+        val studentNames = URLEncoder.encode(select_students_list_to_remove.joinToString(","), "UTF-8")
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
@@ -453,7 +547,6 @@ class AdminMapping3 : AppCompatActivity() {
                     // Check if the response is a JSONObject and handle it
                     val status = response.optString("status")
                     val message = response.optString("message")
-
                     if (status == "success") {
                         Log.d("RemoveStudents", "Successfully removed students")
                         // Optionally, show a success message to the user
@@ -473,49 +566,9 @@ class AdminMapping3 : AppCompatActivity() {
         reqQueue.add(jsonObjectRequest)
     }
 
-    private fun showDeleteSectionConfirmationDialog() {
-        val confirmationDialog = Dialog(this)
-        confirmationDialog.setContentView(R.layout.dialog_confirmation) // Use the layout you created for confirmation
-
-        val scrollView = confirmationDialog.findViewById<ScrollView>(R.id.confirmation_scroll_view)
-        val confirmText = confirmationDialog.findViewById<TextView>(R.id.confirmation_text)
-        confirmText.text = "Are you sure you want to delete this section and remove all students?"
-
-        val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
-        val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
-
-        yesButton.setOnClickListener {
-            // Proceed with deletion
-//            deleteSection {
-//                // Callback after deletion is complete
-//                Toast.makeText(this, "Section deleted successfully", Toast.LENGTH_SHORT).show()
-//            }
-            confirmationDialog.dismiss() // Close the confirmation dialog
-        }
-
-        noButton.setOnClickListener {
-            confirmationDialog.dismiss() // Dismiss the confirmation dialog without making any changes
-        }
-
-        confirmationDialog.show()
-    }
-
-    private fun deleteSection(onSuccess: () -> Unit) {
-        // First, remove all students from the section
-        removeStudentsFromSection {
-            // After removing students, update the facultycourses table
-            updateFacultyCourses {
-                // After updating facultycourses, delete the section
-                deleteSectionFromTable {
-                    onSuccess() // Call the onSuccess callback to notify that the deletion process is complete
-                }
-            }
-        }
-    }
-
     private fun updateFacultyCourses(onSuccess: () -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_faculty_section.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID"
+        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_faculty_section.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,

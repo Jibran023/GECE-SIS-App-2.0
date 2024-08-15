@@ -150,20 +150,4 @@ class AdminMapping2 : AppCompatActivity() {
         reqQueue.add(jsonArrayRequest)
     }
 
-    private fun saveToSharedPreferences() {
-        val sharedPreferences = getSharedPreferences("AdminMappingPrefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("SELECTED_COHORT", selectedCohort)
-        editor.putString("SELECTED_COURSE_ID", selectedCourseID)
-        editor.apply() // or editor.commit() for synchronous save
-    }
-
-    private fun retrieveFromSharedPreferences() {
-        val sharedPreferences = getSharedPreferences("AdminMappingPrefs", MODE_PRIVATE)
-        selectedCohort = sharedPreferences.getString("SELECTED_COHORT", "") ?: ""
-        selectedCourseID = sharedPreferences.getString("SELECTED_COURSE_ID", "") ?: ""
-    }
-
-
-
 }
