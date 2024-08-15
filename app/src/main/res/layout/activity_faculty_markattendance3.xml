@@ -1,103 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/white"
-    tools:context="Faculty_Admin.Attendance.faculty_markattendance3">
+    android:background="@color/white">
 
-    <!-- Back Button -->
-    <ImageView
-        android:id="@+id/backbtn"
+    <View android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/std_dashboard_view"/>
+
+    <TextView android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark Attendance"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView android:id="@+id/backbtn"
         android:layout_width="50dp"
         android:layout_height="45dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/back_image_desc"
-        app:srcCompat="@drawable/arrow_back_ios_24_black" />
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        app:srcCompat="@drawable/arrow_back_ios_24"
+        android:contentDescription="@string/back_image_desc"/>
 
-    <!-- Date Picker -->
-    <Faculty_Admin.Attendance.CustomDatePicker
-        android:id="@+id/date_picker"
-        android:layout_width="326dp"
-        android:layout_height="309dp"
+    <!-- iOS-Style Date Picker using NumberPicker -->
+    <LinearLayout
+        android:id="@+id/date_picker_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:calendarTextColor="@color/white"
-        android:background="@color/black"/>
+        android:layout_marginTop="200dp"
+        android:orientation="horizontal">
 
-    <!-- Header Text for Attendance Status -->
-    <TextView
-        android:id="@+id/attendance_present"
+        <!-- Day Picker -->
+        <NumberPicker
+            android:id="@+id/day_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"/>
+
+        <!-- Month Picker -->
+        <NumberPicker
+            android:id="@+id/month_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black" />
+
+        <!-- Year Picker -->
+        <NumberPicker
+            android:id="@+id/year_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Present "
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@id/date_picker"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="70dp"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp" />
+        android:layout_height="1000dp"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical"
+        android:padding="34dp">
 
-    <TextView
-        android:id="@+id/attendance_absent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/date_picker"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="16dp"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:text="Absent"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/attendance_late"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Late"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@id/date_picker"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="230dp"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        tools:ignore="RtlSymmetry" />
-
-    <!-- RecyclerView inside NestedScrollView for scrollable items -->
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@id/attendance_present"
-        android:layout_above="@id/savebutton"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <Button
+            android:id="@+id/nextbtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </androidx.core.widget.NestedScrollView>
-
-    <!-- Save Button -->
-    <Button
-        android:id="@+id/savebutton"
-        android:layout_width="140dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#FF8570"
-        android:text="@string/Nextbutton"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:visibility="gone" />
-
-
+            android:layout_height="60dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginRight="24dp"
+            android:backgroundTint="#FF8570"
+            android:text="Mark Attendance"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -401,6 +401,7 @@ class AdminMapping3 : AppCompatActivity() {
         return dialog
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun fetchstudentstodelete(onSuccess: () -> Unit){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"

@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name="Faculty_Admin.Attendance.CheckBoxAttendanceAdapter"
+            android:exported="false" />
+        <activity
+            android:name="Faculty_Admin.Attendance.FacultyViewAttendance2"
+            android:exported="false" />
+        <activity
             android:name="Faculty_Admin.Admin_Mapping.AdminMapping4"
             android:exported="false" />
         <activity

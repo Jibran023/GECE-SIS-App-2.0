@@ -22,7 +22,7 @@ $rollNumber = $_GET['rollNumber'];
 // Prepare the SQL statement
 $sql = "Select * From studentmap sm
 INNER JOIN studentsinformation si ON sm.RollNumber = si.RollNumber
-Where sm.SessionID = ? AND sm.CourseID = ? AND sm.SectionID is NULL;";
+Where sm.SessionID = ? AND sm.CourseID = ? AND sm.SectionID is NULL AND si.Status = 'Active';";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $year, $rollNumber); // 'ss' for string (year and rollNumber)

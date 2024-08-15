@@ -63,10 +63,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
             android:textColor="@color/black"
-            android:text="@string/semester_label"
+            android:text="Course"
             android:textSize="18sp"/>
 
         <Spinner
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="24dp"
             android:textColor="@color/black"
             android:text="Section"
@@ -103,7 +103,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginRight="24dp"
             android:backgroundTint="#FF8570"
-            android:text="@string/Nextbutton"
+            android:text="Next"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>

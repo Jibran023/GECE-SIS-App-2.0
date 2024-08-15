@@ -17,7 +17,8 @@ if ($conn->connect_error) {
 
 
 // Prepare the SQL statement
-$sql = "SELECT Description FROM academicsession";
+$sql = "SELECT Description FROM academicsession
+Where Current = 1";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();

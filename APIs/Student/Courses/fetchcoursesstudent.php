@@ -24,7 +24,7 @@ $semesterDescription = $_GET['semesterDescription'];
 $sql = "
 SELECT c.CourseID, c.Name
 FROM courses c
-JOIN studentmap sm ON c.CourseID = sm.CourseID
+INNER JOIN studentmap sm ON c.CourseID = sm.CourseID
 WHERE sm.RollNumber = ? AND sm.SessionID = (
     SELECT SessionID 
     FROM academicsession 

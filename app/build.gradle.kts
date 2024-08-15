@@ -51,4 +51,5 @@ dependencies {
     // API Requests
     implementation("com.android.volley:volley:1.2.1")
     implementation("org.bouncycastle:bcprov-jdk15to18:1.69") // for AES encryption/decryption
+    implementation ("androidx.cardview:cardview:1.0.0")
 }
