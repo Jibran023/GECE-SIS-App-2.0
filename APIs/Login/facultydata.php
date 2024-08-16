@@ -1,5 +1,5 @@
 <?php
-$host = '127.0.0.1:3307';  // Host name
+$host = '127.0.0.1:3306';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
 $password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
@@ -38,3 +38,6 @@ echo json_encode($data);
 // Close connection
 $conn->close();
 ?>
+
+
+

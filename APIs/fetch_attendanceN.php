@@ -1,0 +1,14 @@
+<?php
+require_once('class/querieshandler.php');
+
+$con = new querieshandler();
+$rollNumber = $_GET['rollNumber'];
+$semesterDescription = $_GET['semesterDescription'];
+$courseID = $_GET['courseID'];
+
+$result = $con->getAttendanceData($rollNumber, $semesterDescription, $courseID);
+
+// Output the result as JSON
+header('Content-Type: application/json');
+echo json_encode($result);
+?>
