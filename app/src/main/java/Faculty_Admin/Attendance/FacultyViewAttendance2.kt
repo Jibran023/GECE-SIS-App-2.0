@@ -43,6 +43,7 @@ class FacultyViewAttendance2 : AppCompatActivity() {
     private lateinit var selectedSecionID: String
     private lateinit var selectedSecionName: String
     private lateinit var selectedDate: String
+    private lateinit var selectedFacultyID: String
 
     private var studentNames: ArrayList<String> = arrayListOf()
     private var attendanceStatuses: ArrayList<String> = arrayListOf()
@@ -72,6 +73,7 @@ class FacultyViewAttendance2 : AppCompatActivity() {
         selectedSecionName = intent.getStringExtra("SECTION").toString()
         selectedSecionID = intent.getStringExtra("SECTIONID").toString()
         selectedCourseSessionID = intent.getStringExtra("SESSIONID").toString()
+        selectedFacultyID = intent.getStringExtra("SELECTED_FACULTY_ID").toString()
 
         val localDate: LocalDate = LocalDate.parse(selectedDate, dateFormatter)
 
@@ -89,6 +91,7 @@ class FacultyViewAttendance2 : AppCompatActivity() {
                 putExtra("SECTION", selectedSecionName)
                 putExtra("SECTIONID", selectedSecionID)
                 putExtra("SESSIONID", selectedCourseSessionID)
+                putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -129,13 +132,14 @@ class FacultyViewAttendance2 : AppCompatActivity() {
             putExtra("SECTION", selectedSecionName)
             putExtra("SECTIONID", selectedSecionID)
             putExtra("SESSIONID", selectedCourseSessionID)
+            putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
     }
 
     private fun fetchStudentAttendance(callback: (List<String>) -> Unit) {
-        if (userType == "faculty" || userType == "admin"){
+        if (userType == "faculty"){
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$userID&SectionID=$selectedSecionID&Date=$selectedDate"
             Log.d("Fetched Dates", "URL: $apiGetCohorts")
@@ -164,8 +168,34 @@ class FacultyViewAttendance2 : AppCompatActivity() {
             )
             reqQueue.add(jsonArrayRequest)
         }
-        else if (userType == "user") {
-
+        else if (userType == "admin") {
+            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$selectedFacultyID&SectionID=$selectedSecionID&Date=$selectedDate"
+            Log.d("Fetched Dates", "URL: $apiGetCohorts")
+            Log.d("Fetched Dates", "Section Name: $selectedSecionName | SectionID: $selectedSecionID | Date: $selectedDate | FacultyID: $selectedFacultyID")
+            val jsonArrayRequest = JsonArrayRequest(
+                Request.Method.GET,
+                apiGetCohorts,
+                null,
+                { response ->
+                    Log.d("Fetched Attendance", "Response: $response")
+                    studentNames.clear()
+                    attendanceStatuses.clear()
+                    for (i in 0 until response.length()) {
+                        val jsonObject = response.getJSONObject(i)
+                        val studentname = jsonObject.getString("Name")
+                        val attstatus = jsonObject.getString("AttendanceStatus")
+                        studentNames.add(studentname)
+                        attendanceStatuses.add(attstatus)
+                    }
+                    callback(studentNames)
+                },
+                { error ->
+                    Log.e("FetchCohorts", "Error fetching cohorts: ${error.message}")
+                    callback(emptyList())
+                }
+            )
+            reqQueue.add(jsonArrayRequest)
         }
     }
 

@@ -43,6 +43,8 @@ class faculty_markattendance1 : AppCompatActivity() {
     private var OfferedSectionName: ArrayList<String> = arrayListOf()
     private lateinit var selectedSecionName: String
 
+    private var FacultyIDs: ArrayList<String> = arrayListOf()
+    private lateinit var selectedFacultyID: String
 
     private lateinit var cohortSpinner: Spinner
     private lateinit var courseSpinner: Spinner
@@ -97,6 +99,7 @@ class faculty_markattendance1 : AppCompatActivity() {
                 selectedCourseID = OfferedCoursesID[position] // Get the corresponding CourseID using the position
                 selectedCourseName = OfferedCourses[position]
                 selectedCourseSessionID = SessionID[position]
+                selectedFacultyID = FacultyIDs[position] // saving faculty id for admin use
                 pass = true
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -137,6 +140,7 @@ class faculty_markattendance1 : AppCompatActivity() {
                     putExtra("SECTION", selectedSecionName)
                     putExtra("SECTIONID", selectedSecionID)
                     putExtra("SESSIONID", selectedCourseSessionID)
+                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)
@@ -179,7 +183,7 @@ class faculty_markattendance1 : AppCompatActivity() {
             )
             reqQueue.add(jsonArrayRequest)
         }
-        else if (userType == "user") {
+        else if (userType == "admin") {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_cohorts.php"
             val jsonArrayRequest = JsonArrayRequest(
@@ -277,6 +281,7 @@ class faculty_markattendance1 : AppCompatActivity() {
                         OfferedSectionID.clear()
                         OfferedSectionName.clear()
                         SessionID.clear()
+                        FacultyIDs.clear()
                         for (i in 0 until response.length()) {
                             val jsonObject = response.getJSONObject(i)
                             val courseName = jsonObject.getString("CNAME")
@@ -284,11 +289,13 @@ class faculty_markattendance1 : AppCompatActivity() {
                             val sessionID = jsonObject.getString("SessionID")
                             val sectionName = jsonObject.getString("SectionName")
                             val sectionID = jsonObject.getString("SectionID")
+                            val facID = jsonObject.getString("FacultyID")
                             OfferedCourses.add(courseName)
                             OfferedCoursesID.add(courseID)
                             SessionID.add(sessionID)
                             OfferedSectionID.add(sectionID)
                             OfferedSectionName.add(sectionName)
+                            FacultyIDs.add(facID)
 //                        Log.d("FOSC", "Section: $courseName | Course: $selectedCourseName | Instructor: $selectedCourseIDInstructor")
                         }
                         val courseAdapter = ArrayAdapter( // Update the courseSpinner with the fetched courses

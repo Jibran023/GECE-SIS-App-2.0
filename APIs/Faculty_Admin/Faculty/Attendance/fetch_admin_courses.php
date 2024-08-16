@@ -23,12 +23,12 @@ if ($conn->connect_error) {
 }
 
 // SQL query to select all columns from the users table
-$sql = "Select *, c.Name as CNAME, s.id as SectionID From facultycourses fc
+$sql = "Select *, c.Name as CNAME, s.SectionName as SectionName From facultycourses fc
 	Inner Join offeredcourses oc ON fc.CourseID = oc.CourseID AND fc.SessionID = oc.SessionID
 	INNER JOIN academicsession a ON a.SessionID = oc.SessionID 
 	INNER JOIN faculty f ON fc.FacultyID = f.FacultyID
 	INNER JOIN courses c ON fc.CourseID = c.CourseID
-    INNER JOIN sections s ON fc.SectionID = s.id
+    INNER JOIN sections s ON s.id = fc.SectionID
 	Where a.Current = 1 AND oc.Year = ?";
 
 $stmt = $conn->prepare($sql);

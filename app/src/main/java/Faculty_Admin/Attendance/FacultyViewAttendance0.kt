@@ -42,7 +42,8 @@ class FacultyViewAttendance0 : AppCompatActivity() {
 
     private var OfferedSectionName: ArrayList<String> = arrayListOf()
     private lateinit var selectedSecionName: String
-
+    private var FacultyIDs: ArrayList<String> = arrayListOf()
+    private lateinit var selectedFacultyID: String
 
     private lateinit var cohortSpinner: Spinner
     private lateinit var courseSpinner: Spinner
@@ -76,6 +77,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
             yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             cohortSpinner.adapter = yearAdapter
         }
+
         cohortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCohort = parent?.getItemAtPosition(position) as String
@@ -97,6 +99,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
                 selectedCourseID = OfferedCoursesID[position] // Get the corresponding CourseID using the position
                 selectedCourseName = OfferedCourses[position]
                 selectedCourseSessionID = SessionID[position]
+                selectedFacultyID = FacultyIDs[position] // saving faculty id for admin use
                 pass = true
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -137,6 +140,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
                     putExtra("SECTION", selectedSecionName)
                     putExtra("SECTIONID", selectedSecionID)
                     putExtra("SESSIONID", selectedCourseSessionID)
+                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)
@@ -155,7 +159,6 @@ class FacultyViewAttendance0 : AppCompatActivity() {
         startActivity(intent)
     }
 
-//    fetch_admin_courses.php
 
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         if (userType == "faculty"){
@@ -181,7 +184,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
             )
             reqQueue.add(jsonArrayRequest)
         }
-        else if (userType == "user") {
+        else if (userType == "admin") {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_cohorts.php"
             val jsonArrayRequest = JsonArrayRequest(
@@ -189,6 +192,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
                 apiGetCohorts,
                 null,
                 { response ->
+                    Log.d("AdminCohorts", "Cohorts: $response")
                     val cohorts = mutableListOf<String>()
                     for (i in 0 until response.length()) {
                         val jsonObject = response.getJSONObject(i)
@@ -278,6 +282,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
                         OfferedCoursesID.clear()
                         OfferedSectionID.clear()
                         OfferedSectionName.clear()
+                        FacultyIDs.clear()
                         SessionID.clear()
                         for (i in 0 until response.length()) {
                             val jsonObject = response.getJSONObject(i)
@@ -286,11 +291,13 @@ class FacultyViewAttendance0 : AppCompatActivity() {
                             val sessionID = jsonObject.getString("SessionID")
                             val sectionName = jsonObject.getString("SectionName")
                             val sectionID = jsonObject.getString("SectionID")
+                            val facID = jsonObject.getString("FacultyID")
                             OfferedCourses.add(courseName)
                             OfferedCoursesID.add(courseID)
                             SessionID.add(sessionID)
                             OfferedSectionID.add(sectionID)
                             OfferedSectionName.add(sectionName)
+                            FacultyIDs.add(facID)
 //                        Log.d("FOSC", "Section: $courseName | Course: $selectedCourseName | Instructor: $selectedCourseIDInstructor")
                         }
                         val courseAdapter = ArrayAdapter( // Update the courseSpinner with the fetched courses
@@ -321,6 +328,7 @@ class FacultyViewAttendance0 : AppCompatActivity() {
         }
 
     }
+
 
 
 }
