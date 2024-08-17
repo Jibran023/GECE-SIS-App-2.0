@@ -137,7 +137,7 @@ class Courses_comboboxesAdmin : AppCompatActivity() {
 
     private fun fetchSessionDescriptions(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/fetchsessions.php"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetchsessionsN.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,

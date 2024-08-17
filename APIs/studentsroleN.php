@@ -1,5 +1,5 @@
 <?php
-require_once('class/querieshandler.php');
+require_once('class/adminquerieshandler.php');
 
 $con = new querieshandler();
 $id = $_GET['id'];

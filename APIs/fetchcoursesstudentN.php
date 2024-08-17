@@ -1,13 +1,11 @@
 <?php
-require_once('class/querieshandler.php');
+require_once('class/adminquerieshandler.php');
 
 $con = new querieshandler();
-$facultyID = $_GET['FacultyID']
-$courseID = $_GET['CourseID']
-$sessionID = $_GET['SessionID']
-$sectionID = $_GET['SectionID']
+$rollNumber = $_GET['rollNumber'];
+$semesterDescription = $_GET['semesterDescription'];
 
-$result = $con->addFacultyCourseSection($facultyID, $courseID, $sessionID, $sectionID);
+$result = $con->getCoursesStudent($rollNumber, $semesterDescription);
 
 // Output the result as JSON
 header('Content-Type: application/json');

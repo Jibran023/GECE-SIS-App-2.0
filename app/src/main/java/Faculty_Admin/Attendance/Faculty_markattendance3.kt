@@ -63,7 +63,9 @@ class faculty_markattendance3 : AppCompatActivity() {
         selectedSecionName = intent.getStringExtra("SECTION").toString()
         selectedSecionID = intent.getStringExtra("SECTIONID").toString()
         selectedCourseSessionID = intent.getStringExtra("SESSIONID").toString()
-        selectedFacultyID = intent.getStringExtra("SELECTED_FACULTY_ID").toString()
+        if (userType == "admin"){
+            selectedFacultyID = intent.getStringExtra("SELECTED_FACULTY_ID").toString()
+        }
 
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         backbtn.setOnClickListener {
@@ -76,7 +78,9 @@ class faculty_markattendance3 : AppCompatActivity() {
                 putExtra("SECTION", selectedSecionName)
                 putExtra("SECTIONID", selectedSecionID)
                 putExtra("SESSIONID", selectedCourseSessionID)
-                putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                if (userType == "admin"){
+                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                }
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -153,7 +157,9 @@ class faculty_markattendance3 : AppCompatActivity() {
             putExtra("SECTION", selectedSecionName)
             putExtra("SECTIONID", selectedSecionID)
             putExtra("SESSIONID", selectedCourseSessionID)
-            putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+            if (userType == "admin"){
+                putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+            }
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)
@@ -257,7 +263,8 @@ class faculty_markattendance3 : AppCompatActivity() {
                 val studentsListText = selectedItems.entries.joinToString("\n") {
                     "Student: ${it.key}, Status: ${it.value}"
                 }
-                confirmText.text = "Are you sure you want to confirm this attendance?\n\n$studentsListText"
+//                confirmText.text = "Are you sure you want to confirm this attendance?\n\n$studentsListText"
+                confirmText.text = "Are you sure you want to confirm this attendance?"
 
                 val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
                 val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)

@@ -429,3 +429,126 @@
 2024-08-13 12:23:19 - Successfully added RollNumber: 41951
 2024-08-13 12:23:19 - All RollNumbers added successfully.
 2024-08-13 12:23:19 - Database connection closed.
+2024-08-17 15:31:25 - Database connection successful.
+2024-08-17 15:31:25 - Course Name: Urdu / Regional Languages, Session Description: Fall 2023, Section Name: Section A
+2024-08-17 15:31:25 - RollNumber found: 42302, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42303, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42305, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42307, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42308, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42309, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42310, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42311, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42312, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42313, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42314, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42316, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42317, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42318, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42320, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42321, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42322, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42323, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42324, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42325, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42326, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42327, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42328, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42329, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42330, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42331, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42332, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42333, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42338, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42339, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42341, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42342, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42343, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42344, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42345, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42346, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42347, SectionID found: 2
+2024-08-17 15:31:25 - RollNumber found: 42348, SectionID found: 2
+2024-08-17 15:31:25 - Connection closed.
+2024-08-17 15:31:26 - Database connection successful.
+2024-08-17 15:31:26 - Announcement ID: 1, RollNumbers (raw): 42302,42303,42305,42307,42308,42309,42310,42311,42312,42313,42314,42316,42317,42318,42320,42321,42322,42323,42324,42325,42326,42327,42328,42329,42330,42331,42332,42333,42338,42339,42341,42342,42343,42344,42345,42346,42347,42348
+2024-08-17 15:31:26 - rollNumbers received as string: 42302,42303,42305,42307,42308,42309,42310,42311,42312,42313,42314,42316,42317,42318,42320,42321,42322,42323,42324,42325,42326,42327,42328,42329,42330,42331,42332,42333,42338,42339,42341,42342,42343,42344,42345,42346,42347,42348
+2024-08-17 15:31:26 - rollNumbers converted to array: 42302, 42303, 42305, 42307, 42308, 42309, 42310, 42311, 42312, 42313, 42314, 42316, 42317, 42318, 42320, 42321, 42322, 42323, 42324, 42325, 42326, 42327, 42328, 42329, 42330, 42331, 42332, 42333, 42338, 42339, 42341, 42342, 42343, 42344, 42345, 42346, 42347, 42348
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42302
+2024-08-17 15:31:26 - Successfully added RollNumber: 42302
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42303
+2024-08-17 15:31:26 - Successfully added RollNumber: 42303
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42305
+2024-08-17 15:31:26 - Successfully added RollNumber: 42305
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42307
+2024-08-17 15:31:26 - Successfully added RollNumber: 42307
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42308
+2024-08-17 15:31:26 - Successfully added RollNumber: 42308
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42309
+2024-08-17 15:31:26 - Successfully added RollNumber: 42309
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42310
+2024-08-17 15:31:26 - Successfully added RollNumber: 42310
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42311
+2024-08-17 15:31:26 - Successfully added RollNumber: 42311
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42312
+2024-08-17 15:31:26 - Successfully added RollNumber: 42312
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42313
+2024-08-17 15:31:26 - Successfully added RollNumber: 42313
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42314
+2024-08-17 15:31:26 - Successfully added RollNumber: 42314
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42316
+2024-08-17 15:31:26 - Successfully added RollNumber: 42316
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42317
+2024-08-17 15:31:26 - Successfully added RollNumber: 42317
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42318
+2024-08-17 15:31:26 - Successfully added RollNumber: 42318
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42320
+2024-08-17 15:31:26 - Successfully added RollNumber: 42320
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42321
+2024-08-17 15:31:26 - Successfully added RollNumber: 42321
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42322
+2024-08-17 15:31:26 - Successfully added RollNumber: 42322
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42323
+2024-08-17 15:31:26 - Successfully added RollNumber: 42323
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42324
+2024-08-17 15:31:26 - Successfully added RollNumber: 42324
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42325
+2024-08-17 15:31:26 - Successfully added RollNumber: 42325
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42326
+2024-08-17 15:31:26 - Successfully added RollNumber: 42326
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42327
+2024-08-17 15:31:26 - Successfully added RollNumber: 42327
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42328
+2024-08-17 15:31:26 - Successfully added RollNumber: 42328
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42329
+2024-08-17 15:31:26 - Successfully added RollNumber: 42329
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42330
+2024-08-17 15:31:26 - Successfully added RollNumber: 42330
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42331
+2024-08-17 15:31:26 - Successfully added RollNumber: 42331
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42332
+2024-08-17 15:31:26 - Successfully added RollNumber: 42332
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42333
+2024-08-17 15:31:26 - Successfully added RollNumber: 42333
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42338
+2024-08-17 15:31:26 - Successfully added RollNumber: 42338
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42339
+2024-08-17 15:31:26 - Successfully added RollNumber: 42339
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42341
+2024-08-17 15:31:26 - Successfully added RollNumber: 42341
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42342
+2024-08-17 15:31:26 - Successfully added RollNumber: 42342
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42343
+2024-08-17 15:31:26 - Successfully added RollNumber: 42343
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42344
+2024-08-17 15:31:26 - Successfully added RollNumber: 42344
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42345
+2024-08-17 15:31:26 - Successfully added RollNumber: 42345
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42346
+2024-08-17 15:31:26 - Successfully added RollNumber: 42346
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42347
+2024-08-17 15:31:26 - Successfully added RollNumber: 42347
+2024-08-17 15:31:26 - Attempting to add RollNumber: 42348
+2024-08-17 15:31:26 - Successfully added RollNumber: 42348
+2024-08-17 15:31:26 - All RollNumbers added successfully.
+2024-08-17 15:31:26 - Database connection closed.

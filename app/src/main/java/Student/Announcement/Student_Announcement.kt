@@ -118,6 +118,7 @@ class Student_Announcement : AppCompatActivity() {
 
         if (userType== "student"){
             val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Student/Courses/studentsrole.php?id=$studentIDint"
+//            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/studentsroleN.php?id=$studentIDint"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -169,9 +170,10 @@ class Student_Announcement : AppCompatActivity() {
                 apigetcohorts,
                 null,
                 { response ->
+                    Log.d("STDANNOUNCE2", "Fetched Roll No: $rollnoint")
                     Log.d("STDANNOUNCE2", "Fetched JSON Data: $response")
                     try {
-
+                        announcementList.clear()
                         for (i in 0 until response.length()) {
                             val jsonObject = response.getJSONObject(i)
                             val announcement = Announcement(
@@ -197,47 +199,47 @@ class Student_Announcement : AppCompatActivity() {
             reqQueue.add(jsonArrayRequest)
         }
 
-        else if (userType == "other")
-        {
-            if (userID == null) {
-                Log.e("USERSANN", "user id is null, cannot fetch announcements.")
-                return
-            }
-            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val rollnoint = userID.toIntOrNull() ?: 1
-            Log.d("USERSANN", "User id no is : $rollnoint")
-            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/users/fetch_users_announcements.php?id=$rollnoint"
-            val jsonArrayRequest = JsonArrayRequest(
-                Request.Method.GET,
-                apigetcohorts,
-                null,
-                { response ->
-                    Log.d("USERSANN", "Fetched JSON Data: $response")
-                    try {
-
-                        for (i in 0 until response.length()) {
-                            val jsonObject = response.getJSONObject(i)
-                            val announcement = Announcement(
-                                title = jsonObject.getString("Title"),
-                                content = jsonObject.getString("Content"),
-                                announcementBy = jsonObject.getString("Name"),
-                                postedDate = jsonObject.getString("PostedDateTime"),
-                                course = ""
-                            )
-                            announcementList.add(announcement)
-                        }
-                        announcementAdapter.notifyDataSetChanged()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-
-                    }
-                },
-                { error ->
-                    Log.e("STDANNOUNCE2", "Error fetching the data: ${error.message}")
-                }
-            )
-            reqQueue.add(jsonArrayRequest)
-        }
+//        else if (userType == "other")
+//        {
+//            if (userID == null) {
+//                Log.e("USERSANN", "user id is null, cannot fetch announcements.")
+//                return
+//            }
+//            val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+//            val rollnoint = userID.toIntOrNull() ?: 1
+//            Log.d("USERSANN", "User id no is : $rollnoint")
+//            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/users/fetch_users_announcements.php?id=$rollnoint"
+//            val jsonArrayRequest = JsonArrayRequest(
+//                Request.Method.GET,
+//                apigetcohorts,
+//                null,
+//                { response ->
+//                    Log.d("USERSANN", "Fetched JSON Data: $response")
+//                    try {
+//
+//                        for (i in 0 until response.length()) {
+//                            val jsonObject = response.getJSONObject(i)
+//                            val announcement = Announcement(
+//                                title = jsonObject.getString("Title"),
+//                                content = jsonObject.getString("Content"),
+//                                announcementBy = jsonObject.getString("Name"),
+//                                postedDate = jsonObject.getString("PostedDateTime"),
+//                                course = ""
+//                            )
+//                            announcementList.add(announcement)
+//                        }
+//                        announcementAdapter.notifyDataSetChanged()
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//
+//                    }
+//                },
+//                { error ->
+//                    Log.e("STDANNOUNCE2", "Error fetching the data: ${error.message}")
+//                }
+//            )
+//            reqQueue.add(jsonArrayRequest)
+//        }
 
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-$host = '127.0.0.1:3307';  // Host name
+$host = '127.0.0.1:3306';  // Host name
 $username = 'root';   // MySQL username (default is 'root' for XAMPP)
 $password = 'mazerunner';       // MySQL password (default is empty for XAMPP)
 $database = 'gecesisapp';  // Your database name
@@ -15,12 +15,14 @@ if ($conn->connect_error) {
 
 $id = $_GET['id'];
 
-// SQL query to get announcements from student recipients
-$sql1 = "SELECT ar.Title, ar.Content, u.Name, ar.PostedDateTime, u.department AS Course
-         FROM announcementbyro_studentrecipients af 
-         INNER JOIN announcementbyro ar ON af.AnnouncementID = ar.AnnouncementID
+// SQL query to get announcements from faculty 
+$sql1 = "SELECT DISTINCT ar.Title, ar.Content, f.FacultyName AS Name, ar.PostedDateTime, c.Name AS Course
+         FROM announcementrecipients af 
+         INNER JOIN announcements ar ON af.AnnouncementID = ar.AnnouncementID
          INNER JOIN studentsinformation si ON af.RollNumber = si.RollNumber
-         INNER JOIN users u ON ar.userID = u.id
+         INNER JOIN facultycourses fc ON ar.facultyCoursesID = fc.CourseID
+         INNER JOIN faculty f ON f.FacultyID = fc.FacultyID
+         INNER JOIN courses c ON c.CourseID = fc.CourseID
          WHERE si.RollNumber = ?";
 
 // Prepare and execute the first query
@@ -35,14 +37,12 @@ while ($row = $result1->fetch_assoc()) {
     $data1[] = $row;
 }
 
-// SQL query to get announcements from faculty recipients
-$sql2 = "SELECT ar.Title, ar.Content, f.FacultyName AS Name, ar.PostedDateTime, c.Name AS Course
-         FROM announcementrecipients af 
-         INNER JOIN announcements ar ON af.AnnouncementID = ar.AnnouncementID
+// SQL query to get announcements from admin
+$sql2 = "SELECT DISTINCT ar.Title, ar.Content, u.Name AS Name, ar.PostedDateTime, u.department AS Course
+         FROM announcementbyro_studentrecipients af 
+         INNER JOIN announcementbyro ar ON af.AnnouncementID = ar.AnnouncementID
          INNER JOIN studentsinformation si ON af.RollNumber = si.RollNumber
-         INNER JOIN facultycourses fc ON ar.facultyCoursesID = fc.CourseID
-         INNER JOIN faculty f ON fc.id = f.FacultyID
-         INNER JOIN courses c ON c.CourseID = fc.CourseID
+         INNER JOIN users u ON u.id = ar.userID
          WHERE si.RollNumber = ?";
 
 // Prepare and execute the second query

@@ -456,8 +456,8 @@ class LoginScreen : AppCompatActivity() {
 
     private fun fetchUsersData(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "$BASE_URL/geceapi/usersdata.php"
-
+//        val apigetcohorts = "$BASE_URL/geceapi/Login/usersdata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/usersdataN.php"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,
@@ -497,8 +497,8 @@ class LoginScreen : AppCompatActivity() {
 
     private fun fetchfacultydata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "$BASE_URL/geceapi/Login/facultydata.php"
-
+//        val apigetcohorts = "$BASE_URL/geceapi/Login/facultydata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/facultydataN.php"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,
@@ -536,8 +536,8 @@ class LoginScreen : AppCompatActivity() {
 
     private fun fetchstudentsdata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+//        val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
         val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
-
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

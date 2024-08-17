@@ -22,8 +22,7 @@ class CheckBoxAttendanceAdapter(
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.item_attendance_status, parent, false)
+        val view: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_attendance_status, parent, false)
 
         val studentNameTextView = view.findViewById<TextView>(R.id.student_name)
         val checkboxPresent = view.findViewById<CheckBox>(R.id.checkbox_present)
@@ -34,6 +33,10 @@ class CheckBoxAttendanceAdapter(
 
         // Set student name
         studentNameTextView.text = item
+
+        checkboxPresent.setOnCheckedChangeListener(null)
+        checkboxAbsent.setOnCheckedChangeListener(null)
+        checkboxLate.setOnCheckedChangeListener(null)
 
         // Initialize checkbox states based on selectedItems map
         when (selectedItems[item]) {
@@ -59,7 +62,7 @@ class CheckBoxAttendanceAdapter(
             }
         }
 
-        // Handle checkbox selection
+        // Handle checkbox selection with listeners re-enabled
         checkboxPresent.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 selectedItems[item] = "Present"

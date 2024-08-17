@@ -63,7 +63,8 @@ class attendance_page2 : AppCompatActivity() {
         }
 
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetAttendance = "${LoginScreen.BASE_URL}/geceapi/Student/Attendance/fetch_attendance.php?rollNumber=$rollno&semesterDescription=$selectedSessionDescription&courseID=$selectedCourseID"
+//        val apigetAttendance = "${LoginScreen.BASE_URL}/geceapi/Student/Attendance/fetch_attendance.php?rollNumber=$rollno&semesterDescription=$selectedSessionDescription&courseID=$selectedCourseID"
+        val apigetAttendance = "${LoginScreen.BASE_URL}/geceapi/fetch_attendanceN.php?rollNumber=$rollno&semesterDescription=$selectedSessionDescription&courseID=$selectedCourseID"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,

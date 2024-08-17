@@ -1,5 +1,5 @@
 <?php
-$host = '127.0.0.1:3307';  // Host name
+$host = '127.0.0.1:3306';  // Host name
 $username = 'root';   // MySQL username
 $password = 'mazerunner';  // MySQL password
 $database = 'gecesisapp';  // Your database name

@@ -99,7 +99,9 @@ class faculty_markattendance1 : AppCompatActivity() {
                 selectedCourseID = OfferedCoursesID[position] // Get the corresponding CourseID using the position
                 selectedCourseName = OfferedCourses[position]
                 selectedCourseSessionID = SessionID[position]
-                selectedFacultyID = FacultyIDs[position] // saving faculty id for admin use
+                if (userType == "admin"){
+                    selectedFacultyID = FacultyIDs[position] // saving faculty id for admin use
+                }
                 pass = true
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -140,7 +142,9 @@ class faculty_markattendance1 : AppCompatActivity() {
                     putExtra("SECTION", selectedSecionName)
                     putExtra("SECTIONID", selectedSecionID)
                     putExtra("SESSIONID", selectedCourseSessionID)
-                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                    if (userType == "admin"){
+                        putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                    }
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
                 startActivity(intent)

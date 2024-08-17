@@ -207,6 +207,7 @@ class Admin_Announcement2 : AppCompatActivity() {
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
                 "&PostedDateTime=$formattedDateTime"
+        Log.d("apiCreateAnnouncement", "URL: $apiCreateAnnouncement")
 
         val stringRequest = StringRequest(
             Request.Method.GET,
@@ -251,6 +252,7 @@ class Admin_Announcement2 : AppCompatActivity() {
         // API for adding recipients
         val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/add_faculty_recipients.php" + "?announcementID=$announcementID" +
                 "&FacultyMembers=$encodedFacultyMembers"
+        Log.d("apiAddRecipients", "URL: $apiAddRecipients")
 
         Log.d("TOSENTFAC", "Faculty Members: $encodedFacultyMembers")
         val stringRequest = StringRequest(
@@ -281,7 +283,7 @@ class Admin_Announcement2 : AppCompatActivity() {
         // Implement the logic to add all faculty members as recipients
         // This could involve calling an API that handles sending to all faculty members
         val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/addall_faculty_recipients.php" + "?announcementID=$announcementID"
-
+        Log.d("apiAddAllRecipients", "URL: $apiAddRecipients")
         val stringRequest = StringRequest(
             Request.Method.GET,
             apiAddRecipients,

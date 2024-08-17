@@ -13,16 +13,19 @@ import com.example.gece_sisapp20.R
 
 class Messages : AppCompatActivity() {
     private var userType: String? = null
+    private lateinit var userID: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_messages)
         userType = intent.getStringExtra("USER_TYPE")
+        userID = intent.getStringExtra("USER_ID").toString()
 
         val backbtn = findViewById<ImageButton>(R.id.backbtn)
         backbtn.setOnClickListener {
             val intent = Intent(this, Profile_Faculty::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -32,6 +35,7 @@ class Messages : AppCompatActivity() {
         new_msg.setOnClickListener {
             val intent = Intent(this, NewMessage::class.java).apply {
                 putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -59,6 +63,7 @@ class Messages : AppCompatActivity() {
         super.onBackPressed()
         val intent = Intent(this, Profile_Faculty::class.java).apply {
             putExtra("USER_TYPE", userType)
+            putExtra("USER_ID", userID)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

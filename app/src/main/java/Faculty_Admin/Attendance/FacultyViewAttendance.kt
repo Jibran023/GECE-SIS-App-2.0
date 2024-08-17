@@ -40,7 +40,10 @@ class FacultyViewAttendance : AppCompatActivity() {
         selectedSecionName = intent.getStringExtra("SECTION").toString()
         selectedSecionID = intent.getStringExtra("SECTIONID").toString()
         selectedCourseSessionID = intent.getStringExtra("SESSIONID").toString()
-        selectedFacultyID = intent.getStringExtra("SELECTED_FACULTY_ID").toString()
+        if (userType == "admin"){
+            selectedFacultyID = intent.getStringExtra("SELECTED_FACULTY_ID").toString()
+        }
+
 
         val back_btn = findViewById<ImageButton>(R.id.backButton)
         back_btn.setOnClickListener {
@@ -53,7 +56,10 @@ class FacultyViewAttendance : AppCompatActivity() {
                 putExtra("SECTION", selectedSecionName)
                 putExtra("SECTIONID", selectedSecionID)
                 putExtra("SESSIONID", selectedCourseSessionID)
-                putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                if (userType == "admin"){
+                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                }
+
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
@@ -74,7 +80,9 @@ class FacultyViewAttendance : AppCompatActivity() {
                     putExtra("SECTION", selectedSecionName)
                     putExtra("SECTIONID", selectedSecionID)
                     putExtra("SESSIONID", selectedCourseSessionID)
-                    putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                    if (userType == "admin"){
+                        putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+                    }
                 }
                 startActivity(intent)
             }
@@ -93,7 +101,9 @@ class FacultyViewAttendance : AppCompatActivity() {
             putExtra("SECTION", selectedSecionName)
             putExtra("SECTIONID", selectedSecionID)
             putExtra("SESSIONID", selectedCourseSessionID)
-            putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+            if (userType == "admin"){
+                putExtra("SELECTED_FACULTY_ID", selectedFacultyID)
+            }
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

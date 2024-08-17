@@ -16,6 +16,15 @@ class db {
 		}
 		$this->connection->set_charset($charset);
 	}
+
+    public function prepare($query) {
+        return $this->connection->prepare($query);
+    }
+
+    public function close2() {
+        $this->connection->close();
+    }
+
     public function BooleanQuery($query){
         if($result = $this->connection->query($query)){
             //echo "Successfully Executed";
@@ -45,6 +54,15 @@ class db {
         $result=json_encode($responses);
         return $result;
      }
+
+     public function SelectQueryExecutorFetchAssoc2($query) {
+        $row = mysqli_query($this->connection, $query);
+        $responses = array();
+        while ($r = mysqli_fetch_assoc($row)) {
+            $responses[] = $r;
+        }
+        return $responses; // Return the array directly
+    }
      public function SelectQueryExecutorFetchAssocNE($query){
         // $row=mysqli_fetch_assoc($this->connection->query($query));
         $row=mysqli_query($this->connection,$query);
