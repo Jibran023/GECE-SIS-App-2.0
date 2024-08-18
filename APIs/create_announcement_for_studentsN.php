@@ -11,5 +11,5 @@ $result = $con->insertAnnouncement3($userID, $title, $content, $postedDateTime);
 
 // Output the result as JSON
 header('Content-Type: application/json');
-echo json_encode($result);
+// echo json_encode($result);
 ?>

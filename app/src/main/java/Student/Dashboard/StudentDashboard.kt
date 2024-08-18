@@ -27,7 +27,7 @@ class StudentDashboard : AppCompatActivity() {
 
         Log.d("ID-TYPE", "ID Type: $userType and ID: $userID")
 
-        // added user and color check (DONE)
+        // DONE
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
             val intent = Intent(this, student_attendance_comboboxes::class.java).apply {
@@ -73,7 +73,7 @@ class StudentDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // added user and color check (DONE)
+        // DONE
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
         announcementicon.setOnClickListener {
             val intent = Intent(this, Student_Announcement::class.java).apply {
@@ -95,7 +95,7 @@ class StudentDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // user check added (DONE)
+        // DONE
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         coursesicon.setOnClickListener {
             var intent = Intent(this, courses_comboboxes::class.java).apply {
@@ -106,7 +106,7 @@ class StudentDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // added user check (DONE)
+        // DONE - NEED TO ADD OTHERUSERSINFO API
         val profile_pic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
         profile_pic.setOnClickListener {
             var intent = Intent(this, ProfilePicture::class.java).apply {

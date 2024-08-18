@@ -1,11 +1,11 @@
 <?php
-require_once('class/querieshandler.php');
+require_once('class/adminquerieshandler.php');
 
 $con = new querieshandler();
-$facultyID = $_GET['FacultyID']
-$courseID = $_GET['CourseID']
-$sessionID = $_GET['SessionID']
-$sectionID = $_GET['SectionID']
+$facultyID = $_GET['FacultyID'];
+$courseID = $_GET['CourseID'];
+$sessionID = $_GET['SessionID'];
+$sectionID = $_GET['SectionID'];
 
 $result = $con->addFacultyCourseSection($facultyID, $courseID, $sessionID, $sectionID);
 

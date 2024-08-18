@@ -100,7 +100,8 @@ class Faculty_Announcement2 : AppCompatActivity() {
     private fun fetchfacultyannouncements(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val useridint = userID.toIntOrNull()?: 1
-        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/fetchfacultyannouncements.php?id=$useridint"
+//        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Faculty/fetchfacultyannouncements.php?id=$useridint"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetchfacultyannouncementsN.php?id=$useridint"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

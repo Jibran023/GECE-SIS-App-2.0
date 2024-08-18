@@ -1,5 +1,5 @@
 <?php
-require_once('class/querieshandler.php');
+require_once('class/adminquerieshandler.php');
 
 $con = new querieshandler();
 $id = $_GET['id'];
@@ -8,5 +8,5 @@ $result = $con->getUserData($id);
 
 // Output the result as JSON
 header('Content-Type: application/json');
-echo json_encode($result);
+// echo json_encode($result);
 ?>

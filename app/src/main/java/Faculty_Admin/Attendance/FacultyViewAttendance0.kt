@@ -168,7 +168,8 @@ class FacultyViewAttendance0 : AppCompatActivity() {
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         if (userType == "faculty"){
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_faculty_courses.php?FacultyID=$userID"
+//            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_faculty_courses.php?FacultyID=$userID"
+            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_faculty_coursesN.php?FacultyID=$userID"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apiGetCohorts,
@@ -191,7 +192,8 @@ class FacultyViewAttendance0 : AppCompatActivity() {
         }
         else if (userType == "admin") {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_cohorts.php"
+//            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_cohorts.php"
+            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_admin_cohortsN.php"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apiGetCohorts,
@@ -218,8 +220,8 @@ class FacultyViewAttendance0 : AppCompatActivity() {
     private fun fetchOfferedCourses(){
         if (userType == "faculty"){
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_faculty_courses2.php?FacultyID=$userID"
-
+//            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_faculty_courses2.php?FacultyID=$userID"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_faculty_courses2N.php?FacultyID=$userID"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apigetcohorts,
@@ -274,7 +276,8 @@ class FacultyViewAttendance0 : AppCompatActivity() {
         }
         else if (userType == "admin"){
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_courses.php?FacultyID=$selectedCohort"
+//            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_admin_courses.php?FacultyID=$selectedCohort"
+            val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_admin_coursesN.php?FacultyID=$selectedCohort"
 
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,

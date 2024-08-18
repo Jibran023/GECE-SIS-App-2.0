@@ -145,8 +145,8 @@ class Admin_Announcement : AppCompatActivity() {
 
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
-
+//        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
+        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_cohortsN.php"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apiGetCohorts,
@@ -177,8 +177,8 @@ class Admin_Announcement : AppCompatActivity() {
         else {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
             val encodedCohorts = URLEncoder.encode(selectedCohorts.joinToString(","), "UTF-8")
-            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
-
+//            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_students_by_cohort.php?cohorts=$encodedCohorts"
+            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/fetch_students_by_cohortN.php?cohorts=$encodedCohorts"
             val jsonArrayRequest = JsonArrayRequest(
                 Request.Method.GET,
                 apiGetStudents,
@@ -289,12 +289,17 @@ class Admin_Announcement : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_students.php" +
+//        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_students.php" +
+//                "?userID=$userID" +
+//                "&Title=$encodedTitle" +
+//                "&Content=$encodedContent" +
+//                "&PostedDateTime=$formattedDateTime"
+        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/create_announcement_for_studentsN.php" +
                 "?userID=$userID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
                 "&PostedDateTime=$formattedDateTime"
-
+        Log.d("apiCreateAnnouncement", "URL: $apiCreateAnnouncement")
         val stringRequest = StringRequest(
             Request.Method.GET,
             apiCreateAnnouncement,
@@ -326,14 +331,14 @@ class Admin_Announcement : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val encodedCohorts = URLEncoder.encode(cohorts.joinToString(","), "UTF-8")
         val encodedStudents = URLEncoder.encode(students.joinToString(","), "UTF-8")
-        val apiFetchRollNumbers = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchallrolenumbers.php?cohorts=$encodedCohorts&students=$encodedStudents"
-
+//        val apiFetchRollNumbers = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchallrolenumbers.php?cohorts=$encodedCohorts&students=$encodedStudents"
+        val apiFetchRollNumbers = "${LoginScreen.BASE_URL}/geceapi/fetchallrolenumbersN.php?cohorts=$encodedCohorts&students=$encodedStudents"
+        Log.d("apiFetchRollNumbers","URL: $apiFetchRollNumbers")
         val fetchRollNumbersRequest = StringRequest(
             Request.Method.GET,
             apiFetchRollNumbers,
             { response ->
                 try {
-
                     val jsonResponse = JSONObject(response)
                     val success = jsonResponse.getBoolean("success")
                     if (success) {
@@ -363,8 +368,9 @@ class Admin_Announcement : AppCompatActivity() {
     private fun insertRecipients(announcementID: Int, rollNumbers: List<String>) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val encodedRollNumbers = URLEncoder.encode(rollNumbers.joinToString(","), "UTF-8")
-        val apiInsertRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/send_announcement_to_students.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
-
+//        val apiInsertRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/send_announcement_to_students.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
+        val apiInsertRecipients = "${LoginScreen.BASE_URL}/geceapi/send_announcement_to_studentsN.php?announcementID=$announcementID&rollNumbers=$encodedRollNumbers"
+        Log.d("apiInsertRecipients","URL: $apiInsertRecipients")
         val insertRecipientsRequest = StringRequest(
             Request.Method.GET,
             apiInsertRecipients,

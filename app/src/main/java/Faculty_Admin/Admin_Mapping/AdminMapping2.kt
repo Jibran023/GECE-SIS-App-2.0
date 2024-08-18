@@ -107,8 +107,8 @@ class AdminMapping2 : AppCompatActivity() {
 
     private fun fetchOfferedCoursesSections(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_offered_courses_sections.php?year=$selectedCohort&rollNumber=$selectedCourseID"
-
+//        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_offered_courses_sections.php?year=$selectedCohort&rollNumber=$selectedCourseID"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_offered_courses_sectionsN.php?year=$selectedCohort&rollNumber=$selectedCourseID"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

@@ -84,6 +84,31 @@ class db {
             return 0;
         }
     }
+
+    public function begin_transaction() {
+        if (!$this->connection->begin_transaction()) {
+            $this->debug_log("Failed to begin transaction: " . $this->conn->error);
+            return false;
+        }
+        return true;
+    }
+
+    public function rollback() {
+        if (!$this->connection->rollback()) {
+            $this->debug_log("Failed to rollback transaction: " . $this->conn->error);
+            return false;
+        }
+        return true;
+    }
+
+    public function commit() {
+        if (!$this->connection->commit()) {
+            $this->debug_log("Failed to commit transaction: " . $this->conn->error);
+            return false;
+        }
+        return true;
+    }
+
     public function TransactionQueryExecutor($array){
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $mysqliConnection=($this->connection);

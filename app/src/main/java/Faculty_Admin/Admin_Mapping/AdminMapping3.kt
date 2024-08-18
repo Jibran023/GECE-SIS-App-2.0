@@ -146,7 +146,8 @@ class AdminMapping3 : AppCompatActivity() {
 
     private fun fetchStudents(callback: (List<String>) -> Unit) {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+//            val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+              val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/fetch_section_studentsN.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
 //            Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName | SessionID: $selectedCourseSessionID | CourseID: $selectedCourseID", Toast.LENGTH_SHORT).show()
             Log.d("AFDELETE", "Selected Section: $sectionName | ID: $sectionName | SessionID: $selectedCourseSessionID | CourseID: $selectedCourseID")
             val jsonArrayRequest = JsonArrayRequest(
@@ -172,7 +173,8 @@ class AdminMapping3 : AppCompatActivity() {
 
     private fun fetchStudentstoadd(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_other_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+//        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_other_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/fetch_other_section_studentsN.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -299,8 +301,8 @@ class AdminMapping3 : AppCompatActivity() {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         // Construct the URL with parameters
         val studentNames = URLEncoder.encode(select_students_list_to_add.joinToString(","), "UTF-8")
-        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
-
+//        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/add_students_to_sectionN.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
         Log.d("apiRemoveStds", "URL: $apiRemoveStudents")
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -404,7 +406,8 @@ class AdminMapping3 : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     private fun fetchstudentstodelete(onSuccess: () -> Unit){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+//        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
+        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/fetch_section_studentsN.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID&id=$sectionID"
             Toast.makeText(this, "Selected Section: $sectionName | ID: $sectionName", Toast.LENGTH_SHORT).show()
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -497,8 +500,10 @@ class AdminMapping3 : AppCompatActivity() {
             // Construct the URL with parameters
             val studentNames =
                 URLEncoder.encode(select_students_list_to_delete.joinToString(","), "UTF-8")
+//            val apiRemoveStudents =
+//                "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
             val apiRemoveStudents =
-                "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+                "${LoginScreen.BASE_URL}/geceapi/remove_students_from_sectionN.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
             Log.d("apiGetStudents", "Url: $apiRemoveStudents")
             Log.d("apiGetStudents", "students list: $studentNames")
             val jsonObjectRequest = JsonObjectRequest(
@@ -536,8 +541,9 @@ class AdminMapping3 : AppCompatActivity() {
 //        var select_students_list_to_delete = mutableListOf<String>()
         // Construct the URL with parameters
         val studentNames = URLEncoder.encode(select_students_list_to_remove.joinToString(","), "UTF-8")
-        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
-
+//        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_students_from_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        val apiRemoveStudents = "${LoginScreen.BASE_URL}/geceapi/remove_students_from_sectionN.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        Log.d("apiRemoveStudents", "URL: $apiRemoveStudents")
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             apiRemoveStudents,
@@ -569,8 +575,8 @@ class AdminMapping3 : AppCompatActivity() {
 
     private fun updateFacultyCourses(onSuccess: () -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_faculty_section.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
-
+//        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/remove_faculty_section.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
+        val apiUpdateFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/remove_faculty_sectionN.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
             apiUpdateFacultyCourses,
@@ -599,7 +605,8 @@ class AdminMapping3 : AppCompatActivity() {
 
     private fun deleteSectionFromTable(onSuccess: () -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiDeleteSection = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/delete_this_section.php?SectionID=$sectionID"
+//        val apiDeleteSection = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/delete_this_section.php?SectionID=$sectionID"
+        val apiDeleteSection = "${LoginScreen.BASE_URL}/geceapi/delete_this_sectionN.php?SectionID=$sectionID"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,

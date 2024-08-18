@@ -161,7 +161,8 @@ class Admin_Announcement3 : AppCompatActivity() {
     private fun fetchusers(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val useridint = userID.toInt()
-        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchusers.php?ID=$useridint"
+//        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetchusers.php?ID=$useridint"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetchusersN.php?ID=$useridint"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
@@ -198,11 +199,17 @@ class Admin_Announcement3 : AppCompatActivity() {
         val encodedContent = URLEncoder.encode(content, "UTF-8")
 
         // API for creating announcement
-        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_users.php" +
+//        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_users.php" +
+//                "?userID=$userID" +
+//                "&Title=$encodedTitle" +
+//                "&Content=$encodedContent" +
+//                "&PostedDateTime=$formattedDateTime"
+        val apiCreateAnnouncement = "${LoginScreen.BASE_URL}/geceapi/create_announcement_for_usersN.php" +
                 "?userID=$userID" +
                 "&Title=$encodedTitle" +
                 "&Content=$encodedContent" +
                 "&PostedDateTime=$formattedDateTime"
+        Log.d("apiCreateAnnouncement","URL:$apiCreateAnnouncement")
 
         val stringRequest = StringRequest(
             Request.Method.GET,
@@ -245,7 +252,9 @@ class Admin_Announcement3 : AppCompatActivity() {
         val userIdint = userID.toInt()
 
         // API for adding recipients
-        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/insert_user_rec.php" + "?announcementID=$announcementID" +
+//        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/insert_user_rec.php" + "?announcementID=$announcementID" +
+//                "&FacultyMembers=$encodedFacultyMembers&ID=$userIdint"
+        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/insert_user_recN.php" + "?announcementID=$announcementID" +
                 "&FacultyMembers=$encodedFacultyMembers&ID=$userIdint"
 
         Log.d("TOSENTFAC", "Faculty Members: $encodedFacultyMembers")
@@ -278,7 +287,8 @@ class Admin_Announcement3 : AppCompatActivity() {
         // Implement the logic to add all faculty members as recipients
         // This could involve calling an API that handles sending to all faculty members
         val userIdint = userID.toInt()
-        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_all_users.php" + "?announcementID=$announcementID&ID=$userIdint"
+//        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/create_announcement_for_all_users.php" + "?announcementID=$announcementID&ID=$userIdint"
+        val apiAddRecipients = "${LoginScreen.BASE_URL}/geceapi/create_announcement_for_all_usersN.php" + "?announcementID=$announcementID&ID=$userIdint"
 
         val stringRequest = StringRequest(
             Request.Method.GET,

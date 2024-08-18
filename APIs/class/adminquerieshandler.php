@@ -251,6 +251,10 @@ class querieshandler{
     public function getRollNumbersAndSectionID($courseName, $sessionDescription, $sectionName) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
         
         $query = "SELECT sm.RollNumber, s.Id as SectionID
                   FROM studentmap sm
@@ -346,21 +350,7 @@ class querieshandler{
         require_once('Admindp.php');
         $con = new db();
 
-        private function getFacultyID($facultyName, $con, $ID) {
-            $sql = "SELECT id FROM users WHERE Name = ? AND id != ?";
-            $stmt = $con->prepare($sql);
-            if ($stmt === false) {
-                return null;
-            }
-    
-            $stmt->bind_param("si", $facultyName, $ID);
-            $stmt->execute();
-            $stmt->bind_result($facultyID);
-            $stmt->fetch();
-            $stmt->close();
-    
-            return $facultyID;
-        }
+        
         
         // Sanitize the input
         $announcementID = $this->legal_input($announcementID);
@@ -381,7 +371,7 @@ class querieshandler{
         // Loop through each faculty name to add recipients
         foreach ($facultyNames as $facultyName) {
             if (!empty($facultyName)) { // Ensure facultyName is not empty
-                $facultyID = $this->getFacultyID($facultyName, $con, $ID);
+                $facultyID = $this->getFacultyIDx($facultyName, $con, $ID);
                 if ($facultyID !== null) { // Ensure facultyID was found
                     $recipientStmt->bind_param("ii", $announcementID, $facultyID);
                     $recipientStmt->execute();
@@ -401,6 +391,22 @@ class querieshandler{
 
         $debugOutput[] = ["success" => true, "message" => "Recipients added successfully"];
         return $debugOutput;
+    }
+
+    public function getFacultyIDx($facultyName, $con, $ID) {
+        $sql = "SELECT id FROM users WHERE Name = ? AND id != ?";
+        $stmt = $con->prepare($sql);
+        if ($stmt === false) {
+            return null;
+        }
+
+        $stmt->bind_param("si", $facultyName, $ID);
+        $stmt->execute();
+        $stmt->bind_result($facultyID);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $facultyID;
     }
 
     public function insertAnnouncementRecipients2($announcementID, $rollNumbers) {
@@ -473,7 +479,11 @@ class querieshandler{
     public function fetchStudentNamesByCohorts($cohorts) {
         require_once('Admindp.php');
         $con = new db();
-
+    
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
+    
         // Prepare SQL query
         if (in_array("All", $cohorts)) {
             $query = "SELECT Name FROM studentsinformation WHERE Status = 'Active'";
@@ -484,31 +494,37 @@ class querieshandler{
             $stmt = $con->prepare($query);
             if ($stmt === false) {
                 $this->debug_log("Failed to prepare statement: " . $con->error);
-                return ["status" => "error", "message" => "Failed to prepare statement"];
+                return; // Exit if there is an error preparing the statement
             }
             $stmt->bind_param(str_repeat('s', count($cohorts)), ...$cohorts);
         }
-
+    
         // Execute the query
         $stmt->execute();
         $result = $stmt->get_result();
-
+    
         // Fetch data
         $students = [];
         while ($row = $result->fetch_assoc()) {
             $students[] = $row['Name'];
         }
-
+    
         // Close statement and connection
         $stmt->close();
         $con->close();
-
-        return ["success" => true, "students" => $students];
+    
+        // Output data directly as JSON
+        header('Content-Type: application/json');
+        echo json_encode($students);
     }
 
     public function getRollNumbersByCohortsAndStudents($cohorts, $students) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
         
         // Sanitize inputs
         $cohorts = array_map([$this, 'legal_input'], explode(',', $cohorts));
@@ -611,62 +627,71 @@ class querieshandler{
     public function insertAnnouncement3($userID, $title, $content, $postedDateTime) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize inputs
         $userID = $this->legal_input($userID);
         $title = $this->legal_input($title);
         $content = $this->legal_input($content);
         $postedDateTime = $this->legal_input($postedDateTime);
-
+    
         $query = "INSERT INTO announcementbyro (userID, Title, Content, PostedDateTime, SentTo) VALUES (?, ?, ?, ?, 'Students')";
         $stmt = $con->prepare($query);
         if ($stmt === false) {
-            return ["status" => "error", "message" => $con->error];
+            $con->close();
+            echo json_encode(["success" => false, "message" => "Statement preparation failed: " . $con->error]);
+            return;
         }
         $stmt->bind_param("ssss", $userID, $title, $content, $postedDateTime);
         $result = $stmt->execute();
         if ($result === false) {
-            return ["status" => "error", "message" => $stmt->error];
+            $stmt->close();
+            $con->close();
+            echo json_encode(["success" => false, "message" => "Execution failed: " . $stmt->error]);
+            return;
         }
+    
+        $announcementID = $con->lastInsertID(); // Get the ID of the last inserted row
+    
         $stmt->close();
         $con->close();
-        return ["status" => "success", "message" => "Announcement inserted successfully"];
+        echo json_encode(["success" => true, "announcementID" => $announcementID, "message" => "Announcement inserted successfully"]);
     }
 
     public function insertAnnouncement4($userID, $title, $content, $postedDateTime) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize inputs
         $userID = $this->legal_input($userID);
         $title = $this->legal_input($title);
         $content = $this->legal_input($content);
         $postedDateTime = $this->legal_input($postedDateTime);
-
+    
         $query = "INSERT INTO announcementbyro (userID, Title, Content, PostedDateTime, SentTo) VALUES (?, ?, ?, ?, 'Users')";
-        
+    
         // Prepare the statement
         $stmt = $con->prepare($query);
         if ($stmt === false) {
-            return ["status" => "error", "message" => $con->error];
+            echo json_encode(["success" => false, "message" => $con->error]);
+            return;
         }
-
+    
         // Bind parameters
         $stmt->bind_param("ssss", $userID, $title, $content, $postedDateTime);
-
+    
         // Execute the query
         if ($stmt->execute()) {
             // Get the ID of the inserted announcement
             $announcementID = $stmt->insert_id;
             $stmt->close();
-            $con->close();  // Assuming you have a closeConnection method in your db class
-            return ["status" => "success", "announcementID" => $announcementID];
+            $con->close();  
+            echo json_encode(["success" => true, "announcementID" => $announcementID]);
         } else {
             $stmt->close();
             $con->close();
-            return ["status" => "error", "message" => "Failed to submit announcement"];
+            echo json_encode(["success" => false, "message" => "Failed to submit announcement"]);
         }
-    }    
+    }
 
     public function insertAnnouncement2($userID, $title, $content, $postedDateTime) {
         require_once('Admindp.php');
@@ -704,6 +729,10 @@ class querieshandler{
     public function getAnnouncementsForUser($userID) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
     
         // SQL query to fetch announcements based on the userID
         $query = "
@@ -743,6 +772,10 @@ class querieshandler{
     public function insertFacultyRecipients($announcementID, $facultyNames) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
         
         // Sanitize inputs
         $announcementID = $this->legal_input($announcementID);
@@ -826,6 +859,10 @@ class querieshandler{
     public function insertAnnouncementRecipients($announcementID, $rollNumbers, $sectionID) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
         // Sanitize inputs
         $announcementID = $this->legal_input($announcementID);
         $sectionID = $this->legal_input($sectionID);
@@ -869,6 +906,10 @@ class querieshandler{
         require_once('Admindp.php');
         $con = new db();
 
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
+
         // Sanitize input
         $announcementID = intval($announcementID);
         $rollNumbersArray = explode(",", $this->legal_input($rollNumbers));
@@ -903,6 +944,10 @@ class querieshandler{
     public function insertAnnouncement($userID, $title, $content, $postedDateTime) {
         require_once('Admindp.php');
         $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
 
         // SQL query to insert the announcement
         $query = "INSERT INTO announcements (facultyCoursesID, Title, Content, PostedDateTime) VALUES (?, ?, ?, ?)";
@@ -1725,7 +1770,8 @@ class querieshandler{
         INNER JOIN faculty f ON fc.FacultyID = f.FacultyID
         INNER JOIN courses c ON fc.CourseID = c.CourseID
         INNER JOIN sections s ON s.id = fc.SectionID
-        WHERE a.Current = 1 AND f.FacultyID = ?";
+        WHERE a.Current = 1 AND oc.Year = ?";
+        
 
         // Prepare the statement
         $stmt = $con->prepare($query);
@@ -1797,7 +1843,7 @@ class querieshandler{
         }
 
         $stmt->close();
-        $con->closeConnection();
+        $con->close();
 
         return $response;
     }
@@ -1848,7 +1894,60 @@ class querieshandler{
         }
 
         $stmt->close();
-        $con->closeConnection(); // Assuming you have a closeConnection method in your db class
+        $con->close(); // Assuming you have a closeConnection method in your db class
+
+        error_log("Update completed successfully");
+
+        return ["status" => "success"];
+    }
+
+    public function updateStudentSection2($sessionID, $courseID, $studentNames) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        // Decode and sanitize student names
+        $studentNames = urldecode($studentNames);
+        $studentNamesArray = explode(",", $studentNames);
+        $studentNamesArray = array_map([$this, 'legal_input'], $studentNamesArray);
+
+        $query = "
+            UPDATE studentmap sm
+            INNER JOIN studentsinformation si ON sm.RollNumber = si.RollNumber
+            SET sm.SectionID = NULL
+            WHERE sm.SessionID = ? 
+            AND sm.CourseID = ? 
+            AND si.Name = ?";
+
+        $stmt = $con->prepare($query);
+
+        if (!$stmt) {
+            error_log("Statement preparation failed: " . $con->error);
+            return [
+                "status" => "error",
+                "message" => "Statement preparation failed: " . $con->error
+            ];
+        }
+
+        foreach ($studentNamesArray as $studentName) {
+            // Log the parameters and the query being executed
+            error_log("Executing query with parameters: SessionID=$sessionID, CourseID=$courseID, StudentName=$studentName");
+
+            // Bind parameters
+            $stmt->bind_param("iss", $sessionID, $courseID, $studentName);
+
+            if (!$stmt->execute()) {
+                error_log("Execution failed for StudentName: $studentName, Error: " . $stmt->error);
+                return [
+                    "status" => "error",
+                    "message" => "Execution failed for StudentName: $studentName, Error: " . $stmt->error
+                ];
+            }
+
+            error_log("Successfully updated StudentName: $studentName");
+        }
+
+        $stmt->close();
+        $con->close(); // Assuming you have a closeConnection method in your db class
 
         error_log("Update completed successfully");
 
@@ -1894,7 +1993,7 @@ class querieshandler{
         }
 
         $stmt->close();
-        $con->closeConnection();
+        $con->close();
 
         return $response;
     }
@@ -1912,7 +2011,7 @@ class querieshandler{
 
         if (!$stmt) {
             error_log("Statement preparation failed: " . $con->error);
-            $con->closeConnection();
+            $con->close();
             return [
                 "status" => "error",
                 "message" => "Statement preparation failed: " . $con->error
@@ -1947,7 +2046,7 @@ class querieshandler{
 
         // Close the statement and connection
         $stmt->close();
-        $con->closeConnection();
+        $con->close();
 
         return $response;
     }
@@ -1955,11 +2054,11 @@ class querieshandler{
     public function getOfferedCoursesByYearAndRollNumber($year, $rollNumber) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize input
         $year = $this->legal_input($year);
         $rollNumber = $this->legal_input($rollNumber);
-
+    
         $query = "
             SELECT *, s.id as SectionID 
             FROM offeredcourses sm 
@@ -1968,58 +2067,50 @@ class querieshandler{
             INNER JOIN sections s ON s.id = fc.SectionID
             WHERE sm.Year = ? AND sm.CourseID = ? AND a.Current = 1;
         ";
-
+    
         // Prepare the statement
         $stmt = $con->prepare($query);
-
+    
         if (!$stmt) {
             error_log("Statement preparation failed: " . $con->error);
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Statement preparation failed: " . $con->error
-            ];
+            $con->close();
+            return null;
         }
-
+    
         // Bind parameters
         $stmt->bind_param("ss", $year, $rollNumber);
-
+    
         // Execute the query
         if ($stmt->execute()) {
             $result = $stmt->get_result();
-
+    
             // Fetch data as an associative array
             $data = array();
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-
+    
             // Close the statement and connection
             $stmt->close();
-            $con->closeConnection();
-
-            return [
-                "status" => "success",
-                "data" => $data
-            ];
+            $con->close();
+    
+            // Directly return the data array
+            return $data;
         } else {
             error_log("Execution failed: " . $stmt->error);
             $stmt->close();
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Execution failed: " . $stmt->error
-            ];
+            $con->close();
+            return null;
         }
     }
 
     public function getCoursesStudents($rollNumber) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize input
         $rollNumber = $this->legal_input($rollNumber);
-
+    
         $query = "
             SELECT c.CourseID, c.Name, f.FacultyName, f.FacultyID, a.SessionID, a.Description  
             FROM offeredcourses oc
@@ -2029,109 +2120,91 @@ class querieshandler{
             INNER JOIN academicsession a ON a.SessionID = oc.SessionID AND a.SessionID = fc.SessionID
             WHERE oc.Year = ? AND a.Current = 1;
         ";
-
-        
-
+    
         // Prepare the statement
         $stmt = $con->prepare($query);
-
+    
         if (!$stmt) {
             error_log("Statement preparation failed: " . $con->error);
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Statement preparation failed: " . $con->error
-            ];
+            $con->close();
+            return null;
         }
-
+    
         // Bind parameters
         $stmt->bind_param("i", $rollNumber);
-
+    
         // Execute the query
         if ($stmt->execute()) {
             $result = $stmt->get_result();
-
+    
             // Fetch data as an associative array
             $data = array();
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-
+    
             // Close the statement and connection
             $stmt->close();
-            $con->closeConnection();
-
-            return [
-                "status" => "success",
-                "data" => $data
-            ];
+            $con->close();
+    
+            // Directly return the data array
+            return $data;
         } else {
             error_log("Execution failed: " . $stmt->error);
             $stmt->close();
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Execution failed: " . $stmt->error
-            ];
+            $con->close();
+            return null;
         }
     }
 
     public function getStudentMapData($year, $rollNumber) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize input
         $year = $this->legal_input($year);
         $rollNumber = $this->legal_input($rollNumber);
-
+    
         $query = "
             SELECT * 
             FROM studentmap sm
             INNER JOIN studentsinformation si ON sm.RollNumber = si.RollNumber
             WHERE sm.SessionID = ? AND sm.CourseID = ? AND sm.SectionID IS NULL AND si.Status = 'Active';
         ";
-
+    
         // Prepare the statement
         $stmt = $con->prepare($query);
-
+    
         if (!$stmt) {
             error_log("Statement preparation failed: " . $con->error);
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Statement preparation failed: " . $con->error
-            ];
+            $con->close();
+            return null;
         }
-
+    
         // Bind parameters
         $stmt->bind_param("ss", $year, $rollNumber);
-
+    
         // Execute the query
         if ($stmt->execute()) {
             $result = $stmt->get_result();
-
+    
             // Fetch data as an associative array
             $data = array();
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-
+    
             // Close the statement and connection
             $stmt->close();
-            $con->closeConnection();
-
-            return [
-                "status" => "success",
-                "data" => $data
-            ];
+            $con->close();
+    
+            // Directly return the data array
+            return $data;
         } else {
             error_log("Execution failed: " . $stmt->error);
             $stmt->close();
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Execution failed: " . $stmt->error
-            ];
+            $con->close();
+            return null;
         }
     }
 
@@ -2172,7 +2245,7 @@ class querieshandler{
 
         // Close the statement and connection
         $stmt->close();
-        $con->closeConnection();
+        $con->close();
 
         return $data;
     }
@@ -2225,7 +2298,7 @@ class querieshandler{
         }
 
         $stmt->close();
-        $con->closeConnection();
+        $con->close();
 
         return $response;
     }
@@ -2233,53 +2306,45 @@ class querieshandler{
     public function getFacultyById($id) {
         require_once('Admindp.php');
         $con = new db();
-
+    
         // Sanitize input
         $id = $this->legal_input($id);
-
+    
         $query = "SELECT * FROM faculty WHERE id = ?";
-
+    
         // Prepare the statement
         $stmt = $con->prepare($query);
-
+    
         if (!$stmt) {
             error_log("Statement preparation failed: " . $con->error);
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Statement preparation failed: " . $con->error
-            ];
+            $con->close();
+            return; // Exit if there is an error preparing the statement
         }
-
+    
         // Bind parameters
         $stmt->bind_param("s", $id);
-
+    
         // Execute the query
         if ($stmt->execute()) {
             $result = $stmt->get_result();
-
+    
             // Fetch data as an associative array
             $data = array();
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-
+    
             // Close the statement and connection
             $stmt->close();
-            $con->closeConnection();
-
-            return [
-                "status" => "success",
-                "data" => $data
-            ];
+            $con->close();
+    
+            // Return data directly as JSON
+            header('Content-Type: application/json');
+            echo json_encode($data);
         } else {
             error_log("Execution failed: " . $stmt->error);
             $stmt->close();
-            $con->closeConnection();
-            return [
-                "status" => "error",
-                "message" => "Execution failed: " . $stmt->error
-            ];
+            $con->close();
         }
     }
 
@@ -2288,10 +2353,10 @@ class querieshandler{
     public function getUserData($id) {
         require_once('Admindp.php');
         $con = new db();  // Assuming this is your database connection class
-
+    
         // Sanitize input
         $id = $this->legal_input($id);
-
+    
         $query = "SELECT * FROM users WHERE id = ?";
         $stmt = $con->prepare($query);
         
@@ -2301,25 +2366,24 @@ class querieshandler{
                 "message" => "Statement preparation failed: " . $con->error
             ];
         }
-
+    
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-
+    
         // Fetch data as an associative array
         $data = [];
         while ($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
-
+    
         // Close the statement and connection
         $stmt->close();
-        $con->closeConnection();  // Assuming you have a closeConnection method in your db class
-
-        return [
-            "status" => "success",
-            "data" => $data
-        ];
+        $con->close();  // Assuming you have a closeConnection method in your db class
+    
+        // Return data directly as JSON
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
     
     public function ReturnArray($username,$password)
@@ -2537,6 +2601,4 @@ class querieshandler{
         return $result;
     }
 }
-
-
 ?>

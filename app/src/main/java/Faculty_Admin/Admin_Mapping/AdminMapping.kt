@@ -155,8 +155,8 @@ class AdminMapping : AppCompatActivity() {
 
     private fun fetchCohorts(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
-
+//        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Announcements/Admin/fetch_cohorts.php"
+        val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_cohortsN.php"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apiGetCohorts,
@@ -180,8 +180,9 @@ class AdminMapping : AppCompatActivity() {
 
     private fun fetchOfferedCourses(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_offered_courses.php?rollNumber=$selectedCohort"
+//        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_offered_courses.php?rollNumber=$selectedCohort"
 
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_offered_coursesN.php?rollNumber=$selectedCohort"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

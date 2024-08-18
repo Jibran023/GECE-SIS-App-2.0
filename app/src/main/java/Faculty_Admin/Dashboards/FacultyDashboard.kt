@@ -29,7 +29,7 @@ class FacultyDashboard : AppCompatActivity() {
 
         Log.d("FacultyDasboard_Data", "User Type is: $userType | User ID is: $userID")
 
-        // added user and colors checked
+        // DONE
         val attendanceicon = findViewById<LinearLayout>(R.id.attendance_icon)
         attendanceicon.setOnClickListener {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
@@ -63,7 +63,7 @@ class FacultyDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Students can view the Announcements
+        // DONE
         val announcementicon = findViewById<LinearLayout>(R.id.announcementicon)
         announcementicon.setOnClickListener {
             val intent = Intent(this, Faculty_Announcement2::class.java).apply {
@@ -85,7 +85,7 @@ class FacultyDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // added user and colors checked
+        // DONE
         val coursesicon = findViewById<LinearLayout>(R.id.coursesicon)
         coursesicon.setOnClickListener {
             var intent = Intent(this, courses_comboboxes::class.java).apply {
@@ -96,7 +96,7 @@ class FacultyDashboard : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // added user and colors checked
+        // DONE
         val profile_pic = findViewById<ImageView>(R.id.studentdashboardprofilepicture)
         profile_pic.setOnClickListener {
             var intent = Intent(this, Profile_Faculty::class.java).apply {

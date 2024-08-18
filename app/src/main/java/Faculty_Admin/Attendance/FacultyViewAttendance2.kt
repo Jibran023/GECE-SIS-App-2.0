@@ -147,7 +147,8 @@ class FacultyViewAttendance2 : AppCompatActivity() {
     private fun fetchStudentAttendance(callback: (List<String>) -> Unit) {
         if (userType == "faculty"){
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$userID&SectionID=$selectedSecionID&Date=$selectedDate"
+//            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$userID&SectionID=$selectedSecionID&Date=$selectedDate"
+            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_section_student_attendanceN.php?FacultyID=$userID&SectionID=$selectedSecionID&Date=$selectedDate"
             Log.d("Fetched Dates", "URL: $apiGetCohorts")
             Log.d("Fetched Dates", "Section Name: $selectedSecionName | SectionID: $selectedSecionID | Date: $selectedDate | FacultyID: $userID")
             val jsonArrayRequest = JsonArrayRequest(
@@ -176,7 +177,8 @@ class FacultyViewAttendance2 : AppCompatActivity() {
         }
         else if (userType == "admin") {
             val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$selectedFacultyID&SectionID=$selectedSecionID&Date=$selectedDate"
+//            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/fetch_section_student_attendance.php?FacultyID=$selectedFacultyID&SectionID=$selectedSecionID&Date=$selectedDate"
+            val apiGetCohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_section_student_attendanceN.php?FacultyID=$selectedFacultyID&SectionID=$selectedSecionID&Date=$selectedDate"
             Log.d("Fetched Dates", "URL: $apiGetCohorts")
             Log.d("Fetched Dates", "Section Name: $selectedSecionName | SectionID: $selectedSecionID | Date: $selectedDate | FacultyID: $selectedFacultyID")
             val jsonArrayRequest = JsonArrayRequest(
@@ -251,7 +253,7 @@ class FacultyViewAttendance2 : AppCompatActivity() {
                 val studentsListText = selectedItems.entries.joinToString("\n") {
                     "Student: ${it.key}, Status: ${it.value}"
                 }
-                confirmText.text = "Are you sure you want to confirm this attendance?\n\n$studentsListText"
+                confirmText.text = "Are you sure you want to confirm this attendance?"
 
                 val yesButton = confirmationDialog.findViewById<Button>(R.id.yes_button)
                 val noButton = confirmationDialog.findViewById<Button>(R.id.no_button)
@@ -285,7 +287,8 @@ class FacultyViewAttendance2 : AppCompatActivity() {
         var requestsCompleted = 0
         val totalRequests = Updated_attendance.size
         for ((name, status) in Updated_attendance) {
-            val apiUrl = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/update_attendance.php?AttendanceStatus=$status&Name=$name&Date=$selectedDate&SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$selectedSecionID"
+//            val apiUrl = "${LoginScreen.BASE_URL}/geceapi/Faculty_Admin/Faculty/Attendance/update_attendance.php?AttendanceStatus=$status&Name=$name&Date=$selectedDate&SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$selectedSecionID"
+            val apiUrl = "${LoginScreen.BASE_URL}/geceapi/update_attendanceN.php?AttendanceStatus=$status&Name=$name&Date=$selectedDate&SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$selectedSecionID"
             Log.d("attendanceurl", "URL: $apiUrl")
             val requestBody = JSONObject()
 

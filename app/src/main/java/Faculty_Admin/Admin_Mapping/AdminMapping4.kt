@@ -130,7 +130,8 @@ class AdminMapping4 : AppCompatActivity() {
 
     private fun fetchStudentstoadd(callback: (List<String>) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_other_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID"
+//        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/fetch_other_section_students.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID"
+        val apiGetStudents = "${LoginScreen.BASE_URL}/geceapi/fetch_other_section_studentsN.php?year=$selectedCourseSessionID&rollNumber=$selectedCourseID"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apiGetStudents,
@@ -226,8 +227,9 @@ class AdminMapping4 : AppCompatActivity() {
 
     private fun createSection(sectionName: String, callback: (String?) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiCreateSection = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/create_new_section.php?CourseID=$selectedCourseID&SectionName=${URLEncoder.encode(sectionName, "UTF-8")}"
-
+//        val apiCreateSection = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/create_new_section.php?CourseID=$selectedCourseID&SectionName=${URLEncoder.encode(sectionName, "UTF-8")}"
+        val apiCreateSection = "${LoginScreen.BASE_URL}/geceapi/create_new_sectionN.php?CourseID=$selectedCourseID&SectionName=${URLEncoder.encode(sectionName, "UTF-8")}"
+        Log.d("apiCreateSection", "URL: $apiCreateSection")
         // Create a request to get a JSON object instead of a JSON array, since the response is a single object
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET,
@@ -264,8 +266,9 @@ class AdminMapping4 : AppCompatActivity() {
 
     private fun addSectionToFacultyCourses(sectionID: String, callback: (Boolean) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
-        val apiAddSectionToFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_section_for_faculty.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
-
+//        val apiAddSectionToFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_section_for_faculty.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
+        val apiAddSectionToFacultyCourses = "${LoginScreen.BASE_URL}/geceapi/add_section_for_facultyN.php?FacultyID=$selectedCourseFacultyID&CourseID=$selectedCourseID&SessionID=$selectedCourseSessionID&SectionID=$sectionID"
+        Log.d("apiAddSectionToFacultyCourses", "URL: $apiAddSectionToFacultyCourses")
         val stringRequest = StringRequest(
             Request.Method.GET,
             apiAddSectionToFacultyCourses,
@@ -286,8 +289,9 @@ class AdminMapping4 : AppCompatActivity() {
     private fun updateStudentsWithNewSection(sectionID: String, callback: (Boolean) -> Unit) {
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
         val studentNames = URLEncoder.encode(select_students_list_to_add.joinToString(","), "UTF-8")
-        val apiUpdateStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_new_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
-
+//        val apiUpdateStudents = "${LoginScreen.BASE_URL}/geceapi/Admin/Mapping/add_students_to_new_section.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        val apiUpdateStudents = "${LoginScreen.BASE_URL}/geceapi/add_students_to_new_sectionN.php?SessionID=$selectedCourseSessionID&CourseID=$selectedCourseID&SectionID=$sectionID&StudentNames=$studentNames"
+        Log.d("apiUpdateStudents","URL: $apiUpdateStudents")
         val stringRequest = StringRequest(
             Request.Method.GET,
             apiUpdateStudents,

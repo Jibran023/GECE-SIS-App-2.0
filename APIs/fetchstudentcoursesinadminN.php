@@ -5,7 +5,7 @@ $con = new querieshandler();
 $studentname = $_GET['studentname'];
 $semesterDescription = $_GET['semesterDescription'];
 
-$result = $con->getCoursesByStudentNameAndSemester($studentName, $semesterDescription);
+$result = $con->getCoursesByStudentNameAndSemester($studentname, $semesterDescription);
 
 // Output the result as JSON
 header('Content-Type: application/json');
