@@ -24,6 +24,20 @@
         android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/baseline_account_circle_24"
         android:contentDescription="@string/account_image_desc"/>
+
+    <TextView
+        android:id="@+id/unread_couNT"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:background="@drawable/unread_count_background"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="31dp"
+        android:visibility="gone"/>
+
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -180,41 +194,41 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="12dp">
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_margin="12dp"-->
+<!--            app:cardCornerRadius="15dp"-->
+<!--            app:cardElevation="12dp">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white"
-                android:gravity="center"
-                android:id="@+id/policies_icon">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/policyk"
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/policiesimgview"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Policies"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:id="@+id/policiestext"
-                    />
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical"-->
+<!--                android:background="@color/white"-->
+<!--                android:gravity="center"-->
+<!--                android:id="@+id/policies_icon">-->
+<!--                <ImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/policyk"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:id="@+id/policiesimgview"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Policies"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:id="@+id/policiestext"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -252,11 +266,13 @@
         </androidx.cardview.widget.CardView>
     </GridLayout>
 
+
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dashboard"
+        android:text="Home"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="36sp"

@@ -305,6 +305,8 @@ class LoginScreen : AppCompatActivity() {
 
     companion object {
         const val BASE_URL = "http://192.168.18.55"
+//        const val BASE_URL = "http://10.20.6.149"
+//        10.20.6.149
     }
 
     private lateinit var mainurl : String
@@ -537,7 +539,8 @@ class LoginScreen : AppCompatActivity() {
     private fun fetchstudentsdata(){
         val reqQueue: RequestQueue = Volley.newRequestQueue(this)
 //        val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
-        val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
+//        val apigetcohorts = "$BASE_URL/geceapi/Login/studentsdata.php"
+        val apigetcohorts = "$BASE_URL/geceapi/studentsdataN.php"
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET,
             apigetcohorts,

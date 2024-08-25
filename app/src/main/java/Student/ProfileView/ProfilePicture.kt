@@ -2,16 +2,20 @@ package Student.ProfileView
 
 import Faculty_Admin.Dashboards.AdminDashboard
 import Faculty_Admin.Dashboards.FacultyDashboard
+import Faculty_Admin.ProfileView.Messages
 import Student.Dashboard.StudentDashboard
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
@@ -32,7 +36,10 @@ class ProfilePicture : AppCompatActivity() {
     private lateinit var cohortTextView: TextView
     private lateinit var seatnoTextView: TextView
     private lateinit var nameTextView: TextView
-
+    private val messageList = mutableListOf<Message>()
+    private lateinit var messageAdapter: MessageAdapter
+    private lateinit var unreadcount: TextView
+    private var UnreadCount = 0
 
 
 
@@ -43,8 +50,8 @@ class ProfilePicture : AppCompatActivity() {
         userType = intent.getStringExtra("USER_TYPE")
         userID = intent.getStringExtra("USER_ID").toString() // Takes studentID from the previous screen
 
-        val dashboard_icon = findViewById<LinearLayout>(R.id.dashboard_icon)
-        val logout_icon = findViewById<LinearLayout>(R.id.logout_id)
+        val dashboard_icon = findViewById<RelativeLayout>(R.id.dashboard_icon)
+        val logout_icon = findViewById<RelativeLayout>(R.id.logout_id)
 
         emailTextView = findViewById(R.id.email)
         rollnoTextView = findViewById(R.id.rollno)
@@ -93,11 +100,35 @@ class ProfilePicture : AppCompatActivity() {
             }
         }
 
+        val inbox_icon = findViewById<RelativeLayout>(R.id.inbox_icon)
+        inbox_icon.setOnClickListener {
+            val intent = Intent(this, Messages2::class.java).apply {
+                putExtra("USER_TYPE", userType)
+                putExtra("USER_ID", userID)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+        }
+
         logout_icon.setOnClickListener {
             val intent = Intent(this, LoginScreen::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             startActivity(intent)
+        }
+
+        unreadcount = findViewById(R.id.unread_counT)
+        fetchMessages { unread ->
+            Log.d("UnRead", "We have reached here")
+            if (UnreadCount > 0)
+            {
+                unreadcount.visibility = View.VISIBLE
+                unreadcount.text = "$UnreadCount"
+            }
+            else {
+                unreadcount.visibility = View.GONE
+            }
+
         }
     }
 
@@ -226,4 +257,65 @@ class ProfilePicture : AppCompatActivity() {
         }
 
     }
+
+    private fun fetchMessages(callback: (String) -> Unit) {
+
+        val reqQueue: RequestQueue = Volley.newRequestQueue(this)
+//        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/Messages/fetch_student_messages.php?FacultyName=$userID"
+        val apigetcohorts = "${LoginScreen.BASE_URL}/geceapi/fetch_student_messagesN.php?FacultyName=$userID"
+        Log.d("apigetcohorts", "URL: $apigetcohorts")
+        val jsonArrayRequest = JsonArrayRequest(
+            Request.Method.GET,
+            apigetcohorts,
+            null,
+            { response ->
+                try {
+                    Log.d("mesae", "response: $response")
+                    val uniqueUserMessages = mutableMapOf<String, Message>()
+                    val unreadMessageCountMap = mutableMapOf<String, Int>()
+                    for (i in 0 until response.length()) {
+                        val jsonObject = response.getJSONObject(i)
+                        val message = Message(
+                            msgID = jsonObject.getString("MsgID"),
+                            userID = jsonObject.getString("userID"),
+                            title = jsonObject.getString("Title"),
+                            content = jsonObject.getString("Content"),
+                            postedDateTime = jsonObject.getString("PostedDateTime"),
+                            sentTo = jsonObject.getString("SentTo"),
+                            receiverID = jsonObject.getString("ReceiverID"),
+                            readTime = jsonObject.getString("ReadTime")
+                        )
+                        // Calculate unread count
+                        if (message.readTime == "" || message.readTime == "null") {
+                            val unreadCount = unreadMessageCountMap.getOrDefault(message.userID, 0) + 1
+                            unreadMessageCountMap[message.userID] = unreadCount
+                            Log.d("UnreadCount", "User ID: ${message.userID} - Unread Count: $unreadCount")
+                        }
+                        // Store only one message per userID
+                        if (!uniqueUserMessages.containsKey(message.userID)) {
+                            uniqueUserMessages[message.userID] = message
+                        }
+                    }
+                    // Assign unread counts to the corresponding messages
+                    for ((userID, message) in uniqueUserMessages) {
+                        message.unreadCount = unreadMessageCountMap.getOrDefault(userID, 0)
+                        UnreadCount = message.unreadCount
+                        Log.d("UnreadCount", "Final Unread Count for User ID: $userID - ${message.unreadCount}")
+                    }
+                    callback(UnreadCount.toString())
+
+                    messageList.clear()
+                    messageList.addAll(uniqueUserMessages.values)
+                    messageAdapter.notifyDataSetChanged()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                Log.e("StudentsDataProfile", "Error fetching the data: ${error.message}")
+            }
+        )
+        reqQueue.add(jsonArrayRequest)
+    }
+
 }

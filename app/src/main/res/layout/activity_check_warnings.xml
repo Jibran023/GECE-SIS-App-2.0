@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
 
-    tools:context="Faculty_Admin.Attendance.FacultyChooseAttendance">
+    tools:context="Faculty_Admin.Attendance.Check_Warnings">
 
     <View
         android:id="@+id/top_view"
@@ -31,8 +31,8 @@
         android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attendance"
-        android:textSize="24sp"
+        android:text="Send Warnings"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
@@ -45,35 +45,23 @@
         android:id="@+id/button_view_attendance"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/heading"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="580dp"
         android:layout_marginEnd="32dp"
-        android:text="Edit/View Attendance"
+        android:text="Send Warnings"
         android:textColor="@color/white"
         app:backgroundTint="@color/lighter_orange" />
 
     <Button
-        android:id="@+id/button_mark_attendance"
+        android:id="@+id/set_warning_dates"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/button_view_attendance"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="520dp"
         android:layout_marginEnd="32dp"
+        android:text="Set Warning Dates"
         android:textColor="@color/white"
-        app:backgroundTint="@color/lighter_orange"
-        android:text="Mark Attendance" />
+        app:backgroundTint="@color/lighter_orange" />
 
-    <Button
-        android:id="@+id/button_check_warnings"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/button_mark_attendance"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/lighter_orange"
-        android:text="Check Warnings" />
+
 </RelativeLayout>

@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name="Faculty_Admin.Attendance.Check_Warnings"
+            android:exported="false" />
+        <activity
+            android:name="Student.ProfileView.MessageDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name="Student.ProfileView.Messages2"
+            android:exported="false" />
+        <activity
             android:name="Faculty_Admin.Attendance.CheckBoxAttendanceAdapter"
             android:exported="false" />
         <activity

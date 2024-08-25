@@ -39,21 +39,12 @@
             android:id="@+id/courseHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sent Messages"
+            android:text="Messages"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="36sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp" />
-
-        <ImageView
-            android:id="@+id/newmsg"
-            android:layout_width="77dp"
-            android:layout_height="49dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            app:srcCompat="@drawable/new_direct_message_svgrepo_com"/>
 
 
     </RelativeLayout>

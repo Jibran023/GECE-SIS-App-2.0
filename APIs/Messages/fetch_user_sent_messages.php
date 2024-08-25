@@ -17,22 +17,17 @@ if ($conn->connect_error) {
 
 // Get semester description from the request
 $FacultyName = $_GET['FacultyName'];
-$semesterDescription = $_GET['semesterDescription'];
 
 
 // Prepare the SQL statement
-$sql = "
-SELECT c.CourseID, c.Name
-FROM courses c
-JOIN facultycourses fc ON c.CourseID = fc.CourseID JOIN faculty f ON fc.FacultyID = f.FacultyID
-WHERE f.FacultyName = ? AND fc.SessionID = (
-    SELECT SessionID 
-    FROM academicsession 
-    WHERE Description = ?
-)";
+$sql = "Select * 
+From sendnotifications
+Where userID = ?
+Group by ReceiverID
+Order by PostedDateTime DESC";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $FacultyName, $semesterDescription);
+$stmt->bind_param("s", $FacultyName);
 $stmt->execute();
 $result = $stmt->get_result();
 

@@ -107,7 +107,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
         yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedSessionDescription = parent?.getItemAtPosition(position) as String
-                Toast.makeText(this@student_attendance_comboboxes, "Selected: $selectedSessionDescription", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@student_attendance_comboboxes, "Selected: $selectedSessionDescription", Toast.LENGTH_SHORT).show()
 
                 fetchcourses()
 
@@ -130,7 +130,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
         courseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCourse = parent?.getItemAtPosition(position) as String
-                Toast.makeText(this@student_attendance_comboboxes, "Selected: $selectedCourse", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@student_attendance_comboboxes, "Selected: $selectedCourse", Toast.LENGTH_SHORT).show()
                 // Assuming you have a way to fetch or get the course ID
                 // You might need to modify this if you have a separate method or API call to get the course ID
 
@@ -145,7 +145,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         if (userType == "faculty") {
-            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, FacultyDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
@@ -153,7 +153,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
             }
             startActivity(intent)
         } else if (userType == "admin") {
-            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AdminDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
@@ -162,7 +162,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
             startActivity(intent)
         }
         else if (userType == "student") {
-            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StudentDashboard::class.java).apply {
                 putExtra("USER_TYPE", userType)
                 putExtra("USER_ID", userID)
@@ -294,7 +294,7 @@ class student_attendance_comboboxes : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCourse = parent?.getItemAtPosition(position) as String
                 selectedCourseID = courseIDList[position] // Get the corresponding course ID
-                Toast.makeText(this@student_attendance_comboboxes, "Selected Course: $selectedCourse, ID: $selectedCourseID", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@student_attendance_comboboxes, "Selected Course: $selectedCourse, ID: $selectedCourseID", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

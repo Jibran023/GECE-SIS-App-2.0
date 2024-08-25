@@ -7,7 +7,7 @@ class db {
     protected $query_closed = TRUE;
 	public $query_count = 0;
 
-	public function __construct($dbhost = '127.0.0.1:3306', $dbuser = 'root', $dbpass = 'mazerunner', $dbname = 'gecesisapp', $charset = 'utf8') {
+	public function __construct($dbhost = '127.0.0.1:3306', $dbuser = 'root', $dbpass = '', $dbname = 'gecesisapp', $charset = 'utf8') {
         $this->connection=new mysqli($dbhost,$dbuser,$dbpass,$dbname);
         //$this->connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
        // echo '<script>alert("'.$this->connection->connect_errno.'")</script>';

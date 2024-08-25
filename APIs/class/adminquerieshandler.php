@@ -292,6 +292,212 @@ class querieshandler{
         file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
     }
 
+    public function updateReadTime($MsgIDs, $ReadTime) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        // Convert MsgIDs to an array
+        $msgIdsArray = explode(',', $MsgIDs);
+
+        // Prepare the SQL statement dynamically based on the number of MsgIDs
+        $placeholders = implode(',', array_fill(0, count($msgIdsArray), '?'));
+        $query = "UPDATE sendnotifications 
+                  SET ReadTime = ? 
+                  WHERE MsgID IN ($placeholders)";
+
+        // Prepare the statement
+        $stmt = $con->prepare($query);
+
+        // Check if preparation was successful
+        if ($stmt === false) {
+            return ["status" => "error", "message" => $con->error];
+        }
+
+        // Bind parameters dynamically
+        $params = array_merge([$ReadTime], $msgIdsArray);
+        $params_types = str_repeat('s', count($params));
+        $stmt->bind_param($params_types, ...$params);
+
+        // Execute the statement
+        $result = $stmt->execute();
+
+        // Check if the update was successful
+        if ($result) {
+            $response = ["status" => "success"];
+        } else {
+            $response = ["status" => "error", "message" => $stmt->error];
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $con->close();
+
+        return $response;
+    }
+
+    public function getFacultyNotifications($facultyName) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        $query = "
+        SELECT si.Name, si.department 
+        FROM users si
+        INNER JOIN sendnotifications sn ON si.id = sn.userID
+        WHERE sn.userID = ?";
+
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            $this->debug_log("Failed to prepare SQL statement: " . $con->error);
+            return ["status" => "error", "message" => "Failed to prepare SQL statement"];
+        }
+
+        $stmt->bind_param("s", $facultyName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        $stmt->close();
+        $con->close();
+
+        return $data;
+    }
+
+    public function getStudentNotifications($facultyName) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        $query = "
+        SELECT Name, cohort, RollNumber 
+        FROM studentsinformation si
+        INNER JOIN sendnotifications sn ON si.id = sn.ReceiverID
+        WHERE sn.ReceiverID = ?";
+
+        // Prepare the statement
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            return ["status" => "error", "message" => $con->error];
+        }
+
+        $stmt->bind_param("s", $facultyName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Fetch data as an associative array
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $con->close();  // Assuming you have a closeConnection method in your db class
+
+        return $data;
+    }
+
+    public function fetchNotifications($facultyName, $userID) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        $query = "SELECT * FROM sendnotifications WHERE ReceiverID = ? AND userID = ? Order by PostedDateTime DESC";
+        
+        // Prepare the statement
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            return ["status" => "error", "message" => $con->error];
+        }
+
+        // Bind the parameters
+        $stmt->bind_param("ss", $facultyName, $userID);
+
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Fetch data as an associative array
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $con->close();  // Assuming you have a closeConnection method in your db class
+
+        return $data;
+    }
+
+    public function fetchNotificationsByFaculty($facultyName) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        $query = "
+        SELECT * 
+        FROM sendnotifications
+        WHERE userID = ?
+        GROUP BY ReceiverID
+        ORDER BY PostedDateTime DESC";
+
+        // Prepare the statement
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            return ["status" => "error", "message" => "Failed to prepare SQL statement: " . $con->error];
+        }
+
+        // Bind the parameters
+        $stmt->bind_param("s", $facultyName);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Fetch data as an associative array
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        // Close the statement and connection
+        $stmt->close();
+        $con->close();  // Assuming you have a closeConnection method in your db class
+
+        return $data;
+    }
+
+    public function getNotificationsByFacultyName($FacultyName) {
+        require_once('Admindp.php');
+        $con = new db();
+    
+        $query = "SELECT * FROM sendnotifications WHERE ReceiverID = ? Order by PostedDateTime DESC";
+    
+        // Prepare the statement
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            return ["status" => "error", "message" => $con->error];
+        }
+    
+        // Bind the parameter
+        $stmt->bind_param("s", $FacultyName);
+    
+        // Execute the query
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        // Fetch data as an associative array
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+    
+        // Close the statement and connection
+        $stmt->close();
+        $con->close();  // Assuming you have a closeConnection method in your db class
+    
+        return $data;
+    }
+
     public function submitAnnouncement($userID, $title, $content, $postedDateTime, $facultyNames) {
         require_once('Admindp.php');
         $con = new db();
@@ -587,6 +793,75 @@ class querieshandler{
         return ["success" => true, "rollNumbers" => $rollNumbers];
     }
 
+    public function getRollNumbersByCohortsAndStudents2($cohorts, $students) {
+        require_once('Admindp.php');
+        $con = new db();
+
+        function debug_log($message) {
+            file_put_contents('debug_log.txt', date('Y-m-d H:i:s') . " - $message\n", FILE_APPEND);
+        }
+        
+        // Sanitize inputs
+        $cohorts = array_map([$this, 'legal_input'], explode(',', $cohorts));
+        $students = array_map([$this, 'legal_input'], explode(',', $students));
+        
+        $rollNumbers = [];
+        
+        // Check if "All" is in cohorts list
+        if (in_array('All', $cohorts)) {
+            $query = "SELECT id FROM studentmap WHERE status = 'Active'";
+            $stmt = $con->prepare($query);
+            if ($stmt) {
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = $result->fetch_assoc()) {
+                    $rollNumbers[] = $row['id'];
+                }
+                $stmt->close();
+            } else {
+                $this->debug_log("SQL prepare statement error: " . $con->error);
+            }
+        } else {
+            // If "All" is not in cohorts list but "All" is in students list
+            if (in_array('All', $students)) {
+                $placeholders = implode(',', array_fill(0, count($cohorts), '?'));
+                $query = "SELECT id FROM studentsinformation WHERE status = 'Active' AND cohort IN ($placeholders)";
+                $stmt = $con->prepare($query);
+                if ($stmt) {
+                    $stmt->bind_param(str_repeat('s', count($cohorts)), ...$cohorts);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()) {
+                        $rollNumbers[] = $row['id'];
+                    }
+                    $stmt->close();
+                } else {
+                    $this->debug_log("SQL prepare statement error: " . $con->error);
+                }
+            } else {
+                // No "All" in either list, fetch specific students
+                $placeholders = implode(',', array_fill(0, count($students), '?'));
+                $query = "SELECT id FROM studentsinformation WHERE Name IN ($placeholders)";
+                $stmt = $con->prepare($query);
+                if ($stmt) {
+                    $stmt->bind_param(str_repeat('s', count($students)), ...$students);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    while ($row = $result->fetch_assoc()) {
+                        $rollNumbers[] = $row['id'];
+                    }
+                    $stmt->close();
+                } else {
+                    $this->debug_log("SQL prepare statement error: " . $con->error);
+                }
+            }
+        }
+        
+        $con->close(); // Assuming you have a closeConnection method in your db class
+        
+        return ["success" => true, "rollNumbers" => $rollNumbers];
+    }
+
     public function getDistinctCohorts() {
         require_once('Admindp.php');
         $con = new db();
@@ -655,6 +930,39 @@ class querieshandler{
         $stmt->close();
         $con->close();
         echo json_encode(["success" => true, "announcementID" => $announcementID, "message" => "Announcement inserted successfully"]);
+    }
+
+    public function insertAnnouncement5($userID, $title, $content, $postedDateTime, $sentTo, $receiverID) {
+        require_once('Admindp.php');
+        $con = new db();
+    
+        // Sanitize inputs
+        $userID = $this->legal_input($userID);
+        $title = $this->legal_input($title);
+        $content = $this->legal_input($content);
+        $postedDateTime = $this->legal_input($postedDateTime);
+    
+        $query = "INSERT INTO sendnotifications (userID, Title, Content, PostedDateTime, SentTo, ReceiverID) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($query);
+        if ($stmt === false) {
+            $con->close();
+            echo json_encode(["success" => false, "message" => "Statement preparation failed: " . $con->error]);
+            return;
+        }
+        $stmt->bind_param("ssssss", $userID, $title, $content, $postedDateTime, $sentTo, $receiverID);
+        $result = $stmt->execute();
+        if ($result === false) {
+            $stmt->close();
+            $con->close();
+            echo json_encode(["success" => false, "message" => "Execution failed: " . $stmt->error]);
+            return;
+        }
+    
+        $announcementID = $con->lastInsertID(); // Get the ID of the last inserted row
+    
+        $stmt->close();
+        $con->close();
+        echo json_encode(["success" => true, "MsgID" => $announcementID, "message" => "Message inserted successfully"]);
     }
 
     public function insertAnnouncement4($userID, $title, $content, $postedDateTime) {

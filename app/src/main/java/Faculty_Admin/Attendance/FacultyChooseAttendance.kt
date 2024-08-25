@@ -44,6 +44,23 @@ class FacultyChooseAttendance : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val check_warnings = findViewById<Button>(R.id.button_check_warnings)
+        check_warnings.setOnClickListener {
+            if (userType == "admin"){
+                Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, Check_Warnings::class.java).apply {
+                    putExtra("USER_TYPE", userType)
+                    putExtra("USER_ID", userID)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+            else {
+                Toast.makeText(this, "You're not authorized to visit here", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
         val back_btn = findViewById<ImageButton>(R.id.backbtn)
         back_btn.setOnClickListener {
             Toast.makeText(this, "User type: $userType", Toast.LENGTH_SHORT).show()
